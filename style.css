@@ -7,68 +7,87 @@
     --white-color: #fff;
     /* تم تقليل قيمة الشفافية (opacity) لـ background-color */
     --light-bg: rgba(255, 255, 255, 0); /* خلفية فاتحة جدًا وشفافة أكثر */
-    --section-bg: rgba(255, 255, 255, 0)* خلفية قسم فاتحة وشفافة أكثر */
+    --section-bg: rgba(255, 255, 255, 0); /* خلفية قسم فاتحة وشفافة أكثر */
     --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    --main-font: sans-serif;
+    --main-font: 'Arial', sans-serif; /* Added a fallback font */
+}
+
+/* Global Styles & Reset */
+* {
+    box-sizing: border-box; /* Essential for responsive design */
+    margin: 0;
+    padding: 0;
 }
 
 body {
     font-family: var(--main-font);
-    margin: 0;
-    padding: 0;
+    line-height: 1.6;
     /* تم تعيين الخلفية الرئيسية في body */
     background-image: url('photo/Main swimming pool.jpg'); /* تأكد من مسار الصورة */
-    background-size: cover;
+    background-size: cover; /* Ensures the image covers the entire background */
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: fixed; /* Keeps the background fixed when scrolling */
     background-position: center center;
     color: var(--text-color); /* لون النص الأساسي */
+    direction: rtl; /* Set default text direction for Arabic */
 }
 
 .container {
+    width: 90%; /* Responsive width for better mobile fit */
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* Header */
+/* --- Header --- */
 header {
     background-color: var(--primary-color);
     color: var(--white-color);
     padding: 10px 0;
-    position: fixed;
+    position: fixed; /* Keeps header at the top */
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 100;
+    z-index: 100; /* Ensures header is above other content */
     box-shadow: var(--box-shadow);
     display: flex;
     align-items: center;
+    justify-content: center; /* Center content on smaller screens */
 }
 
 header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap; /* Allows items to wrap onto the next line */
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
 }
 
 header .logo img {
     height: 50px;
 }
 
+header nav {
+    flex-grow: 1; /* Allows nav to take available space */
+    text-align: left; /* Align links to the left in RTL context */
+    /* On desktop, keep nav to the left of the logo for RTL flow if you want.
+       Adjust margin-right if logo is on the right for RTL. */
+    margin-right: auto; /* Pushes nav to the right if logo is on the left in LTR, or left in RTL */
+    display: flex;
+    flex-wrap: wrap; /* Allow navigation items to wrap */
+    justify-content: flex-end; /* Align links to the right for RTL layout */
+}
+
 header nav a {
     color: var(--white-color);
     text-decoration: none;
     padding: 10px 18px;
-    margin-left: 20px;
+    margin-left: 20px; /* Space between links */
     border-radius: 5px;
     transition: background-color 0.3s ease, color 0.3s ease;
     font-weight: bold;
-    position: relative; /* لجعل الخط يظهر بشكل صحيح */
+    position: relative;
+    white-space: nowrap; /* Prevent links from breaking into multiple lines */
 }
 
 header nav a:hover {
@@ -76,21 +95,8 @@ header nav a:hover {
     color: var(--primary-color);
 }
 
-/* إضافة الخط تحت "الصفحة الرئيسية" */
-header nav a[href="index.html"]::after { /* استبدل about.html بالرابط الفعلي للصفحة الرئيسية */
-    content: '';
-    position: absolute;
-    left: 10px; /* ضبط موضع الخط */
-    right: 10px; /* ضبط موضع الخط */
-    bottom: 5px; /* مسافة الخط من الأسفل */
-    height: 2px; /* سمك الخط */
-    background-color: var(--accent-color); /* لون الخط */
-    transform: scaleX(1); /* جعل الخط مرئيًا دائمًا */
-    transition: transform 0.3s ease;
-}
-
-/* إذا أردت أن يظهر الخط فقط عند التحويم أو للصفحة النشطة:
-header nav a::after {
+/* Active link indicator */
+header nav a[href="index.html"]::after {
     content: '';
     position: absolute;
     left: 10px;
@@ -98,19 +104,11 @@ header nav a::after {
     bottom: 5px;
     height: 2px;
     background-color: var(--accent-color);
-    transform: scaleX(0); // مخفي في البداية
-    transform-origin: center;
+    transform: scaleX(1); /* Always visible for the home page */
     transition: transform 0.3s ease;
 }
 
-header nav a:hover::after,
-header nav a.active::after { // أضف class="active" للصفحة النشطة في HTML
-    transform: scaleX(1); // يظهر عند التحويم أو عندما تكون الصفحة نشطة
-}
-*/
-
-
-/* Hero Section (مع الفيديو) */
+/* --- Hero Section (with video) --- */
 #hero {
     position: relative;
     height: 600px;
@@ -120,7 +118,7 @@ header nav a.active::after { // أضف class="active" للصفحة النشطة 
     color: var(--white-color);
     text-align: center;
     overflow: hidden;
-    padding-top: 70px;
+    padding-top: 70px; /* Space for fixed header */
 }
 
 .hero-video-container {
@@ -142,7 +140,7 @@ header nav a.active::after { // أضف class="active" للصفحة النشطة 
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    object-fit: cover;
+    object-fit: cover; /* Ensures video covers the area without distortion */
 }
 
 .hero-overlay {
@@ -150,18 +148,19 @@ header nav a.active::after { // أضف class="active" للصفحة النشطة 
     top: 0;
     left: 0;
     width: 100%;
-    height: 150%;
+    height: 100%; /* Changed from 150% to 100% for better control */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1;
     flex-direction: column;
-    background-color: rgba(0, 0, 0, 0); /* تم تقليل شفافية overlay لجعل الفيديو أكثر وضوحًا */
+    background-color: rgba(0, 0, 0, 0.3); /* Slightly darker overlay for text readability */
 }
 
 .hero-content h2 {
     font-size: 3em;
     margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Added text shadow for readability */
 }
 
 .hero-content button {
@@ -173,40 +172,40 @@ header nav a.active::after { // أضف class="active" للصفحة النشطة 
     cursor: pointer;
     font-size: 1.2em;
     margin-top: 20px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform transition */
 }
 
 .hero-content button:hover {
     background-color: #FFD54F;
+    transform: translateY(-3px); /* Subtle lift on hover */
 }
 
-/* Features Section */
+/* --- Features Section --- */
 #features {
     padding: 40px 0;
-    background-color: var(--section-bg); /* ستكون شفافة الآن */
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly less transparent background */
     text-align: center;
     margin-top: 10px;
 }
 
 #features .container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    display: grid; /* Use CSS Grid for robust layout */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Responsive columns */
+    gap: 20px; /* Space between boxes */
+    justify-content: center; /* Center items if they don't fill the row */
 }
 
 .feature-box {
-    flex: 1;
     padding: 20px;
-    margin: 10px;
-    background-color: rgba(255, 255, 255, 0.7); /* خلفية بيضاء شفافة للصناديق */
+    background-color: var(--white-color); /* Solid white for boxes, more readable */
     border-radius: 5px;
     box-shadow: var(--box-shadow);
-    min-width: 200px;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .feature-box:hover {
-    transform: translateY(10px);
+    transform: translateY(-5px); /* Changed to upward lift */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
 }
 
 .feature-box h3 {
@@ -221,10 +220,10 @@ header nav a.active::after { // أضف class="active" للصفحة النشطة 
     height: 100%;
 }
 
-/* Video Section */
+/* --- Video Section --- */
 #video-section {
     padding: 60px 0;
-    background-color: var(--section-bg); /* ستكون شفافة الآن */
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly less transparent background */
     text-align: center;
     margin-top: 5px;
 }
@@ -233,51 +232,65 @@ header nav a.active::after { // أضف class="active" للصفحة النشطة 
     color: var(--primary-color);
     margin-bottom: 20px;
     font-size: 2.5em;
-    background-color: var(--light-bg); /* شفافة الآن */
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly more opaque background for heading */
     padding: 10px;
     border-radius: 5px;
+    display: inline-block; /* Makes background only cover the text */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 #video-section .video-container {
+    position: relative; /* For aspect ratio trick */
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
     max-width: 800px;
     margin: 20px auto;
     border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.5); /* خلفية للفيديو شفافة قليلا */
+    background-color: rgba(0, 0, 0, 0.7); /* Darker, slightly more opaque background for video */
     overflow: hidden;
     box-shadow: var(--box-shadow);
 }
 
 #video-section .video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
+    object-fit: cover;
 }
 
-/* About Main Section */
+/* --- About Main Section --- */
 #about-main {
     padding: 60px 0;
     margin-top: 10px;
-    background-color: var(--section-bg); /* شفافة الآن */
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly less transparent background */
 }
 
 #about-main .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.7); /* خلفية بيضاء شفافة للكونتينر */
+    background-color: var(--white-color); /* Solid white background */
     box-shadow: var(--box-shadow);
     border-radius: 5px;
     padding: 20px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
 #about-main .about-text {
     flex: 1;
-    padding-right: 30px;
+    min-width: 300px; /* Ensures text block has a minimum width before wrapping */
+    padding-left: 30px; /* Adjusted padding for RTL */
 }
 
 #about-main .about-image {
     flex: 1;
+    min-width: 300px; /* Ensures image block has a minimum width before wrapping */
     text-align: center;
+    padding-right: 30px; /* Adjusted padding for RTL */
 }
 
 #about-main .about-image img {
@@ -286,10 +299,10 @@ header nav a.active::after { // أضف class="active" للصفحة النشطة 
     border-radius: 5px;
 }
 
-/* Training Section */
+/* --- Training Section --- */
 #training {
-    padding: 20px 0;
-    background-color: var(--section-bg); /* شفافة الآن */
+    padding: 60px 0; /* Consistent padding */
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly less transparent background */
     margin-top: 5px;
 }
 
@@ -298,15 +311,17 @@ header nav a.active::after { // أضف class="active" للصفحة النشطة 
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.7); /* خلفية بيضاء شفافة للكونتينر */
+    background-color: var(--white-color); /* Solid white background */
     box-shadow: var(--box-shadow);
     border-radius: 5px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
 #training .training-image {
     flex: 1;
+    min-width: 300px;
     text-align: center;
-    padding: 10px;
+    padding-left: 30px; /* Adjusted padding for RTL */
 }
 
 #training .training-image img {
@@ -317,10 +332,11 @@ header nav a.active::after { // أضف class="active" للصفحة النشطة 
 
 #training .training-text {
     flex: 1;
-    padding-left: 30px;
+    min-width: 300px;
+    padding-right: 30px; /* Adjusted padding for RTL */
 }
 
-/* Footer (معدل بالكامل حسب الصورة) */
+/* --- Footer --- */
 footer {
     color: var(--white-color);
     padding: 80px 0 0;
@@ -332,20 +348,8 @@ footer {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    /* بما أن الصورة الخلفية للـ body أصبحت ثابتة، لا نحتاج هنا لـ ::before لخلفية الفوتر */
-    /* لكن يمكن تركها إذا أردت صورة مختلفة للفوتر عن خلفية الصفحة */
-}
-
-
-footer::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0); /* تراكب أسود بنسبة 60% opacity (أغمق قليلاً) */
-    z-index: 0;
+    background-color: rgba(26, 113, 156, 0.8); /* Using a darker blue with some transparency for the footer background */
+    margin-top: 20px; /* Add some space above the footer */
 }
 
 footer .container {
@@ -359,17 +363,17 @@ footer .container {
     padding-bottom: 60px;
 }
 
-/* عنوان التواصل معنا في الفوتر */
+/* Contact title in footer */
 footer h2.contact-title {
-    color: var(--primary-color);
+    color: var(--primary-color); /* Use primary color for heading */
     font-size: 3.5em;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); /* ظل أغمق قليلاً للنص */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
     position: relative;
     z-index: 2;
 }
 
-/* أيقونات التواصل الاجتماعي داخل الـ footer */
+/* Social icons within footer */
 footer .social-icons {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -390,7 +394,7 @@ footer .social-icons a {
     text-decoration: none;
     color: var(--primary-color);
     font-size: 2.5em;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* ظل أغمق قليلاً */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -400,9 +404,9 @@ footer .social-icons a:hover {
     color: var(--white-color);
 }
 
-/* شريط حقوق الطبع والنشر */
+/* Copyright strip */
 footer .copyright {
-    background-color: rgba(26, 113, 156, 0.9); /* لون أزرق داكن مع شفافية خفيفة */
+    background-color: rgba(26, 113, 156, 0.9); /* Darker blue with slight transparency */
     color: var(--white-color);
     padding: 15px 0;
     width: 100%;
@@ -413,7 +417,7 @@ footer .copyright {
     z-index: 1;
 }
 
-/* تأثير الظهور التدريجي مع تأثير بصري */
+/* --- Scroll Animation Classes --- */
 .hidden {
     opacity: 0;
     transform: translateY(30px) scale(0.95);
@@ -436,85 +440,92 @@ footer .copyright {
     transform: translateY(0) scale(1);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    header .container {
-        flex-direction: column;
-        align-items: center;
-    }
+/* --- Responsive Design Media Queries --- */
 
-    header nav {
-        margin-top: 10px;
-    }
-
+/* For screens smaller than 992px (typical tablets and smaller desktops) */
+@media (max-width: 991px) {
     header nav a {
-        margin: 5px 10px;
-        padding: 8px 12px;
+        padding: 8px 15px; /* Slightly reduced padding */
+        margin-left: 10px; /* Reduced margin */
+        font-size: 0.95em;
     }
 
     #hero {
-        height: 400px;
+        height: 500px; /* Reduce hero height */
     }
 
     .hero-content h2 {
-        font-size: 2em;
+        font-size: 2.5em; /* Smaller font size for hero heading */
+    }
+
+    .hero-content button {
+        padding: 12px 25px; /* Smaller button */
+        font-size: 1.1em;
     }
 
     #features .container {
-        flex-direction: column;
-    }
-
-    .feature-box {
-        min-width: unset;
-        width: 90%;
-        margin: 10px auto;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust min-width for features */
     }
 
     #about-main .container,
     #training .container {
-        flex-direction: column;
+        flex-direction: column; /* Stack image and text vertically */
         text-align: center;
     }
 
     #about-main .about-text,
     #training .training-text {
-        padding-right: 0;
-        padding-left: 0;
+        padding-right: 0; /* Remove right padding */
+        padding-left: 0; /* Remove left padding */
+        margin-bottom: 20px; /* Add space between stacked elements */
+        order: 2; /* Text appears after image by default for mobile */
     }
 
     #about-main .about-image,
     #training .training-image {
-        margin-top: 20px;
+        padding-right: 0; /* Remove right padding */
+        padding-left: 0; /* Remove left padding */
+        order: 1; /* Image appears before text by default for mobile */
     }
 
-    footer {
-        min-height: 300px;
+    /* Reverse order for training section on mobile if desired */
+    #training .training-text {
+        order: 1;
     }
-
-    footer h2.contact-title {
-        font-size: 2.5em;
-    }
-
-    footer .social-icons a {
-        width: 50px;
-        height: 50px;
-        font-size: 2em;
+    #training .training-image {
+        order: 2;
+        margin-top: 20px; /* Add space if image is after text */
     }
 }
 
-@media (max-width: 480px) {
-    header .logo img {
-        height: 40px;
+/* For screens smaller than 768px (common tablet portrait and mobile) */
+@media (max-width: 767px) {
+    header .container {
+        flex-direction: column; /* Stack logo and nav vertically */
+        align-items: center; /* Center items */
+    }
+
+    header nav {
+        text-align: center; /* Center navigation links */
+        margin-top: 15px;
+        margin-right: 0; /* Remove specific margin */
+        justify-content: center; /* Center navigation links */
+        width: 100%; /* Ensure nav takes full width for centering */
     }
 
     header nav a {
+        margin: 5px 8px; /* Adjust margin for smaller screens */
+        padding: 6px 10px; /* Adjust padding for smaller screens */
         font-size: 0.9em;
-        margin: 3px 5px;
-        padding: 6px 10px;
+    }
+
+    #hero {
+        height: 350px; /* Further reduce hero height */
+        padding-top: 60px; /* Adjust padding for smaller fixed header */
     }
 
     .hero-content h2 {
-        font-size: 1.5em;
+        font-size: 2em; /* Smaller font for mobile hero */
     }
 
     .hero-content button {
@@ -522,26 +533,97 @@ footer .copyright {
         font-size: 1em;
     }
 
+    #features .container {
+        grid-template-columns: 1fr; /* Stack feature boxes vertically */
+        padding: 0 10px; /* Adjust container padding */
+    }
+
+    .feature-box {
+        width: 100%; /* Make feature boxes take full width */
+        margin: 10px 0; /* Adjust margin */
+        padding: 15px;
+    }
+
+    #video-section h2,
+    #about-main h2,
+    #training h2 {
+        font-size: 2em; /* Adjust heading sizes for mobile */
+    }
+
     footer {
-        min-height: 250px;
+        min-height: 280px; /* Smaller footer height */
+        padding-bottom: 50px; /* Adjust padding for copyright */
     }
 
     footer h2.contact-title {
-        font-size: 2em;
-    }
-
-    footer .social-icons {
-        gap: 15px;
+        font-size: 2.2em;
     }
 
     footer .social-icons a {
         width: 45px;
         height: 45px;
+        font-size: 2em;
+        margin: 0 10px; /* Adjust gap for icons */
+    }
+}
+
+/* For even smaller screens (e.g., small smartphones) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 10px; /* Tighter padding */
+    }
+
+    header .logo img {
+        height: 45px;
+    }
+
+    header nav a {
+        font-size: 0.8em;
+        padding: 5px 8px;
+        margin: 2px 4px; /* Even smaller margins */
+    }
+
+    #hero {
+        height: 300px;
+    }
+
+    .hero-content h2 {
         font-size: 1.8em;
     }
 
+    .hero-content button {
+        padding: 8px 18px;
+        font-size: 0.9em;
+    }
+
+    #video-section h2,
+    #about-main h2,
+    #training h2 {
+        font-size: 1.8em;
+        padding: 8px;
+    }
+
+    footer {
+        min-height: 220px;
+        padding-bottom: 40px;
+    }
+
+    footer h2.contact-title {
+        font-size: 1.8em;
+    }
+
+    footer .social-icons {
+        gap: 10px;
+    }
+
+    footer .social-icons a {
+        width: 40px;
+        height: 40px;
+        font-size: 1.6em;
+    }
+
     footer .copyright {
-        font-size: 0.8em;
-        padding: 10px 0;
+        font-size: 0.75em;
+        padding: 8px 0;
     }
 }
