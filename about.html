@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حول ماسة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* تصميم خاص بالصفحة الرئيسية (معدل) */
+        :root {
+            --primary-color: #29ABE2; /* أزرق فاتح ومنعش */
+            --secondary-color: #03DAC6; /* تركواز حيوي */
+            --accent-color: #FFC107; /* أصفر دافئ للمسات بسيطة */
+            --text-color: #333; /* رمادي غامق للنصوص الرئيسية */
+            --white-color: #fff;
+            --light-bg: #ffffff; /* خلفية فاتحة جدًا */
+            --section-bg: #ffffff00; /* خلفية قسم فاتحة مع مسحة صفراء خفيفة */
+            --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            --main-font: sans-serif;
+        }
+
+        body {
+            font-family: var(--main-font);
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+        }
+body {
+    font-family: var(--main-font);
+    margin: 0;
+    padding: 0;
+    /* تم تعيين الخلفية الرئيسية في body */
+    background-image: url('photo/Main swimming pool.jpg'); /* تأكد من مسار الصورة */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    color: var(--text-color); /* لون النص الأساسي */
+}
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles (معدل بالكامل) */
+        header {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            align-items: center;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header .logo img {
+            height: 50px;
+        }
+
+        header nav a {
+            color: var(--white-color);
+            text-decoration: none;
+            padding: 10px 18px;
+            margin-left: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-weight: bold;
+            position: relative; /* لجعل الخط يظهر بشكل صحيح */
+        }
+
+        header nav a:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        /* إضافة الخط تحت "الصفحة الرئيسية" */
+        header nav a[href="about.html"]::after { /* استبدل about.html بالرابط الفعلي للصفحة الرئيسية */
+            content: '';
+            position: absolute;
+            left: 10px; /* ضبط موضع الخط */
+            right: 10px; /* ضبط موضع الخط */
+            bottom: 5px; /* مسافة الخط من الأسفل */
+            height: 2px; /* سمك الخط */
+            background-color: var(--accent-color); /* لون الخط */
+            transform: scaleX(1); /* جعل الخط مرئيًا دائمًا */
+            transition: transform 0.3s ease;
+        }
+
+        /* ستايلات خاصة بصفحة "حول ماسة" */
+        #about-page {
+            padding-top: 80px;
+            padding-bottom: 40px;
+            background-color: #f9f9f92c;
+        }
+
+        .about-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0);
+            background-color: #ffffff00;
+        }
+
+        .about-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .main-info {
+            flex: 2;
+            padding: 30px;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            border-radius: 8px;
+            padding-bottom: 20px;
+        }
+
+        .main-info h1,
+        .main-info h2,
+        .main-info p {
+            color: #000000;
+            margin-bottom: 15px;
+        }
+
+        .main-info h1 {
+            font-size: 3.5em;
+        }
+
+        .main-info h2 {
+            font-size: 2em;
+            font-weight: normal;
+        }
+
+        .main-info .full-width-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .side-info {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .person-card {
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .person-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .person-card h3 {
+            color: var(--primary-color);
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+
+        .person-card p {
+            line-height: 1.6;
+            font-size: 0.9em;
+        }
+
+        /* Footer (معدل بالكامل حسب الصورة) */
+        footer {
+            color: var(--white-color);
+            padding: 80px 0 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0); /* تراكب أسود بنسبة 60% opacity (أغمق قليلاً) */
+            z-index: 0;
+        }
+
+        footer .container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            padding-bottom: 60px;
+        }
+
+        /* عنوان التواصل معنا في الفوتر */
+        footer h2.contact-title {
+            color: var(--primary-color);
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); /* ظل أغمق قليلاً للنص */
+            position: relative;
+            z-index: 2;
+        }
+
+        /* أيقونات التواصل الاجتماعي داخل الـ footer */
+        footer .social-icons {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        footer .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--white-color);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-size: 2.5em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.064); /* ظل أغمق قليلاً */
+            transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+        }
+
+        footer .social-icons a:hover {
+            transform: translateY(-8px) scale(1.1);
+            background-color: var(--accent-color);
+            color: var(--white-color);
+        }
+
+        /* شريط حقوق الطبع والنشر */
+        footer .copyright {
+            background-color: rgba(26, 113, 156, 0.9); /* لون أزرق داكن مع شفافية خفيفة */
+            color: var(--white-color);
+            padding: 15px 0;
+            width: 100%;
+            font-size: 1em;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            .about-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .main-info {
+                text-align: center;
+                padding: 20px;
+            }
+
+            .side-info {
+                padding: 20px;
+                align-items: center;
+            }
+
+            .person-card {
+                margin-bottom: 15px;
+            }
+
+            footer .footer-links ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            footer .footer-links li {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="photo/logo.jpg" alt="شعار ماسة">
+            </div>
+            <nav>
+                <a href="index.html">الصفحة الرئيسية</a>
+                <a href="about.html">حول ماسه</a>
+                <a href="courses.html">التدريبات</a>
+                <a href="facilities.html">الاستور</a>
+                <a href="comments.html">تعليقاتكم</a>
+                <a href="#contact-section">تواصل معنا</a>
+                <a href="subscriptions.html">الاشتراكات</a>
+                <a href="cafe-booking.html">حجز الكافيتريا</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="about-page">
+        <div class="container about-container">
+            <div class="about-content">
+                <div class="main-info">
+                    <h1>حول ماسة</h1>
+                    <h2>اهلا بكم في حمام سباحه ماسه</h2>
+                    <p>حمام سباحه ماسه مسجل بالفعل في الاتحاد المصري للسباحه والاتحاد المصري للغوص والانقاذ .</p>
+                    <p>حمام سباحه ماسه هو نصف اوليمبي مجهز علي اعلي مستوي ومكون من 3 طوابق الدور الاول عباره عن حمام السباحه وموجود فلتره وتنقيه للماء بشكل مستمر وكافيتيريا لتجهيز الطلبات وجلسه مخصصه لعائلات المتدربين</p>
+                    <p>الدور الثاني موجود فيه ستور رياضي مجهز كامل ومجود اماكن للجلوس تطل علي حمام السباحه</p>
+                    <p>الدور التالت لم يتم استغلال مساحته بعد ولو عندك اي فكره اكتبلنا في الكومنتات من الاختيارات اللي فوق</p>
+                    <p>من حيث الامان فمتقلقش موجود شركه امن معتمده من القوات المسلحه وتصريح رسمي من الشرطه المصريه وفرد تأمين من الشرطه واحتراما لخصوصيه السيدات في اوقات السيدات موجود عدد2 منقذين سيدات لمنح اكبر قدر من الراحه</p>
+                    <h1>ازاي تشترك؟</h1>
+                    <p>ممكن تدخل علي كلمه الاشتراك اللي فأول الصفحه وتملي الاستماره الالكترونيه او عن طريق التوجه للنادي ولتسليم التقرير الطبي اللازم ومتوفر قسم للحالات الخاصه بمدربين متخصصينوتم التسجيل في الاتحادات الخاصه بهم للاشتراك بجميع البطولات</p>
+                    <h1>هدفنا؟</h1>
+                    <p>هدفنا هو ارضائكم كعملاء وتقديم صوره تليق بنا وبكم</p>
+                </div>
+                <div class="side-info">
+                    <div class="person-card">
+                        <img src="photo/c. mohamed hesham.jpg" alt="صورة كابتن محمد هشام">
+                        <h3>كابتن محمد هاشم</h3>
+                        <p>احد مؤسسي نادي ماسه وعضو مؤثر واحد كباتن ومدري النادي </p>
+                    </div>
+                    <div class="person-card">
+                        <img src="photo/ahmed magdy.jpg" alt="صورة المهندس احمد مجدي">
+                        <h3>احمد مجدي</h3>
+                        <p>المهندس احمد مجدي مدير ومؤسس حمام سباحه الماسه </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact-section">
+        <div class="container">
+            <h2 class="contact-title">تواصل معنا</h2>
+            <div class="social-icons">
+                <a href="https://wa.me/201555903712" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://www.facebook.com/Diamondclubsng?locale=ar_AR" target="_blank">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; جميع الحقوق محفوظة لحمام سباحة ماسة
+        </div>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

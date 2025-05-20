@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تعليقاتكم - حمام سباحة ماسة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ============ General Styles ============ */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            direction: rtl; /* Set default direction to RTL */
+
+            /* ============ إضافة صورة الخلفية الثابتة هنا ============ */
+            background-image: url('photo/Main swimming pool.jpg'); /* استبدل background.jpg باسم صورتك */
+            background-size: cover; /* تغطي الصورة كامل الخلفية */
+            background-repeat: no-repeat; /* تمنع تكرار الصورة */
+            background-attachment: fixed; /* تجعل الصورة ثابتة أثناء التمرير */
+            background-position: center center; /* توسيط الصورة */
+            /* ==================================================== */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ============ Header ============ */
+        header {
+            background-color: #007bff; /* Blue color from image */
+            padding: 5px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex-direction: row-reverse; /* Changed to Rtl: Logo on right, nav on left */
+        }
+
+        header .logo img {
+            height: 40px;
+            border-radius: 100%;
+            border: 2px solid white;
+            margin-left: 15px; /* Added margin for spacing */
+        }
+
+        header nav {
+            display: flex;
+            align-items: center;
+            direction: rtl; /* Changed to Rtl */
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        header nav a:hover {
+            color: #f8f8f8;
+            transform: translateY(-2px);
+        }
+
+        header nav a.active {
+            color: #00f0ff; /* Bright blue from image */
+            font-weight: bold;
+        }
+
+        header nav a.active::after {
+            content: '';
+            position: absolute;
+            right: 0; /* Adjusted for Rtl */
+            left: unset; /* Adjusted for Rtl */
+            bottom: 0;
+            height: 3px;
+            background-color: #00f0ff; /* Bright blue from image */
+            border-radius: 2px;
+            width: 100%; /* Ensure full width underline */
+        }
+
+        /* ============ Comments Section ============ */
+        .comments-section {
+            padding: 50px 0;
+            min-height: calc(100vh - 250px); /* Adjust based on header/footer height */
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0); /* Semi-transparent white background for content */
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .comments-section h1 {
+            color: #007bff;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+        }
+
+        .comment-form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto 50px auto;
+            text-align: right; /* RTL alignment */
+        }
+
+        .comment-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .comment-form textarea {
+            width: calc(100% - 20px);
+            padding: 12px 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box; /* Include padding in width */
+            resize: vertical;
+            min-height: 120px;
+            text-align: right; /* RTL alignment */
+        }
+
+        .comment-form button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px; /* Space between textarea and button */
+        }
+
+        .comment-form button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Facebook Login Button Styling */
+        .fb-login-button {
+            display: inline-block;
+            background-color: #4267B2; /* Facebook blue */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: fit-content;
+            margin-left: auto; /* For RTL alignment */
+            margin-right: auto; /* For RTL alignment */
+        }
+
+        .fb-login-button:hover {
+            background-color: #365899;
+        }
+
+        .fb-login-button i {
+            font-size: 1.2em;
+        }
+
+        .comments-list {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: right; /* RTL alignment */
+        }
+
+        .comment-item {
+            background-color: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .comment-item h3 {
+            margin-top: 0;
+            color: #333;
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+
+        .comment-item p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .comment-item .comment-meta {
+            font-size: 0.9em;
+            color: #99999900;
+            margin-top: 10px;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+
+        .comment-item .reply-button {
+            background-color: #6c757d00; /* Grey button for reply */
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .comment-item .reply-button:hover {
+            background-color: #5a626800;
+        }
+
+        .comment-item .replies-container {
+            margin-right: 30px; /* Indent replies */
+            border-right: 2px solid #eee;
+            padding-right: 15px;
+            margin-top: 15px;
+        }
+
+        .comment-item .reply-form {
+            display: none; /* Hidden by default */
+            margin-top: 15px;
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #dddddd06;
+        }
+
+        .comment-item .reply-form textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #cccccc00;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 70px;
+            text-align: right; /* RTL */
+        }
+
+        .comment-item .reply-form button {
+            background-color: #28a745; /* Green for reply submit */
+            color: rgba(255, 255, 255, 0.411);
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .comment-item .reply-form button:hover {
+            background-color: #218838;
+        }
+
+        /* ============ Contact Section (from provided code) ============ */
+        .contact-section-body {
+            background-color: rgba(240, 240, 240, 0); /* Semi-transparent background */
+            padding: 50px 0;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .contact-section-body h2 {
+            color: #007bff;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+
+        .contact-icons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .contact-icons a {
+            font-size: 2.5em;
+            color: #555;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact-icons a:hover {
+            color: #007bff;
+            transform: scale(1.1);
+        }
+
+        .contact-icons .whatsapp-icon {
+            color: #25D366; /* WhatsApp green */
+        }
+
+        .contact-icons .whatsapp-icon:hover {
+            color: #1DA851;
+        }
+
+        .contact-icons .fa-facebook-f {
+            color: #3b5998; /* Facebook blue */
+        }
+
+        .contact-icons .fa-facebook-f:hover {
+            color: #2d4373;
+        }
+
+        /* ============ Footer ============ */
+        footer {
+            background-color: #46688a44; /* Color from image */
+            color: #ecf0f100;
+            padding: 10px 0; /* Adjusted padding */
+            text-align: center;
+            font-size: 0.95em;
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.228);
+            position: relative; /* مهم لظهور المحتوى فوق الـ pseudo-element */
+            z-index: 1; /* مهم لظهور المحتوى فوق الـ pseudo-element */
+        }
+
+        footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-bottom {
+            background-color: #2c3e50; /* Darker blue for bottom part from image */
+            color: #ecf0f1;
+            padding: 15px 0;
+            margin-top: 0; /* No top margin as it's directly inside the footer now */
+            font-size: 0.9em;
+            width: 100%;
+        }
+
+        .footer-bottom .copyright {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html">الصفحة الرئيسية</a>
+                <a href="about.html">حول ماسة</a>
+                <a href="courses.html">التدريبات</a>
+                <a href="facilities.html">الستور</a>
+                <a href="comments.html" class="active">تعليقاتكم</a>
+                <a href="#contact-section">تواصل معنا</a>
+                <a href="subscriptions.html">الاشتراكات</a>
+                <a href="cafe-booking.html">حجز الكافيتريا</a>
+            </nav>
+            <div class="logo">
+                <a href="index.html"><img src="photo/logo.jpg" alt="Masa Logo" /></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="comments-section">
+            <div class="container">
+                <h1>شاركنا رأيك أو اترك تعليقاً</h1>
+
+                <div class="comment-form">
+                    <p>الرجاء تسجيل الدخول عبر فيسبوك لترك تعليق:</p>
+                    <a href="#" class="fb-login-button" id="facebookLoginButton">
+                        <i class="fab fa-facebook"></i>
+                        تسجيل الدخول عبر فيسبوك
+                    </a>
+
+                    <form id="addCommentForm">
+                        <label for="newCommentText">تعليقك:</label>
+                        <textarea id="newCommentText" name="comment" required placeholder="اكتب تعليقك هنا..."></textarea>
+                        <button type="submit">إرسال التعليق</button>
+                    </form>
+                </div>
+
+                <h2>التعليقات السابقة</h2>
+                <div class="comments-list" id="commentsList">
+                    <div class="comment-item">
+                        <h3>تجربة رائعة!</h3>
+                        <p>حمام السباحة نظيف جداً والمدربين ممتازين، ابني استمتع بالحصص كثيراً.</p>
+                        <div class="comment-meta">بواسطة: أحمد علي (تم تسجيل الدخول عبر فيسبوك) - 15 مايو 2025</div>
+                        <button class="reply-button" onclick="toggleReplyForm(this)">رد</button>
+                        <div class="reply-form">
+                            <textarea placeholder="اكتب ردك هنا..."></textarea>
+                            <button onclick="addReply(this)">إرسال الرد</button>
+                        </div>
+                        <div class="replies-container">
+                            <div class="comment-item">
+                                <h3>رد من: الإدارة</h3>
+                                <p>شكراً لك أستاذ أحمد على كلماتك الطيبة، يسعدنا أن نعرف أن ابنك استمتع.</p>
+                                <div class="comment-meta">16 مايو 2025</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comment-item">
+                        <h3>خدمة ممتازة</h3>
+                        <p>فريق العمل متعاون جداً والكافيتريا رائعة. أنصح بها بشدة.</p>
+                        <div class="comment-meta">بواسطة: سارة محمد (تم تسجيل الدخول عبر فيسبوك) - 12 مايو 2025</div>
+                        <button class="reply-button" onclick="toggleReplyForm(this)">رد</button>
+                        <div class="reply-form">
+                            <textarea placeholder="اكتب ردك هنا..."></textarea>
+                            <button onclick="addReply(this)">إرسال الرد</button>
+                        </div>
+                        <div class="replies-container">
+                        </div>
+                    </div>
+
+                    <div class="comment-item">
+                        <h3>مكان هادئ ومريح</h3>
+                        <p>أجواء المكان مناسبة جداً للاسترخاء والتدريب. بالتوفيق دائماً.</p>
+                        <div class="comment-meta">بواسطة: فاطمة الزهراء (تم تسجيل الدخول عبر فيسبوك) - 10 مايو 2025</div>
+                        <button class="reply-button" onclick="toggleReplyForm(this)">رد</button>
+                        <div class="reply-form">
+                            <textarea placeholder="اكتب ردك هنا..."></textarea>
+                            <button onclick="addReply(this)">إرسال الرد</button>
+                        </div>
+                        <div class="replies-container">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section id="contact-section" class="contact-section-body">
+        <div class="container">
+            <h2>تواصل معنا</h2>
+            <div class="contact-icons">
+                <a href="https://wa.me/201555903712" target="_blank" class="whatsapp-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://www.facebook.com/Diamondclubsng?locale=ar_AR" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-bottom">
+            <div class="copyright">
+                &copy; جميع الحقوق محفوظة لحمام سباحة ماسة
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // هذا الكود يستخدم JavaScript لإضافة التعليقات والردود ديناميكيًا.
+        // **ملاحظة هامة:** هذه التعليقات والردود لن تُحفظ بعد تحديث الصفحة،
+        // لأن حفظها يتطلب برمجة خلفية (Backend) وقاعدة بيانات.
+
+        document.getElementById('addCommentForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // منع إرسال النموذج بالطريقة التقليدية
+
+            const commentText = document.getElementById('newCommentText').value;
+            if (commentText.trim() === '') {
+                alert('الرجاء كتابة تعليق قبل الإرسال.');
+                return;
+            }
+
+            // اسم وهمي للمستخدم الذي سجل الدخول عبر فيسبوك
+            const userName = "مستخدم فيسبوك (وهمي)";
+            const currentDate = new Date().toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
+
+            const newCommentHtml = `
+                <div class="comment-item">
+                    <h3>تعليق جديد</h3>
+                    <p>${commentText}</p>
+                    <div class="comment-meta">بواسطة: ${userName} (تم تسجيل الدخول عبر فيسبوك) - ${currentDate}</div>
+                    <button class="reply-button" onclick="toggleReplyForm(this)">رد</button>
+                    <div class="reply-form">
+                        <textarea placeholder="اكتب ردك هنا..."></textarea>
+                        <button onclick="addReply(this)">إرسال الرد</button>
+                    </div>
+                    <div class="replies-container">
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('commentsList').insertAdjacentHTML('afterbegin', newCommentHtml);
+            document.getElementById('newCommentText').value = ''; // مسح حقل التعليق بعد الإرسال
+        });
+
+        // وظيفة لإظهار/إخفاء نموذج الرد
+        function toggleReplyForm(button) {
+            const replyForm = button.nextElementSibling; // نموذج الرد هو العنصر التالي للزر
+            if (replyForm.style.display === 'block') {
+                replyForm.style.display = 'none';
+            } else {
+                replyForm.style.display = 'block';
+            }
+        }
+
+        // وظيفة لإضافة الرد
+        function addReply(button) {
+            const replyForm = button.parentElement;
+            const replyTextarea = replyForm.querySelector('textarea');
+            const replyText = replyTextarea.value;
+
+            if (replyText.trim() === '') {
+                alert('الرجاء كتابة رد قبل الإرسال.');
+                return;
+            }
+
+            const userName = "مستخدم فيسبوك (وهمي)"; // يمكن أن يكون اسم المستخدم الفعلي من تسجيل الدخول
+            const currentDate = new Date().toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
+
+            const newReplyHtml = `
+                <div class="comment-item">
+                    <h3>رد من: ${userName}</h3>
+                    <p>${replyText}</p>
+                    <div class="comment-meta">${currentDate}</div>
+                </div>
+            `;
+
+            const repliesContainer = replyForm.nextElementSibling; // حاوية الردود بعد نموذج الرد
+            repliesContainer.insertAdjacentHTML('beforeend', newReplyHtml);
+            replyTextarea.value = ''; // مسح حقل الرد بعد الإرسال
+            replyForm.style.display = 'none'; // إخفاء نموذج الرد بعد الإرسال
+        }
+
+        // تحذير عند الضغط على زر تسجيل الدخول بفيسبوك
+        document.getElementById('facebookLoginButton').addEventListener('click', function() {
+            alert('هذه وظيفة وهمية. تحتاج إلى دمج Facebook SDK لتسجيل الدخول الفعلي وتفعيل التعليقات.');
+        });
+    </script>
+</body>
+</html>
