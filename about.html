@@ -23,21 +23,14 @@
             font-family: var(--main-font);
             margin: 0;
             padding: 0;
-            background-color: var(--light-bg);
-            color: var(--text-color);
+            /* تم تعيين الخلفية الرئيسية في body */
+            background-image: url('photo/Main swimming pool.jpg'); /* تأكد من مسار الصورة */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center center;
+            color: var(--text-color); /* لون النص الأساسي */
         }
-body {
-    font-family: var(--main-font);
-    margin: 0;
-    padding: 0;
-    /* تم تعيين الخلفية الرئيسية في body */
-    background-image: url('photo/Main swimming pool.jpg'); /* تأكد من مسار الصورة */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center center;
-    color: var(--text-color); /* لون النص الأساسي */
-}
 
         .container {
             max-width: 1200px;
@@ -74,6 +67,12 @@ body {
             height: 50px;
         }
 
+        header nav {
+            display: flex; /* لعرض الروابط أفقيًا */
+            flex-wrap: wrap; /* للسماح للروابط بالنزول لسطر جديد إذا كانت الشاشة صغيرة */
+            justify-content: flex-end; /* لمحاذاة الروابط لليمين */
+        }
+
         header nav a {
             color: var(--white-color);
             text-decoration: none;
@@ -82,7 +81,7 @@ body {
             border-radius: 5px;
             transition: background-color 0.3s ease, color 0.3s ease;
             font-weight: bold;
-            position: relative; /* لجعل الخط يظهر بشكل صحيح */
+            position: relative;
         }
 
         header nav a:hover {
@@ -90,16 +89,16 @@ body {
             color: var(--primary-color);
         }
 
-        /* إضافة الخط تحت "الصفحة الرئيسية" */
-        header nav a[href="about.html"]::after { /* استبدل about.html بالرابط الفعلي للصفحة الرئيسية */
+        /* إضافة الخط تحت "حول ماسة" - تأكد من الرابط الصحيح للصفحة الحالية */
+        header nav a[href="about.html"]::after {
             content: '';
             position: absolute;
-            left: 10px; /* ضبط موضع الخط */
-            right: 10px; /* ضبط موضع الخط */
-            bottom: 5px; /* مسافة الخط من الأسفل */
-            height: 2px; /* سمك الخط */
-            background-color: var(--accent-color); /* لون الخط */
-            transform: scaleX(1); /* جعل الخط مرئيًا دائمًا */
+            left: 10px;
+            right: 10px;
+            bottom: 5px;
+            height: 2px;
+            background-color: var(--accent-color);
+            transform: scaleX(1);
             transition: transform 0.3s ease;
         }
 
@@ -108,6 +107,9 @@ body {
             padding-top: 80px;
             padding-bottom: 40px;
             background-color: #f9f9f92c;
+            min-height: calc(100vh - 120px); /* يضمن أن القسم يملأ الشاشة تقريبًا */
+            display: flex;
+            align-items: center; /* لمحاذاة المحتوى في المنتصف عموديًا */
         }
 
         .about-container {
@@ -135,6 +137,9 @@ body {
             flex-direction: column;
             border-radius: 8px;
             padding-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* خلفية بيضاء شبه شفافة */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+            margin-right: 20px; /* مسافة بين العمودين */
         }
 
         .main-info h1,
@@ -146,11 +151,18 @@ body {
 
         .main-info h1 {
             font-size: 3.5em;
+            color: var(--primary-color); /* لون أزرق للعناوين الكبيرة */
         }
 
         .main-info h2 {
             font-size: 2em;
             font-weight: normal;
+            color: var(--secondary-color); /* لون تركواز للعناوين الفرعية */
+        }
+
+        .main-info p {
+            line-height: 1.8; /* لتحسين قابلية القراءة */
+            font-size: 1.1em;
         }
 
         .main-info .full-width-image {
@@ -169,11 +181,13 @@ body {
         }
 
         .person-card {
-            background-color: #f0f0f0;
+            background-color: rgba(255, 255, 255, 0.9); /* خلفية بيضاء شبه شفافة */
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 20px;
             text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+            width: 100%; /* لضمان ملء المساحة المتاحة */
         }
 
         .person-card img {
@@ -208,14 +222,14 @@ body {
             align-items: center;
         }
 
-        footer::after {
+        footer::before { /* استخدام pseudo-element للخلفية الشفافة */
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0); /* تراكب أسود بنسبة 60% opacity (أغمق قليلاً) */
+            background-color: rgba(0, 0, 0, 0); /* تراكب أسود بنسبة 60% opacity */
             z-index: 0;
         }
 
@@ -235,7 +249,7 @@ body {
             color: var(--primary-color);
             font-size: 3.5em;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); /* ظل أغمق قليلاً للنص */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
             position: relative;
             z-index: 2;
         }
@@ -261,7 +275,7 @@ body {
             text-decoration: none;
             color: var(--primary-color);
             font-size: 2.5em;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.064); /* ظل أغمق قليلاً */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.064);
             transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
         }
 
@@ -273,7 +287,7 @@ body {
 
         /* شريط حقوق الطبع والنشر */
         footer .copyright {
-            background-color: rgba(26, 113, 156, 0.9); /* لون أزرق داكن مع شفافية خفيفة */
+            background-color: rgba(26, 113, 156, 0.9);
             color: var(--white-color);
             padding: 15px 0;
             width: 100%;
@@ -284,38 +298,179 @@ body {
             z-index: 1;
         }
 
-        /* تصميم متجاوب */
-        @media (max-width: 768px) {
-            .about-container {
+        /* تصميم متجاوب (Media Queries) */
+        @media (max-width: 992px) { /* للأجهزة اللوحية والشاشات الأصغر قليلاً */
+            header nav a {
+                padding: 8px 15px;
+                margin-left: 10px;
+                font-size: 0.9em;
+            }
+
+            .main-info h1 {
+                font-size: 3em;
+            }
+
+            .main-info h2 {
+                font-size: 1.8em;
+            }
+
+            .main-info p {
+                font-size: 1em;
+            }
+
+            footer h2.contact-title {
+                font-size: 3em;
+            }
+
+            footer .social-icons a {
+                width: 50px;
+                height: 50px;
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 768px) { /* للهواتف والأجهزة اللوحية الصغيرة */
+            header {
+                flex-direction: column; /* لعرض الشعار في سطر والقائمة في سطر آخر */
+                padding: 15px 0;
+            }
+
+            header .container {
                 flex-direction: column;
                 align-items: center;
+                gap: 15px;
+            }
+
+            header nav {
+                flex-direction: column; /* لعرض الروابط عموديًا */
+                text-align: center;
+                width: 100%;
+            }
+
+            header nav a {
+                margin: 5px 0; /* مسافة بين الروابط العمودية */
+                padding: 10px 0;
+                width: 90%; /* لجعل الروابط تملأ العرض تقريبًا */
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* خط فاصل بين الروابط */
+            }
+
+            header nav a:last-child {
+                border-bottom: none; /* إزالة الخط الفاصل من آخر رابط */
+            }
+
+            header nav a[href="about.html"]::after {
+                display: none; /* إخفاء الخط تحت العنصر النشط في وضع الجوال إذا لم يكن ضروريًا */
+            }
+
+            #about-page {
+                padding-top: 150px; /* زيادة المساحة العلوية لتجنب تداخل الرأس */
+            }
+
+            .about-container {
+                flex-direction: column; /* عرض المحتوى بشكل عمودي */
+                align-items: center;
+                margin-top: 0; /* إزالة الهامش العلوي الزائد */
+                padding: 10px;
             }
 
             .about-content {
-                flex-direction: column;
+                flex-direction: column; /* جعل الأقسام عمودية */
             }
 
             .main-info {
                 text-align: center;
                 padding: 20px;
+                margin-right: 0; /* إزالة الهامش الجانبي */
+                margin-bottom: 20px; /* إضافة مسافة بين الأقسام */
+                width: 100%; /* لجعلها تملأ العرض بالكامل */
+                box-sizing: border-box; /* لضمان أن العرض يشمل البادينغ */
+            }
+
+            .main-info h1 {
+                font-size: 2.5em;
+            }
+
+            .main-info h2 {
+                font-size: 1.5em;
+            }
+
+            .main-info p {
+                font-size: 1em;
+                line-height: 1.7;
             }
 
             .side-info {
                 padding: 20px;
                 align-items: center;
+                width: 100%; /* لجعلها تملأ العرض بالكامل */
+                box-sizing: border-box;
             }
 
             .person-card {
                 margin-bottom: 15px;
+                width: 90%; /* لجعل الكروت تملأ العرض تقريبًا */
+                max-width: 350px; /* تحديد أقصى عرض للبطاقة */
             }
 
-            footer .footer-links ul {
-                flex-direction: column;
-                align-items: center;
+            footer {
+                padding: 60px 0 0; /* تقليل البادينغ العلوي */
+                min-height: 250px;
             }
 
-            footer .footer-links li {
-                margin: 5px 0;
+            footer h2.contact-title {
+                font-size: 2.5em;
+            }
+
+            footer .social-icons a {
+                width: 45px;
+                height: 45px;
+                font-size: 2em;
+            }
+
+            footer .copyright {
+                font-size: 0.9em;
+                padding: 10px 0;
+            }
+        }
+
+        @media (max-width: 480px) { /* للهواتف الصغيرة جدًا */
+            header .logo img {
+                height: 40px;
+            }
+
+            header nav a {
+                font-size: 0.85em;
+                padding: 8px 0;
+            }
+
+            .main-info h1 {
+                font-size: 2em;
+            }
+
+            .main-info h2 {
+                font-size: 1.3em;
+            }
+
+            .main-info p {
+                font-size: 0.95em;
+            }
+
+            .person-card h3 {
+                font-size: 1.3em;
+            }
+
+            .person-card p {
+                font-size: 0.8em;
+            }
+
+            footer h2.contact-title {
+                font-size: 2em;
+            }
+
+            footer .social-icons a {
+                width: 40px;
+                height: 40px;
+                font-size: 1.8em;
             }
         }
     </style>
