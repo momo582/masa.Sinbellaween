@@ -30,6 +30,8 @@ body {
     background-position: center center;
     color: var(--text-color); /* لون النص الأساسي */
     direction: rtl; /* Set default text direction for Arabic */
+    /* --- NEW/MODIFIED: Add padding-top to create space for the fixed header --- */
+    padding-top: 80px; /* Default padding for desktop. Adjust if header height is different. */
 }
 
 .container {
@@ -116,7 +118,8 @@ header nav a[href="index.html"]::after {
     color: var(--white-color);
     text-align: center;
     overflow: hidden;
-    padding-top: 70px; /* Space for fixed header */
+    /* --- NEW/MODIFIED: Remove padding-top from hero as it's handled by body --- */
+    /* padding-top: 70px; */ /* This was moved to the body */
 }
 
 .hero-video-container {
@@ -130,15 +133,15 @@ header nav a[href="index.html"]::after {
 }
 
 .hero-video-container video {
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    /* --- NEW/MODIFIED: Ensure video covers the container completely --- */
+    width: 100%;
+    height: 100%;
     object-fit: cover; /* Ensures video covers the area without distortion */
+    position: absolute; /* Needed for object-fit on some browsers/setups */
+    top: 0;
+    left: 0;
+    /* Removed transform as object-fit handles centering and scaling */
+    /* transform: translate(-50%, -50%); */
 }
 
 .hero-overlay {
@@ -146,7 +149,7 @@ header nav a[href="index.html"]::after {
     top: 0;
     left: 0;
     width: 100%;
-    height: 150%;
+    height: 150%; /* This might be intended to create a gradient or specific visual effect */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -182,7 +185,6 @@ header nav a[href="index.html"]::after {
 #features {
     padding: 40px 0;
     background-color: rgba(255, 255, 255, 0); /* Slightly less transparent background */
-    text-align: center;
     margin-top: 10px;
 }
 
@@ -457,10 +459,16 @@ footer .copyright {
         font-size: 0.9em; /* تصغير حجم الخط قليلاً */
     }
 
+    /* --- NEW/MODIFIED: Adjust body padding for tablets --- */
+    body {
+        padding-top: 70px; /* Adjusted padding for tablet header height */
+    }
+
     /* Hero section adjustments */
     #hero {
         height: 550px; /* تقليل ارتفاع الهيرو */
-        padding-top: 60px; /* تعديل المسافة العلوية بسبب تصغير الهيدر */
+        /* --- Removed padding-top from hero here as well --- */
+        /* padding-top: 60px; */ /* هذا تم نقله إلى body */
     }
 
     .hero-content h2 {
@@ -536,10 +544,16 @@ footer .copyright {
         font-size: 0.85em; /* تصغير حجم الخط أكثر */
     }
 
+    /* --- NEW/MODIFIED: Adjust body padding for mobile phones --- */
+    body {
+        padding-top: 95px; /* Adjusted padding for mobile header height */
+    }
+
     /* Hero section adjustments for mobile */
     #hero {
         height: 380px; /* تقليل ارتفاع الهيرو بشكل كبير للتليفون */
-        padding-top: 55px; /* تعديل المسافة العلوية بسبب تصغير الهيدر */
+        /* --- Removed padding-top from hero here as well --- */
+        /* padding-top: 55px; */ /* هذا تم نقله إلى body */
     }
 
     .hero-overlay {
@@ -610,10 +624,16 @@ footer .copyright {
         margin: 2px 3px; /* أصغر مسافات بين الروابط */
     }
 
+    /* --- NEW/MODIFIED: Adjust body padding for very small phones --- */
+    body {
+        padding-top: 80px; /* Adjusted padding for very small mobile header height */
+    }
+
     /* Hero section adjustments for very small mobiles */
     #hero {
         height: 300px; /* أصغر ارتفاع للهيرو */
-        padding-top: 50px; /* تعديل المسافة العلوية */
+        /* --- Removed padding-top from hero here as well --- */
+        /* padding-top: 50px; */ /* هذا تم نقله إلى body */
     }
 
     .hero-content h2 {
