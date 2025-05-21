@@ -18,6 +18,11 @@
             background-repeat: no-repeat; /* تمنع تكرار الصورة */
             background-attachment: fixed; /* تجعل الصورة ثابتة أثناء التمرير */
             background-position: center center; /* توسيط الصورة */
+            overflow-x: hidden; /* Prevent horizontal scroll when side nav is out */
+        }
+
+        body.nav-open {
+            overflow-y: hidden; /* Prevent scrolling when nav is open */
         }
 
         .container {
@@ -53,13 +58,13 @@
             margin-left: 15px; /* Added margin for spacing */
         }
 
-        header nav {
+        header nav.main-nav { /* Added .main-nav class to target specifically */
             display: flex;
             align-items: center;
             direction: rtl; /* Changed to Rtl */
         }
 
-        header nav a {
+        header nav.main-nav a {
             color: white;
             text-decoration: none;
             margin: 0 15px;
@@ -69,17 +74,17 @@
             padding-bottom: 5px;
         }
 
-        header nav a:hover {
+        header nav.main-nav a:hover {
             color: #f8f8f8;
             transform: translateY(-2px);
         }
 
-        header nav a.active {
+        header nav.main-nav a.active {
             color: #00f0ff; /* Bright blue from image */
             font-weight: bold;
         }
 
-        header nav a.active::after {
+        header nav.main-nav a.active::after {
             content: '';
             position: absolute;
             right: 0; /* Adjusted for Rtl */
@@ -89,6 +94,41 @@
             background-color: #00f0ff; /* Bright blue from image */
             border-radius: 2px;
             width: 100%; /* Ensure full width underline */
+        }
+
+        /* Mobile Navigation Icons */
+        .menu-icon, .close-icon {
+            color: white;
+            font-size: 1.8em;
+            cursor: pointer;
+            display: none; /* Hidden by default, shown on mobile */
+            z-index: 1001; /* Above everything else */
+        }
+
+        .close-icon {
+            position: absolute;
+            top: 15px;
+            left: 15px; /* Position close icon on the left inside the side menu */
+            font-size: 2em;
+        }
+
+        /* Overlay for mobile navigation */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+            z-index: 999; /* Just below the nav */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* ============ Comments Section ============ */
@@ -362,19 +402,49 @@
         /* For screens smaller than 768px (e.g., tablets and large phones) */
         @media (max-width: 768px) {
             header .container {
-                flex-direction: column; /* Stack logo and nav vertically */
+                flex-direction: row-reverse; /* Keep logo on right, icons on left for alignment */
+                justify-content: space-between;
                 align-items: center;
             }
 
-            header nav {
-                margin-top: 10px;
-                flex-wrap: wrap; /* Allow navigation items to wrap */
-                justify-content: center;
+            header nav.main-nav {
+                position: fixed;
+                top: 0;
+                right: -250px; /* Hidden off-screen to the right (RTL) */
+                width: 250px; /* Width of the side menu */
+                height: 100%;
+                background-color: #007bff;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+                flex-direction: column; /* Stack links vertically */
+                padding: 60px 20px 20px;
+                transition: right 0.3s ease-in-out;
+                z-index: 1000;
+                align-items: flex-end; /* Align items to the right */
+                display: flex; /* Ensure it's a flex container even when hidden */
             }
 
-            header nav a {
-                margin: 5px 10px; /* Adjust spacing for smaller screens */
-                font-size: 1em; /* Slightly smaller font size */
+            header nav.main-nav.active {
+                right: 0; /* Slide in when active */
+            }
+
+            header nav.main-nav a {
+                margin: 10px 0; /* Adjust spacing for stacked links */
+                font-size: 1.1em; /* Keep good font size */
+                width: 100%; /* Full width for clickable area */
+                text-align: right; /* Align text to the right */
+                padding-left: 0;
+                padding-right: 5px; /* Add slight padding on right for RTL */
+            }
+
+            header nav.main-nav a.active::after {
+                right: 0; /* Keep underline aligned to the right */
+                left: unset;
+                transform: none; /* Remove transform if previously applied */
+                width: 100%; /* Full width underline */
+            }
+
+            .menu-icon {
+                display: block; /* Show menu icon on mobile */
             }
 
             .comments-section h1 {
@@ -415,21 +485,8 @@
 
         /* For screens smaller than 480px (e.g., small phones) */
         @media (max-width: 480px) {
-            header nav {
-                display: block; /* Stack nav items vertically */
-                text-align: center;
-            }
-
-            header nav a {
-                display: block; /* Make links full width */
-                margin: 8px 0; /* More vertical spacing */
-                padding-bottom: 3px;
-            }
-
-            header nav a.active::after {
-                left: 50%; /* Center underline for stacked links */
-                transform: translateX(-50%);
-                width: 80%; /* Shorter underline */
+            header nav.main-nav {
+                width: 200px; /* Slightly smaller menu width for very small screens */
             }
 
             .comments-section {
@@ -463,7 +520,14 @@
 <body>
     <header>
         <div class="container">
-            <nav>
+            <div class="menu-icon" id="menuIcon">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav class="main-nav" id="mainNav">
+                <div class="close-icon" id="closeIcon">
+                    <i class="fas fa-times"></i>
+                </div>
                 <a href="index.html">الصفحة الرئيسية</a>
                 <a href="about.html">حول ماسة</a>
                 <a href="courses.html">التدريبات</a>
@@ -478,6 +542,8 @@
             </div>
         </div>
     </header>
+
+    <div class="overlay" id="navOverlay"></div>
 
     <main>
         <section class="comments-section">
@@ -649,6 +715,33 @@
         document.getElementById('facebookLoginButton').addEventListener('click', function() {
             alert('هذه وظيفة وهمية. تحتاج إلى دمج Facebook SDK لتسجيل الدخول الفعلي وتفعيل التعليقات.');
         });
+
+        // ============ Mobile Navigation JavaScript ============
+        const menuIcon = document.getElementById('menuIcon');
+        const closeIcon = document.getElementById('closeIcon');
+        const mainNav = document.getElementById('mainNav');
+        const navOverlay = document.getElementById('navOverlay');
+
+        // Toggle mobile navigation
+        if (menuIcon && mainNav && navOverlay) {
+            menuIcon.addEventListener('click', function() {
+                mainNav.classList.add('active'); // Add 'active' class to nav to make it slide in
+                navOverlay.classList.add('active'); // Add 'active' class to overlay to make it visible
+                document.body.classList.add('nav-open'); // Add class to body to prevent scrolling
+            });
+
+            closeIcon.addEventListener('click', function() {
+                mainNav.classList.remove('active'); // Remove 'active' class from nav
+                navOverlay.classList.remove('active'); // Remove 'active' class from overlay
+                document.body.classList.remove('nav-open'); // Remove class from body to allow scrolling
+            });
+
+            navOverlay.addEventListener('click', function() {
+                mainNav.classList.remove('active');
+                navOverlay.classList.remove('active');
+                document.body.classList.remove('nav-open');
+            });
+        }
     </script>
 </body>
 </html>
