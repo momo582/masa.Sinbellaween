@@ -342,24 +342,26 @@
             }
 
             header nav {
-                flex-direction: column; /* لعرض الروابط عموديًا */
-                text-align: center;
+                /* تعديل هنا: لعرض الروابط أفقيًا مع الالتفاف في وضع الموبايل */
+                flex-direction: row;
+                flex-wrap: wrap; /* تسمح بالالتفاف لأسطر جديدة */
+                justify-content: center; /* لمحاذاة الروابط في المنتصف */
                 width: 100%;
+                padding: 0 10px; /* إضافة بعض المسافة من الجوانب */
             }
 
             header nav a {
-                margin: 5px 0; /* مسافة بين الروابط العمودية */
-                padding: 10px 0;
-                width: 90%; /* لجعل الروابط تملأ العرض تقريبًا */
-                border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* خط فاصل بين الروابط */
+                /* تعديل هنا: تقليل الـ margin والـ padding لجعلها تتناسب بشكل أفضل أفقيًا */
+                margin: 5px 8px; /* مسافة أفقية ورأسية بين الروابط */
+                padding: 8px 12px;
+                width: auto; /* دع العرض يتحدد تلقائيًا بناءً على المحتوى */
+                border-bottom: none; /* إزالة الخط الفاصل */
+                font-size: 0.9em; /* قد تحتاج لتعديل حجم الخط */
             }
 
-            header nav a:last-child {
-                border-bottom: none; /* إزالة الخط الفاصل من آخر رابط */
-            }
-
+            /* إزالة الخط تحت "حول ماسة" في وضع الموبايل */
             header nav a[href="about.html"]::after {
-                display: none; /* إخفاء الخط تحت العنصر النشط في وضع الجوال إذا لم يكن ضروريًا */
+                display: none;
             }
 
             #about-page {
