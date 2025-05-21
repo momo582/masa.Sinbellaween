@@ -512,20 +512,95 @@
             margin-top: 0;
         }
 
+        /* ============ Mobile Navigation (Off-canvas) ============ */
+        .menu-icon, .close-icon {
+            display: none; /* Hidden by default, shown on mobile */
+            font-size: 1.8em;
+            color: white;
+            cursor: pointer;
+            z-index: 1001; /* Higher than nav to be clickable */
+        }
+
         /* Media Queries for Responsiveness */
         @media (max-width: 768px) {
             header .container {
-                flex-direction: column;
-                text-align: center;
+                justify-content: space-between; /* To push logo to one side and menu to other */
+                flex-direction: row-reverse; /* Logo on right, menu icon on left */
             }
 
-            header nav {
-                margin-top: 15px;
+            header nav.main-nav {
+                position: fixed;
+                top: 0;
+                right: -300px; /* Hidden off-screen to the right (RTL) */
+                width: 250px; /* Width of the side menu */
+                height: 100%;
+                background-color: #007bff; /* Same as header background */
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3); /* Shadow on the left */
+                flex-direction: column; /* Stack links vertically */
+                padding: 60px 20px 20px; /* Space for close icon and links */
+                transition: right 0.3s ease-in-out;
+                z-index: 1000;
+                align-items: flex-end; /* Align items to the right */
+                display: flex; /* Ensure it's a flex container */
+            }
+
+            header nav.main-nav.active {
+                right: 0; /* Slide in from the right */
             }
 
             header nav a {
-                margin: 0 10px;
-                font-size: 1em;
+                margin: 15px 0; /* Vertical margin for stacked links */
+                width: fit-content; /* Adjust width to content */
+            }
+
+            header nav a.active::after {
+                right: unset; /* Reset right for RTL */
+                left: 0; /* Underline starts from left for RTL list */
+                transform: none; /* No transform needed for left align */
+            }
+
+            .menu-icon, .close-icon {
+                display: block; /* Show menu icon on mobile */
+            }
+
+            .close-icon {
+                position: absolute;
+                top: 15px;
+                left: 15px; /* Position close icon on the left */
+                font-size: 2em;
+            }
+
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.3s ease, visibility 0.3s ease;
+            }
+
+            .overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            body.nav-open {
+                overflow: hidden; /* Prevent scrolling when nav is open */
+            }
+
+            /* Hide the original nav links on mobile */
+            header .container nav:not(.main-nav) {
+                display: none; /* Hide the default horizontal nav specifically */
+            }
+
+            /* Existing media queries for responsiveness */
+            header .container {
+                /* flex-direction: column; هذا تم تعديله أعلاه */
+                text-align: center;
             }
 
             header .logo img {
@@ -641,7 +716,16 @@
 <body>
     <header>
         <div class="container">
-            <nav>
+            <div class="menu-icon" id="menuIcon">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="logo">
+                <a href="index.html"><img src="photo/logo.jpg" alt="Masa Logo" /></a>
+            </div>
+            <nav class="main-nav" id="mainNav">
+                <div class="close-icon" id="closeIcon">
+                    <i class="fas fa-times"></i>
+                </div>
                 <a href="index.html">الصفحة الرئيسية</a>
                 <a href="about.html">حول ماسة</a>
                 <a href="courses.html">التدريبات</a>
@@ -651,11 +735,10 @@
                 <a href="subscriptions.html">الاشتراكات</a>
                 <a href="cafe-booking.html">حجز الكافيتريا</a>
             </nav>
-            <div class="logo">
-                <a href="index.html"><img src="photo/logo.jpg" alt="Masa Logo" /></a>
-            </div>
         </div>
     </header>
+
+    <div class="overlay" id="navOverlay"></div>
 
     <section class="hero-section-extended facilities-hero">
         <div class="container">
@@ -823,13 +906,43 @@
         </div>
     </footer>
 
-    <div class="modal-overlay"></div>
-
-    <script>
+    <div class="modal-overlay"></div> <div class="overlay" id="navOverlay"></div> <script>
         document.addEventListener('DOMContentLoaded', function () {
             const productItems = document.querySelectorAll('.product-item');
-            const overlay = document.querySelector('.modal-overlay');
+            const modalOverlay = document.querySelector('.modal-overlay'); // Renamed to avoid conflict
 
+            // New elements for mobile navigation
+            const menuIcon = document.getElementById('menuIcon');
+            const closeIcon = document.getElementById('closeIcon');
+            const mainNav = document.getElementById('mainNav');
+            const navOverlay = document.getElementById('navOverlay');
+
+            // Toggle mobile navigation
+            if (menuIcon && mainNav && navOverlay) {
+                menuIcon.addEventListener('click', function() {
+                    mainNav.classList.add('active');
+                    navOverlay.classList.add('active');
+                    document.body.classList.add('nav-open');
+                });
+            }
+
+            if (closeIcon && mainNav && navOverlay) {
+                closeIcon.addEventListener('click', function() {
+                    mainNav.classList.remove('active');
+                    navOverlay.classList.remove('active');
+                    document.body.classList.remove('nav-open');
+                });
+            }
+
+            if (navOverlay) {
+                navOverlay.addEventListener('click', function() {
+                    mainNav.classList.remove('active');
+                    navOverlay.classList.remove('active');
+                    document.body.classList.remove('nav-open');
+                });
+            }
+
+            // Existing product modal logic
             productItems.forEach(item => {
                 const showDetailsButton = item.querySelector('.show-details-btn');
                 const hideDetailsButton = item.querySelector('.hide-details-btn');
@@ -838,7 +951,7 @@
                 if (showDetailsButton && productDetails) {
                     showDetailsButton.addEventListener('click', function () {
                         productDetails.classList.add('active');
-                        overlay.classList.add('active');
+                        modalOverlay.classList.add('active'); // Use modalOverlay for product details
                         document.body.classList.add('modal-open');
                     });
                 }
@@ -846,16 +959,17 @@
                 if (hideDetailsButton && productDetails) {
                     hideDetailsButton.addEventListener('click', function () {
                         productDetails.classList.remove('active');
-                        overlay.classList.remove('active');
+                        modalOverlay.classList.remove('active'); // Use modalOverlay for product details
                         document.body.classList.remove('modal-open');
                     });
                 }
 
-                overlay.addEventListener('click', function () {
+                // Changed this to target modalOverlay for product details
+                modalOverlay.addEventListener('click', function () {
                     document.querySelectorAll('.product-details.active').forEach(detail => {
                         detail.classList.remove('active');
                     });
-                    overlay.classList.remove('active');
+                    modalOverlay.classList.remove('active');
                     document.body.classList.remove('modal-open');
                 });
             });
