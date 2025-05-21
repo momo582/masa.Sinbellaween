@@ -6,7 +6,7 @@
     <title>حول ماسة</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* تصميم خاص بالصفحة الرئيسية (معدل) */
+        /* ============ General Styles ============ */
         :root {
             --primary-color: #29ABE2; /* أزرق فاتح ومنعش */
             --secondary-color: #03DAC6; /* تركواز حيوي */
@@ -23,13 +23,13 @@
             font-family: var(--main-font);
             margin: 0;
             padding: 0;
-            /* تم تعيين الخلفية الرئيسية في body */
             background-image: url('photo/Main swimming pool.jpg'); /* تأكد من مسار الصورة */
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-position: center center;
             color: var(--text-color); /* لون النص الأساسي */
+            direction: rtl; /* اتجاه النص من اليمين لليسار */
         }
 
         .container {
@@ -38,16 +38,16 @@
             padding: 0 20px;
         }
 
-        /* Header Styles (معدل بالكامل) */
+        /* ============ Header Styles (معدل بالكامل) ============ */
         header {
             background-color: var(--primary-color);
             color: var(--white-color);
-            padding: 10px 0;
-            position: fixed;
+            padding: 5px 0; /* تم تقليل البادينغ ليناسب اللوجو الصغير */
+            position: sticky; /* Sticky بدلاً من fixed لتجنب التداخل مع بداية المحتوى */
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 100;
+            z-index: 1000; /* زيادة الـ z-index ليظل فوق المحتوى */
             box-shadow: var(--box-shadow);
             display: flex;
             align-items: center;
@@ -61,52 +61,70 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            flex-direction: row-reverse; /* اللوجو على اليمين والقائمة على اليسار */
         }
 
         header .logo img {
-            height: 50px;
+            height: 40px; /* تم تقليل حجم اللوجو */
+            border-radius: 100%;
+            border: 2px solid white;
+            margin-left: 15px; /* مسافة من قائمة التنقل */
         }
 
         header nav {
             display: flex; /* لعرض الروابط أفقيًا */
-            flex-wrap: wrap; /* للسماح للروابط بالنزول لسطر جديد إذا كانت الشاشة صغيرة */
-            justify-content: flex-end; /* لمحاذاة الروابط لليمين */
+            align-items: center;
+            direction: rtl; /* اتجاه النص من اليمين لليسار */
         }
 
         header nav a {
             color: var(--white-color);
             text-decoration: none;
-            padding: 10px 18px;
-            margin-left: 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            font-weight: bold;
+            margin: 0 15px; /* تعديل الهامش بين الروابط */
+            font-size: 1.1em;
+            transition: color 0.3s ease, transform 0.3s ease;
             position: relative;
+            padding-bottom: 5px;
         }
 
         header nav a:hover {
-            background-color: var(--secondary-color);
-            color: var(--primary-color);
+            color: #f8f8f8; /* لون أفتح عند التحويم */
+            transform: translateY(-2px);
         }
 
-        /* إضافة الخط تحت "حول ماسة" - تأكد من الرابط الصحيح للصفحة الحالية */
-        header nav a[href="about.html"]::after {
+        /* الخط تحت "حول ماسة" */
+        header nav a[href="about.html"].active {
+            color: var(--accent-color); /* أصفر للرابط النشط */
+            font-weight: bold;
+        }
+
+        header nav a[href="about.html"].active::after {
             content: '';
             position: absolute;
-            left: 10px;
-            right: 10px;
-            bottom: 5px;
-            height: 2px;
+            right: 0; /* Adjusted for Rtl */
+            left: unset; /* Adjusted for Rtl */
+            bottom: 0;
+            height: 3px;
             background-color: var(--accent-color);
-            transform: scaleX(1);
-            transition: transform 0.3s ease;
+            border-radius: 2px;
+            width: 100%; /* Ensure full width underline */
+        }
+
+
+        /* ============ Mobile Navigation (Off-canvas) ============ */
+        .menu-icon, .close-icon {
+            display: none; /* Hidden by default, shown on mobile */
+            font-size: 1.8em;
+            color: white;
+            cursor: pointer;
+            z-index: 1001; /* Higher than nav to be clickable */
         }
 
         /* ستايلات خاصة بصفحة "حول ماسة" */
         #about-page {
-            padding-top: 80px;
+            padding-top: 80px; /* مسافة من الهيدر */
             padding-bottom: 40px;
-            background-color: #f9f9f92c;
+            background-color: #f9f9f92c; /* خلفية شفافة قليلاً */
             min-height: calc(100vh - 120px); /* يضمن أن القسم يملأ الشاشة تقريبًا */
             display: flex;
             align-items: center; /* لمحاذاة المحتوى في المنتصف عموديًا */
@@ -208,7 +226,7 @@
             font-size: 0.9em;
         }
 
-        /* Footer (معدل بالكامل حسب الصورة) */
+        /* ============ Footer (معدل بالكامل حسب الصورة) ============ */
         footer {
             color: var(--white-color);
             padding: 80px 0 0;
@@ -298,11 +316,11 @@
             z-index: 1;
         }
 
-        /* تصميم متجاوب (Media Queries) */
+        /* ============ Media Queries for Responsiveness ============ */
         @media (max-width: 992px) { /* للأجهزة اللوحية والشاشات الأصغر قليلاً */
             header nav a {
                 padding: 8px 15px;
-                margin-left: 10px;
+                margin: 0 10px; /* تم تعديل الهامش */
                 font-size: 0.9em;
             }
 
@@ -330,42 +348,84 @@
         }
 
         @media (max-width: 768px) { /* للهواتف والأجهزة اللوحية الصغيرة */
-            header {
-                flex-direction: column; /* لعرض الشعار في سطر والقائمة في سطر آخر */
-                padding: 15px 0;
-            }
-
             header .container {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
+                justify-content: space-between; /* اللوجو على اليمين، أيقونة القائمة على اليسار */
+                flex-direction: row-reverse; /* عكس ترتيب العناصر */
             }
 
-            header nav {
-                /* تعديل هنا: لعرض الروابط أفقيًا مع الالتفاف في وضع الموبايل */
-                flex-direction: row;
-                flex-wrap: wrap; /* تسمح بالالتفاف لأسطر جديدة */
-                justify-content: center; /* لمحاذاة الروابط في المنتصف */
-                width: 100%;
-                padding: 0 10px; /* إضافة بعض المسافة من الجوانب */
+            header nav.main-nav { /* هذا هو الـ nav الذي سيتحول لقائمة جانبية */
+                position: fixed;
+                top: 0;
+                right: -300px; /* مخفي خارج الشاشة لليمين (RTL) */
+                width: 250px; /* عرض القائمة الجانبية */
+                height: 100%;
+                background-color: var(--primary-color); /* نفس لون خلفية الهيدر */
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3); /* ظل على اليسار */
+                flex-direction: column; /* الروابط عمودية */
+                padding: 60px 20px 20px; /* مسافة لأيقونة الإغلاق والروابط */
+                transition: right 0.3s ease-in-out;
+                z-index: 1000;
+                align-items: flex-end; /* محاذاة العناصر لليمين */
+                display: flex; /* لضمان ظهورها كفليكس بوكس */
             }
 
-            header nav a {
-                /* تعديل هنا: تقليل الـ margin والـ padding لجعلها تتناسب بشكل أفضل أفقيًا */
-                margin: 5px 8px; /* مسافة أفقية ورأسية بين الروابط */
-                padding: 8px 12px;
-                width: auto; /* دع العرض يتحدد تلقائيًا بناءً على المحتوى */
-                border-bottom: none; /* إزالة الخط الفاصل */
-                font-size: 0.9em; /* قد تحتاج لتعديل حجم الخط */
+            header nav.main-nav.active {
+                right: 0; /* انزلاق من اليمين */
             }
 
-            /* إزالة الخط تحت "حول ماسة" في وضع الموبايل */
-            header nav a[href="about.html"]::after {
+            header nav.main-nav a {
+                margin: 15px 0; /* هامش عمودي للروابط المرصوصة */
+                width: fit-content; /* عرض يتناسب مع المحتوى */
+            }
+
+            /* تعديل الخط تحت "حول ماسة" في القائمة الجانبية */
+            header nav.main-nav a[href="about.html"].active::after {
+                right: unset; /* إلغاء خاصية right */
+                left: 0; /* الخط يبدأ من اليسار (RTL) */
+                transform: none; /* إلغاء أي تحويل */
+            }
+
+            .menu-icon, .close-icon {
+                display: block; /* إظهار أيقونة الهامبرغر والإغلاق على الموبايل */
+            }
+
+            .close-icon {
+                position: absolute;
+                top: 15px;
+                left: 15px; /* وضع أيقونة الإغلاق على اليسار */
+                font-size: 2em;
+            }
+
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.3s ease, visibility 0.3s ease;
+            }
+
+            .overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            body.nav-open {
+                overflow: hidden; /* منع التمرير عند فتح القائمة */
+            }
+
+            /* إخفاء روابط التنقل الأصلية (الأفقية) على الموبايل */
+            header .container nav:not(.main-nav) {
                 display: none;
             }
 
+            /* تعديلات أخرى موجودة في الميديا كويري الأصلية وتناسب الموبايل */
             #about-page {
-                padding-top: 150px; /* زيادة المساحة العلوية لتجنب تداخل الرأس */
+                padding-top: 100px; /* زيادة المساحة العلوية لتجنب تداخل الرأس */
             }
 
             .about-container {
@@ -437,11 +497,11 @@
 
         @media (max-width: 480px) { /* للهواتف الصغيرة جدًا */
             header .logo img {
-                height: 40px;
+                height: 35px; /* تصغير اللوجو أكثر */
             }
 
-            header nav a {
-                font-size: 0.85em;
+            header nav.main-nav a {
+                font-size: 0.9em;
                 padding: 8px 0;
             }
 
@@ -480,12 +540,18 @@
 <body>
     <header>
         <div class="container">
-            <div class="logo">
-                <img src="photo/logo.jpg" alt="شعار ماسة">
+            <div class="menu-icon" id="menuIcon">
+                <i class="fas fa-bars"></i>
             </div>
-            <nav>
+            <div class="logo">
+                <a href="index.html"><img src="photo/logo.jpg" alt="شعار ماسة"></a>
+            </div>
+            <nav class="main-nav" id="mainNav">
+                <div class="close-icon" id="closeIcon">
+                    <i class="fas fa-times"></i>
+                </div>
                 <a href="index.html">الصفحة الرئيسية</a>
-                <a href="about.html">حول ماسه</a>
+                <a href="about.html" class="active">حول ماسه</a>
                 <a href="courses.html">التدريبات</a>
                 <a href="facilities.html">الاستور</a>
                 <a href="comments.html">تعليقاتكم</a>
@@ -495,6 +561,8 @@
             </nav>
         </div>
     </header>
+
+    <div class="overlay" id="navOverlay"></div>
 
     <section id="about-page">
         <div class="container about-container">
@@ -545,6 +613,43 @@
         </div>
     </footer>
 
-    <script src="index.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // New elements for mobile navigation
+            const menuIcon = document.getElementById('menuIcon');
+            const closeIcon = document.getElementById('closeIcon');
+            const mainNav = document.getElementById('mainNav');
+            const navOverlay = document.getElementById('navOverlay');
+
+            // Toggle mobile navigation
+            if (menuIcon && mainNav && navOverlay) {
+                menuIcon.addEventListener('click', function() {
+                    mainNav.classList.add('active');
+                    navOverlay.classList.add('active');
+                    document.body.classList.add('nav-open');
+                });
+            }
+
+            if (closeIcon && mainNav && navOverlay) {
+                closeIcon.addEventListener('click', function() {
+                    mainNav.classList.remove('active');
+                    navOverlay.classList.remove('active');
+                    document.body.classList.remove('nav-open');
+                });
+            }
+
+            if (navOverlay) {
+                navOverlay.addEventListener('click', function() {
+                    mainNav.classList.remove('active');
+                    navOverlay.classList.remove('active');
+                    document.body.classList.remove('nav-open');
+                });
+            }
+
+            // If there's any other JavaScript for this page, add it here.
+            // For example, if you had a modal or other interactive elements.
+            // Since this page doesn't have product modals, the modalOverlay logic from facilities.html is not needed here.
+        });
+    </script>
 </body>
 </html>
