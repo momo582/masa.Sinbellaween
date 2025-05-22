@@ -130,6 +130,7 @@
 
         header .container {
             display: flex;
+            /* عكس الترتيب لتظهر أيقونة القائمة على اليمين والشعار على اليسار */
             justify-content: space-between;
             align-items: center;
             max-width: 1200px;
@@ -196,7 +197,7 @@
             font-size: 2.2em; /* Increased size */
             cursor: pointer;
             color: #fff;
-            display: none; /* Hidden on large screens */
+            /* display: none; */ /* يتم التحكم به في Media Query */
             transition: color 0.3s ease;
         }
 
@@ -215,7 +216,7 @@
         /* Desktop Navigation */
         @media (min-width: 768px) {
             .menu-icon {
-                display: none;
+                display: none; /* Hide on desktop */
             }
             header nav.main-nav {
                 position: static;
@@ -242,7 +243,16 @@
                 height: 3px; /* Standard thickness for desktop */
             }
             .close-icon {
-                display: none;
+                display: none; /* Hide on desktop */
+            }
+        }
+        /* Mobile Navigation (display menu icon) */
+        @media (max-width: 767px) {
+            .menu-icon {
+                display: block; /* Show menu icon on mobile */
+            }
+            header nav.main-nav {
+                display: flex; /* Always flex for proper alignment inside */
             }
         }
 
@@ -405,11 +415,11 @@
         /* ============ Footer ============ */
         footer {
             background-color: rgba(70, 104, 138, 0.8); /* Color from image, adjusted opacity */
-            color: #ecf0f1; /* Visible color */
+            color: #ffffff; /* Changed to white */
             padding: 15px 0; /* Adjusted padding */
             text-align: center;
             font-size: 0.95em;
-            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
             position: relative;
             z-index: 1;
         }
@@ -422,7 +432,7 @@
 
         .footer-bottom {
             background-color: #2c3e50; /* Darker blue for bottom part from image */
-            color: #ecf0f1;
+            color: #ffffff; /* Changed to white */
             padding: 15px 0;
             margin-top: 0;
             font-size: 0.9em;
@@ -442,6 +452,10 @@
                 <i class="fas fa-bars"></i>
             </div>
 
+            <div class="logo">
+                <a href="index.html"><img src="photo/logo.jpg" alt="Masa Logo" /></a>
+            </div>
+
             <nav class="main-nav" id="mainNav">
                 <div class="close-icon" id="closeIcon">
                     <i class="fas fa-times"></i>
@@ -455,9 +469,6 @@
                 <a href="subscriptions.html" class="active">الاشتراكات</a>
                 <a href="cafe-booking.html">حجز الكافيتريا</a>
             </nav>
-            <div class="logo">
-                <a href="index.html"><img src="photo/logo.jpg" alt="Masa Logo" /></a>
-            </div>
         </div>
     </header>
 
