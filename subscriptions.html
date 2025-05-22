@@ -11,7 +11,7 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            color: #333;
+            color: #000000;
             direction: rtl; /* Set default direction to RTL */
             background-image: url('photo/Main swimming pool.jpg'); /* استبدل background.jpg باسم صورتك */
             background-size: cover; /* تغطي الصورة كامل الخلفية */
@@ -30,7 +30,7 @@
             height: 100%; /* Full height */
             top: 0;
             right: 0;
-            background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
+            background-color: rgb(0, 0, 0); /* Black w/ opacity */
             z-index: 1001; /* Higher than other content */
             justify-content: center;
             align-items: center;
@@ -53,7 +53,7 @@
         }
 
         .close-button {
-            color: #aaa;
+            color: #ffeaea;
             position: absolute;
             top: 15px;
             left: 25px; /* Adjusted for RTL */
@@ -125,17 +125,19 @@
             top: 0;
             z-index: 100;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+            border-bottom: 1px solid rgb(255, 255, 255); /* Subtle border */
         }
 
         header .container {
             display: flex;
-            /* عكس الترتيب لتظهر أيقونة القائمة على اليمين والشعار على اليسار */
+            /* عكس الترتيب ليظهر اللوجو يمينًا وأيقونة التنقل يسارًا في وضع الموبايل */
             justify-content: space-between;
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 30px; /* Increased padding */
+            padding: 0 30px;
+            /* Default for desktop, adjusted for mobile below */
+            flex-direction: row; /* Default for desktop: logo left, menu right */
         }
 
         header .logo img {
@@ -150,7 +152,7 @@
             right: -280px; /* Hidden off-screen to the right (RTL) */
             width: 280px; /* Width of the side menu */
             height: 100%;
-            background-color: #007bff; /* Changed background for mobile nav */
+            background-color: rgba(0, 123, 255, 0.9); /* Changed background for mobile nav, slight opacity */
             box-shadow: -8px 0 20px rgba(0, 0, 0, 0.4); /* Enhanced shadow */
             flex-direction: column; /* Stack links vertically */
             padding: 80px 20px 20px; /* Increased padding-top for close icon */
@@ -197,8 +199,8 @@
             font-size: 2.2em; /* Increased size */
             cursor: pointer;
             color: #fff;
-            /* display: none; */ /* يتم التحكم به في Media Query */
             transition: color 0.3s ease;
+            display: none; /* Hidden by default, controlled by media queries */
         }
 
         .menu-icon:hover, .close-icon:hover {
@@ -216,9 +218,15 @@
         /* Desktop Navigation */
         @media (min-width: 768px) {
             .menu-icon {
+                order: 2; /* Menu icon to the right on desktop (after logo) */
                 display: none; /* Hide on desktop */
             }
+            header .container {
+                flex-direction: row; /* Logo left, menu right */
+                justify-content: space-between;
+            }
             header nav.main-nav {
+                order: 1; /* Navigation to the left of the menu icon on desktop */
                 position: static;
                 width: auto;
                 height: auto;
@@ -245,11 +253,22 @@
             .close-icon {
                 display: none; /* Hide on desktop */
             }
+            .logo {
+                order: 1; /* Logo to the left on desktop */
+            }
         }
-        /* Mobile Navigation (display menu icon) */
+
+        /* Mobile Specific Styles (apply when screen width is less than 768px) */
         @media (max-width: 767px) {
+            header .container {
+                flex-direction: row-reverse; /* Reverse for mobile: logo right, menu left */
+            }
             .menu-icon {
                 display: block; /* Show menu icon on mobile */
+                order: 2; /* Menu icon on the left (visual order in RTL) */
+            }
+            .logo {
+                order: 1; /* Logo on the right (visual order in RTL) */
             }
             header nav.main-nav {
                 display: flex; /* Always flex for proper alignment inside */
@@ -448,12 +467,12 @@
 <body>
     <header>
         <div class="container">
-            <div class="menu-icon" id="menuIcon">
-                <i class="fas fa-bars"></i>
-            </div>
-
             <div class="logo">
                 <a href="index.html"><img src="photo/logo.jpg" alt="Masa Logo" /></a>
+            </div>
+
+            <div class="menu-icon" id="menuIcon">
+                <i class="fas fa-bars"></i>
             </div>
 
             <nav class="main-nav" id="mainNav">
