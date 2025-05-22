@@ -384,59 +384,67 @@
         }
 
 
-        /* ============ Footer ============ */
-        footer {
-            background-color: rgba(70, 104, 138, 0.8); /* Color from image, adjusted opacity */
-            color: #ffffff; /* Changed to white */
-            padding: 15px 0; /* Adjusted padding */
-            text-align: center;
-            font-size: 0.95em;
-            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-            position: relative;
-            z-index: 1;
-        }
+  footer {
+    background-color: rgba(70, 104, 138, 0.9); /* شفافية خفيفة من اللون الأساسي */
+    color: #ffffff;
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+}
 
-        footer .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-        .footer-bottom {
-            background-color: #2c3e50; /* Darker blue for bottom part from image */
-            color: #ffffff; /* Changed to white */
-            padding: 15px 0;
-            margin-top: 0;
-            font-size: 0.9em;
-            width: 100%;
-        }
+.footer-bottom {
+    background-color: #1a1a1a; /* لون غامق أنيق */
+    color: #ffffff; /* خلي اللون أبيض عشان النص يبان */
+    padding: 15px 0;
+    margin-top: 0;
+    font-size: 0.9em;
+    width: 100%;
+}
 
-        .footer-bottom .copyright {
-            margin-top: 0;
-        }
+.footer-bottom .copyright {
+    margin-top: 0;
+}
+
 
 
         /* ============ Content Specific Styles (for the store page) ============ */
+        /* Updated .content-container for the "Products" section */
         .content-container {
             max-width: 900px;
             margin: 30px auto;
-            background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+            background-color: rgba(255, 255, 255, 0.15); /* Slightly transparent background for the whole section */
             padding: 40px;
             border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             position: relative;
             z-index: 1;
             color: #333; /* Darker text for readability on lighter background */
         }
 
+        /* Style for "منتجاتنا" title */
         .section-title {
             font-size: 2.5em;
-            color: #007bff;
+            color: #000; /* Darker color for title text on transparent background */
             text-align: center;
             margin-bottom: 40px;
-            padding-top: 40px;
+            padding-top: 20px; /* Adjusted padding-top to give space above title */
             position: relative;
             padding-bottom: 10px;
+            /* Added background for the title itself */
+            background-color: rgba(255, 255, 255, 0.4); /* Light transparent background for the title */
+            border-radius: 8px;
+            padding: 15px 20px; /* Padding inside the title box */
+            display: inline-block; /* Make the background fit the text */
+            margin: 0 auto 40px auto; /* Center the block and provide margin-bottom */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .section-title::after {
@@ -449,6 +457,7 @@
             height: 3px;
             background-color: #007bff; /* Changed from 00 to match blue */
             border-radius: 2px;
+            display: none; /* Hide default underline as we have a box now */
         }
 
         .products-grid {
@@ -468,9 +477,9 @@
         }
 
         .product-card {
-            background-color: #fff;
+            background-color: #ffffff52;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.1);
             overflow: hidden;
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -478,7 +487,7 @@
 
         .product-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 6px 20px rgba(255, 17, 17, 0.822);
         }
 
         .product-card img {
@@ -536,14 +545,24 @@
             text-align: center;
             border-top: 1px solid rgba(224, 230, 234, 0); /* Transparent */
             margin-top: 50px;
+            position: relative; /* Needed for z-index */
+            z-index: 1; /* To keep it above the background image effect */
         }
 
+        /* Style for "تواصل معنا" title */
         .contact-section-body h2 {
-            color: #007bff; /* Changed to match primary blue */
+            color: #000; /* Darker color for title text on transparent background */
             margin-bottom: 30px;
             border-bottom: none;
             padding-bottom: 0;
             font-size: 2.2em;
+            /* Added background for the title itself */
+            background-color: rgba(255, 255, 255, 0.4); /* Light transparent background for the title */
+            border-radius: 8px;
+            padding: 15px 20px; /* Padding inside the title box */
+            display: inline-block; /* Make the background fit the text */
+            margin: 0 auto 30px auto; /* Center the block and provide margin-bottom */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .contact-icons {
@@ -922,8 +941,7 @@
                 <a href="courses.html">التدريبات</a>
                 <a href="facilities.html" class="active">الستور</a>
                 <a href="comments.html">تعليقاتكم</a>
-                <a href="#contact-section">تواصل معنا</a>
-                <a href="subscriptions.html">الاشتراكات</a>
+                <a href="#contact-section-body">تواصل معنا</a> <a href="subscriptions.html">الاشتراكات</a>
                 <a href="cafe-booking.html">حجز الكافيتريا</a>
             </nav>
 
@@ -936,7 +954,9 @@
 
     <div class="sidenav-overlay" id="sidenavOverlay"></div>
     <div class="modal-overlay" id="modalOverlay"></div>
-    <div class="overlay" id="navOverlay"></div> <section class="hero-section-extended facilities-hero">
+    <div class="overlay" id="navOverlay"></div>
+
+    <section class="hero-section-extended facilities-hero">
         <div class="container">
             <div class="hero-right">
                 <img src="photo/الاساسي.jpeg" alt="بانر متجر أدوات رياضية" />
@@ -945,570 +965,469 @@
                 <h2>أدواتك الرياضية المتكاملة في مكان واحد</h2>
                 <h1>اكتشف متجرنا المتنوع</h1>
                 <p>كل ما تحتاجه من ملابس وأدوات سباحة ومستلزمات رياضية بأعلى جودة وأفضل الأسعار.</p>
-                <a href="#products-section" class="hero-left button">تسوق الآن</a>
-            </div>
+                <a href="#products-section" class="hero-left button">تسوق الآن</a> </div>
         </div>
     </section>
 
-    <div class="content-container">
-        <h1 class="section-title">منتجاتنا</h1>
+    <div class="content-container" id="products-section"> <h1 class="section-title">منتجاتنا</h1>
         <p style="text-align: center; color: #666; font-size: 1.1em; margin-bottom: 30px;">
-            اكتشف مجموعتنا من المستلزمات الرياضية عالية الجودة التي تحتاجها لرحلتك في حمام السباحة!
+            اكتشف مجموعتنا من المستلزمات الرياضية عالية الجودة التي تحتاجها لرحلتك في حمام
+            السباحة أو أي نشاط رياضي آخر.
         </p>
 
-        <div class="products-grid" id="productsGrid">
-            </div>
+
+
+        <div class="products-grid">
+        <div class="product-card" data-product-id="1" data-product-name="نظارات سباحة احترافية" data-product-price="150" data-product-image="photo/نظاره.jpg">
+        <img src="photo/نضاره سباحه.jpg" alt="نظارات سباحة احترافية">
+        <div class="product-info">
+            <h3>نظارات سباحة احترافية</h3>
+            <p>تمتع برؤية فائقة الوضوح تحت الماء مع هذه النظارات الاحترافية المصممة لراحة مثلى وأداء لا يضاهى.</p>
+            <div class="product-price">150 جنيه</div>
+            <button class="view-product-btn">عرض المنتج</button>
+        </div>
     </div>
 
-    <section id="contact-section" class="contact-section-body">
-        <div class="container">
-            <h2>تواصل معنا</h2>
-            <div class="contact-icons">
-                <a href="https://wa.me/201555903712" target="_blank" class="whatsapp-icon">
+    <div class="product-card" data-product-id="2" data-product-name="قبعة سباحة سيليكون" data-product-price="80" data-product-image="photo/قبعة سباحة سيليكون.jpg">
+        <img src="photo/بونيه سباحه.jpg" alt="قبعة سباحة سيليكون">
+        <div class="product-info">
+            <h3>قبعة سباحة سيليكون</h3>
+            <p>احمِ شعرك من الكلور وحافظ على جفافه مع قبعة السباحة المصنوعة من السيليكون المرن والمريح.</p>
+            <div class="product-price">80 جنيه</div>
+            <button class="view-product-btn">عرض المنتج</button>
+        </div>
+    </div>
+
+    <div class="product-card" data-product-id="3" data-product-name="زجاجة مياه رياضية" data-product-price="120" data-product-image="photo/زجاجه مياه.jpg">
+        <img src="photo/زجاجه مياه.jpg" alt="زجاجة مياه رياضية">
+        <div class="product-info">
+            <h3>زجاجة مياه رياضية</h3>
+            <p>حافظ على ترطيب جسمك أثناء التمارين مع هذه الزجاجة الرياضية المتينة وسهلة الحمل.</p>
+            <div class="product-price">120 جنيه</div>
+            <button class="view-product-btn">عرض المنتج</button>
+        </div>
+    </div>
+
+    <div class="product-card" data-product-id="4" data-product-name="زعانف سباحة للتدريب" data-product-price="200" data-product-image="photo/زعنفه.jpg">
+        <img src="photo/زعنفه.jpg" alt="زعانف سباحة للتدريب">
+        <div class="product-info">
+            <h3>زعانف سباحة للتدريب</h3>
+            <p>عزز قوتك في السباحة وحسن أسلوبك مع هذه الزعانف المصممة لزيادة كفاءة التمرين.</p>
+            <div class="product-price">200 جنيه</div>
+            <button class="view-product-btn">عرض المنتج</button>
+        </div>
+    </div>
+
+    <div class="product-card" data-product-id="5" data-product-name="حقيبة أدوات رياضية" data-product-price="350" data-product-image="photo/شنطه.jpg">
+        <img src="photo/شنطه.jpg" alt="حقيبة أدوات رياضية">
+        <div class="product-info">
+            <h3>حقيبة أدوات رياضية</h3>
+            <p>احمل جميع مستلزماتك الرياضية بأناقة وتنظيم مع هذه الحقيبة العملية والمقاومة للماء.</p>
+            <div class="product-price">350 جنيه</div>
+            <button class="view-product-btn">عرض المنتج</button>
+        </div>
+    </div>
+
+    <div class="product-card" data-product-id="6" data-product-name="شورت سباحة رجالي" data-product-price="450" data-product-image="photo/شورت.jpg">
+        <img src="photo/شورت.jpg" alt="شورت سباحة رجالي">
+        <div class="product-info">
+            <h3>شورت سباحة رجالي</h3>
+            <p>تصميم عصري ومريح يضمن لك حرية الحركة التامة في الماء وعلى الشاطئ.</p>
+            <div class="product-price">450 جنيه</div>
+            <button class="view-product-btn">عرض المنتج</button>
+        </div>
+    </div>
+
+    <div class="product-card" data-product-id="7" data-product-name="ملابس سباحة أطفال" data-product-price="180" data-product-image="photo/لبس.jpg">
+        <img src="photo/لبس.jpg" alt="ملابس سباحة أطفال">
+        <div class="product-info">
+            <h3>ملابس سباحة أطفال</h3>
+            <p>ألوان مبهجة وتصميم مريح يضمن لأطفالك قضاء وقت ممتع في حمام السباحة بأمان.</p>
+            <div class="product-price">180 جنيه</div>
+            <button class="view-product-btn">عرض المنتج</button>
+        </div>
+    </div>
+
+    <div class="product-card" data-product-id="8" data-product-name="مجاذف يدوية للسباحة (Hand Paddles)" data-product-price="280" data-product-image="photo/هاند بادلز.jpg">
+        <img src="photo/هاند بادلز.jpg" alt="مجاذف يدوية للسباحة">
+        <div class="product-info">
+            <h3>مجاذف يدوية للسباحة (Hand Paddles)</h3>
+            <p>حسّن من قوة ذراعيك وتقنية السباحة لديك مع هذه المجاذف اليدوية المريحة والفعالة.</p>
+            <div class="product-price">280 جنيه</div>
+            <button class="view-product-btn">عرض المنتج</button>
+        </div>
+    </div>
+</div>
+
+        </div>
+    </div>
+    <section class="contact-section-body" id="contact-section-body"> <h2>تواصل معنا</h2>
+            </p>
+        </div>
+        <div class="contact-icons">
+                <a href="https://wa.me/201555903712" target="_blank">
                     <i class="fab fa-whatsapp"></i>
                 </a>
                 <a href="https://www.facebook.com/Diamondclubsng?locale=ar_AR" target="_blank">
-                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-facebook"></i>
                 </a>
-            </div>
-        </div>
     </section>
 
     <footer>
+        <div class="container">
+            <p>&copy; 2025 حمام سباحة ماسة. جميع الحقوق محفوظة.</p>
+        </div>
         <div class="footer-bottom">
-            <div class="copyright">
-                <p>نادي ماسة: حيث تبدأ رحلتك المائية!</p>
-                &copy; جميع الحقوق محفوظة لحمام سباحة ماسة
-            </div>
         </div>
     </footer>
 
-    <div id="productDetailsModal" class="modal">
+    <div id="productModal" class="modal">
         <div class="modal-header">
             <h2 id="modalProductName"></h2>
-            <button class="modal-close" id="productModalClose">&times;</button>
+            <button class="modal-close">&times;</button>
         </div>
         <div class="modal-body">
-            <img id="modalProductImage" src="" alt="Product Image">
+            <img src="" alt="" id="modalProductImage">
             <div class="product-details">
                 <p id="modalProductDescription"></p>
                 <div class="modal-options">
-                    <div id="modalProductSizes">
+                    <div id="sizeOptions" style="display: none;">
+                        <label>اختر المقاس:</label>
+                        <div class="option-group">
+                            <input type="checkbox" id="sizeS" name="size" value="S">
+                            <label for="sizeS">S</label>
+                            <input type="checkbox" id="sizeM" name="size" value="M">
+                            <label for="sizeM">M</label>
+                            <input type="checkbox" id="sizeL" name="size" value="L">
+                            <label for="sizeL">L</label>
+                            <input type="checkbox" id="sizeXL" name="size" value="XL">
+                            <label for="sizeXL">XL</label>
                         </div>
-                    <div id="modalProductColors">
+                    </div>
+                    <div id="colorOptions" style="display: none;">
+                        <label>اختر اللون:</label>
+                        <div class="option-group">
+                            <input type="checkbox" id="colorRed" name="color" value="أحمر">
+                            <label for="colorRed">أحمر</label>
+                            <input type="checkbox" id="colorBlue" name="color" value="أزرق">
+                            <label for="colorBlue">أزرق</label>
+                            <input type="checkbox" id="colorBlack" name="color" value="أسود">
+                            <label for="colorBlack">أسود</label>
                         </div>
+                    </div>
                     <div>
-                        <label for="productQuantity">العدد:</label>
-                        <input type="number" id="productQuantity" value="1" min="1">
+                        <label for="quantity">الكمية:</label>
+                        <input type="number" id="quantity" value="1" min="1">
                     </div>
                 </div>
                 <div class="modal-price-final" id="modalFinalPrice"></div>
-                <button class="modal-add-to-cart-btn" id="addToCartBtn">أضف إلى السلة</button>
             </div>
+            <button class="modal-add-to-cart-btn" id="addToCartBtn">أضف إلى السلة</button>
         </div>
     </div>
 
     <div id="cartModal" class="modal">
         <div class="modal-header">
             <h2>سلة التسوق</h2>
-            <button class="modal-close" id="cartModalClose">&times;</button>
+            <button class="modal-close">&times;</button>
         </div>
         <div class="modal-body">
-            <ul class="cart-items" id="cartItemsList">
+            <ul class="cart-items" id="cartItems">
                 </ul>
-            <div class="cart-total" id="cartTotal">
-                إجمالي السعر: 0 جنيه
-            </div>
-            <button class="checkout-btn" id="checkoutBtn">تأكيد الطلب</button>
+            <div class="cart-total" id="cartTotal">الإجمالي: 0 جنيه</div>
+            <button class="checkout-btn" id="checkoutBtn">إتمام الشراء</button>
         </div>
     </div>
 
     <div id="checkoutModal" class="modal">
         <div class="modal-header">
-            <h2>إكمال الطلب</h2>
-            <button class="modal-close" id="checkoutModalClose">&times;</button>
+            <h2>إتمام الطلب</h2>
+            <button class="modal-close">&times;</button>
         </div>
         <div class="modal-body">
             <form id="checkoutForm">
                 <div class="form-group">
-                    <label for="customerName">الاسم الكامل:</label>
-                    <input type="text" id="customerName" required>
+                    <label for="customerName">الاسم كاملاً:</label>
+                    <input type="text" id="customerName" name="customerName" required>
                 </div>
                 <div class="form-group">
-                    <label for="whatsappNumber">رقم الواتساب:</label>
-                    <input type="tel" id="whatsappNumber" pattern="[0-9]{10,}" title="الرجاء إدخال رقم هاتف صحيح (10 أرقام على الأقل)" required>
+                    <label for="customerPhone">رقم الهاتف:</label>
+                    <input type="tel" id="customerPhone" name="customerPhone" required>
                 </div>
                 <div class="form-group">
-                    <label for="optionalNumber">رقم هاتف إضافي (اختياري):</label>
-                    <input type="tel" id="optionalNumber" pattern="[0-9]{10,}" title="الرجاء إدخال رقم هاتف صحيح (10 أرقام على الأقل)">
+                    <label for="customerAddress">العنوان بالتفصيل:</label>
+                    <textarea id="customerAddress" name="customerAddress" rows="3" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="deliveryAddress">العنوان التفصيلي:</label>
-                    <textarea id="deliveryAddress" rows="4" required></textarea>
+                    <label for="paymentMethod">طريقة الدفع:</label>
+                    <select id="paymentMethod" name="paymentMethod">
+                        <option value="cash">الدفع عند الاستلام</option>
+                        </select>
                 </div>
-                <button type="submit" class="submit-order-btn">إرسال الطلب</button>
+                <button type="submit" class="submit-order-btn">تأكيد الطلب</button>
             </form>
         </div>
     </div>
 
     <script>
-        // JavaScript for mobile menu toggle (Side Navigation)
-        const menuIcon = document.getElementById('menuIcon');
-        const closeIcon = document.getElementById('closeIcon');
-        const mainNav = document.getElementById('mainNav');
-        const sidenavOverlay = document.getElementById('sidenavOverlay');
-        const modalOverlay = document.getElementById('modalOverlay');
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuIcon = document.getElementById('menuIcon');
+            const closeIcon = document.getElementById('closeIcon');
+            const mainNav = document.getElementById('mainNav');
+            const sidenavOverlay = document.getElementById('sidenavOverlay');
+            const cartIcon = document.getElementById('cartIcon');
+            const cartModal = document.getElementById('cartModal');
+            const productModal = document.getElementById('productModal');
+            const checkoutModal = document.getElementById('checkoutModal');
+            const modalCloseButtons = document.querySelectorAll('.modal-close');
+            const modalOverlay = document.getElementById('modalOverlay');
 
-        // Modals elements
-        const productDetailsModal = document.getElementById('productDetailsModal');
-        const productModalClose = document.getElementById('productModalClose');
-        const cartModal = document.getElementById('cartModal');
-        const cartModalClose = document.getElementById('cartModalClose');
-        const checkoutModal = document.getElementById('checkoutModal');
-        const checkoutModalClose = document.getElementById('checkoutModalClose');
+            const viewProductButtons = document.querySelectorAll('.view-product-btn');
+            const addToCartBtn = document.getElementById('addToCartBtn');
+            const cartItemsContainer = document.getElementById('cartItems');
+            const cartTotalElement = document.getElementById('cartTotal');
+            const cartCountElement = document.getElementById('cartCount');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            const checkoutForm = document.getElementById('checkoutForm');
 
-        // Product Details Modal elements
-        const modalProductName = document.getElementById('modalProductName');
-        const modalProductImage = document.getElementById('modalProductImage');
-        const modalProductDescription = document.getElementById('modalProductDescription');
-        const modalProductSizes = document.getElementById('modalProductSizes');
-        const modalProductColors = document.getElementById('modalProductColors');
-        const productQuantity = document.getElementById('productQuantity');
-        const modalFinalPrice = document.getElementById('modalFinalPrice');
-        const addToCartBtn = document.getElementById('addToCartBtn');
+            let cart = [];
+            let currentProduct = null;
 
-        // Cart elements
-        const cartIcon = document.getElementById('cartIcon');
-        const cartCount = document.getElementById('cartCount');
-        const cartItemsList = document.getElementById('cartItemsList');
-        const cartTotal = document.getElementById('cartTotal');
-        const checkoutBtn = document.getElementById('checkoutBtn');
-
-        // Checkout form elements
-        const checkoutForm = document.getElementById('checkoutForm');
-        const customerName = document.getElementById('customerName');
-        const whatsappNumber = document.getElementById('whatsappNumber');
-        const optionalNumber = document.getElementById('optionalNumber');
-        const deliveryAddress = document.getElementById('deliveryAddress');
-
-        let products = []; // To store product data
-        let cart = []; // To store items in the cart
-
-        // --- Data for Products (you can expand this) ---
-const allProducts = [
-    {
-        id: 1,
-        name: "نظارة سباحة احترافية",
-        image: "photo/نضاره سباحه.jpg",
-        description: "نظارة سباحة بتصميم مريح ومحكم لمنع تسرب الماء، توفر رؤية واضحة ونقية تحت الماء. عدسات مضادة للضباب والأشعة فوق البنفسجية، مثالية للتدريب اليومي والمنافسات.",
-        basePrice: 250,
-        sizes: ["مقاس واحد"], // نظارات عادة مقاس واحد يناسب الجميع
-        colors: ["أزرق", "أسود", "وردي", "شفاف"],
-    },
-    {
-        id: 2,
-        name: "بونيه سباحة سيليكون",
-        image: "photo/بونيه سباحه.jpg",
-        description: "قبعة سباحة مرنة ومريحة مصنوعة من السيليكون عالي الجودة، تحمي الشعر بفعالية من الكلور والمياه، وتساعد على تقليل مقاومة الماء لزيادة الانسيابية.",
-        basePrice: 120,
-        sizes: ["مقاس واحد"], // بونيه سباحة عادة مقاس واحد
-        colors: ["أزرق", "أسود", "أبيض", "أحمر", "أخضر"],
-    },
-    {
-        id: 3,
-        name: "زعانف سباحة للتدريب",
-        image: "photo/زعنفه.jpg",
-        description: "زعانف سباحة متينة ومرنة، مصممة لتحسين قوة الأرجل وزيادة سرعة السباحة. مثالية لتمارين اللياقة البدنية والتقنيات المختلفة في الماء.",
-        basePrice: 400,
-        sizes: ["مقاس S (36-38)", "مقاس M (39-41)", "مقاس L (42-44)", "مقاس XL (45-47)"], // مقاسات أحذية
-        colors: ["أزرق", "أسود", "أصفر", "فضي"], // ألوان الزعانف
-    },
-    {
-        id: 4,
-        name: "مجداف يد للسباحة (هاند بادلز)",
-        image: "photo/هاند بادلز.jpg",
-        description: "مجداف يد لتمارين السباحة، يساعد على زيادة مقاومة الماء وتحسين قوة الجزء العلوي من الجسم والذراعين. تصميم مريح ومناسب لجميع مستويات السباحين.",
-        basePrice: 350,
-        sizes: ["مقاس S", "مقاس M", "مقاس L"], // مقاسات تناسب حجم اليد
-        colors: ["أزرق", "أسود", "أحمر", "أخضر"],
-    },
-    {
-        id: 5,
-        name: "مايوه سباحة للبنات",
-        image: "photo/لبس.jpg",
-        description: "مايوه سباحة أنيق ومريح للبنات، مصنوع من خامات عالية الجودة سريعة الجفاف ومقاومة للكلور. تصميم يوفر حرية الحركة ومثالي للتدريب أو الاستمتاع بالسباحة.",
-        basePrice: 450, // سعر تقديري
-        sizes: ["6 سنوات", "8 سنوات", "10 سنوات", "12 سنة", "14 سنة"], // مقاسات عمرية
-        colors: ["وردي", "أزرق فاتح", "بنفسجي", "متعدد الألوان"],
-    },
-    {
-        id: 6,
-        name: "شورت سباحة رجالي",
-        image: "photo/شورت.jpg",
-        description: "شورت سباحة رجالي بتصميم عصري ومريح، مصنوع من نسيج خفيف وسريع الجفاف ومقاوم للكلور. مثالي للسباحة على الشاطئ أو في حمام السباحة.",
-        basePrice: 300, // سعر تقديري
-        sizes: ["S", "M", "L", "XL", "XXL"],
-        colors: ["أسود", "كحلي", "رمادي", "أزرق"],
-    },
-    {
-        id: 7,
-        name: "حقيبة أدوات سباحة",
-        image: "photo/شنطه.jpg",
-        description: "حقيبة عملية ومتينة مصممة لحمل أدوات السباحة الخاصة بك. مقاومة للماء وتوفر مساحة كافية للنظارة والبونيه والملابس المبللة، مع جيوب إضافية للتخزين.",
-        basePrice: 220, // سعر تقديري
-        sizes: ["مقاس واحد"], // حقيبة عادة مقاس واحد
-        colors: ["أسود", "أزرق", "رمادي", "أحمر"],
-    },
-    {
-        id: 8,
-        name: "زجاجة مياه رياضية",
-        image: "photo/زجاجه مياه.jpg", // تم تصحيح المسار
-        description: "زجاجة مياه رياضية خفيفة الوزن ومتينة، بسعة مناسبة للترطيب أثناء التدريب. تصميم مانع للتسرب وسهلة الحمل، ضرورية للحفاظ على رطوبة الجسم.",
-        basePrice: 150, // سعر تقديري
-        sizes: ["0.5 لتر", "0.75 لتر", "1 لتر"], // سعات الزجاجات
-        colors: ["شفاف", "أزرق", "وردي", "أخضر", "أسود"],
-    },
-];
-
-        // --- Functions for Modals ---
-        function openModal(modalElement) {
-            modalElement.classList.add('active');
-            modalOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
-        }
-
-        function closeModal(modalElement) {
-            modalElement.classList.remove('active');
-            modalOverlay.classList.remove('active');
-            // Check if any other modal is still active or side nav, otherwise re-enable scroll
-            if (!productDetailsModal.classList.contains('active') &&
-                !cartModal.classList.contains('active') &&
-                !checkoutModal.classList.contains('active') &&
-                !mainNav.classList.contains('active')) {
-                document.body.style.overflow = '';
-            }
-        }
-
-        // --- Event Listeners for Modals ---
-        productModalClose.addEventListener('click', () => closeModal(productDetailsModal));
-        cartModalClose.addEventListener('click', () => closeModal(cartModal));
-        checkoutModalClose.addEventListener('click', () => closeModal(checkoutModal));
-        modalOverlay.addEventListener('click', () => {
-            if (productDetailsModal.classList.contains('active')) closeModal(productDetailsModal);
-            if (cartModal.classList.contains('active')) closeModal(cartModal);
-            if (checkoutModal.classList.contains('active')) closeModal(checkoutModal);
-        });
-
-        // --- Side Navigation Toggle ---
-        if (menuIcon) {
+            // --- Mobile Navigation Logic ---
             menuIcon.addEventListener('click', () => {
                 mainNav.classList.add('active');
                 sidenavOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
             });
-        }
 
-        if (closeIcon) {
             closeIcon.addEventListener('click', () => {
                 mainNav.classList.remove('active');
                 sidenavOverlay.classList.remove('active');
-                if (!productDetailsModal.classList.contains('active') &&
-                    !cartModal.classList.contains('active') &&
-                    !checkoutModal.classList.contains('active')) {
-                    document.body.style.overflow = '';
-                }
             });
-        }
 
-        if (sidenavOverlay) {
             sidenavOverlay.addEventListener('click', () => {
                 mainNav.classList.remove('active');
                 sidenavOverlay.classList.remove('active');
-                if (!productDetailsModal.classList.contains('active') &&
-                    !cartModal.classList.contains('active') &&
-                    !checkoutModal.classList.contains('active')) {
-                    document.body.style.overflow = '';
-                }
             });
-        }
 
-        const navLinks = document.querySelectorAll('#mainNav a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 767) {
+            // Close mobile nav if a link is clicked
+            mainNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
                     mainNav.classList.remove('active');
                     sidenavOverlay.classList.remove('active');
-                    if (!productDetailsModal.classList.contains('active') &&
-                        !cartModal.classList.contains('active') &&
-                        !checkoutModal.classList.contains('active')) {
-                        document.body.style.overflow = '';
+                });
+            });
+
+            // --- Modals General Logic ---
+            function openModal(modal) {
+                modal.classList.add('active');
+                modalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling background
+            }
+
+            function closeModal(modal) {
+                modal.classList.remove('active');
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+
+            modalCloseButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const modal = event.target.closest('.modal');
+                    if (modal) {
+                        closeModal(modal);
                     }
-                }
-            });
-        });
-
-        // --- Product Display and Details ---
-        function renderProducts() {
-            const productsGrid = document.getElementById('productsGrid');
-            productsGrid.innerHTML = ''; // Clear existing products
-            allProducts.forEach(product => {
-                const productCard = document.createElement('div');
-                productCard.classList.add('product-card');
-                productCard.innerHTML = `
-                    <img src="${product.image}" alt="${product.name}" />
-                    <div class="product-info">
-                        <h3>${product.name}</h3>
-                        <p>${product.description}</p>
-                        <span class="product-price">${product.basePrice} جنيه</span>
-                        <button class="view-product-btn" data-product-id="${product.id}">عرض المنتج</button>
-                    </div>
-                `;
-                productsGrid.appendChild(productCard);
+                });
             });
 
-            // Add event listeners to "View Product" buttons
-            document.querySelectorAll('.view-product-btn').forEach(button => {
+            modalOverlay.addEventListener('click', () => {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    closeModal(modal);
+                });
+            });
+
+            // --- Product Modal Logic ---
+            viewProductButtons.forEach(button => {
                 button.addEventListener('click', (event) => {
-                    const productId = parseInt(event.target.dataset.productId);
-                    showProductDetails(productId);
+                    const productCard = event.target.closest('.product-card');
+                    currentProduct = {
+                        id: productCard.dataset.productId,
+                        name: productCard.dataset.productName,
+                        price: parseFloat(productCard.dataset.productPrice),
+                        image: productCard.dataset.productImage,
+                        description: productCard.querySelector('.product-info p').textContent
+                    };
+
+                    document.getElementById('modalProductName').textContent = currentProduct.name;
+                    document.getElementById('modalProductImage').src = currentProduct.image;
+                    document.getElementById('modalProductImage').alt = currentProduct.name;
+                    document.getElementById('modalProductDescription').textContent = currentProduct.description;
+                    document.getElementById('modalFinalPrice').textContent = `${currentProduct.price.toFixed(2)} جنيه`;
+                    document.getElementById('quantity').value = 1;
+
+                    // Reset options visibility
+                    document.getElementById('sizeOptions').style.display = 'none';
+                    document.getElementById('colorOptions').style.display = 'none';
+
+                    // Example: Show size and color options for specific products
+                    if (currentProduct.id === '5' || currentProduct.id === '6') { // Assuming product IDs for clothes
+                        document.getElementById('sizeOptions').style.display = 'block';
+                        document.getElementById('colorOptions').style.display = 'block';
+                    }
+
+                    // Reset selected options
+                    document.querySelectorAll('.modal-options input[type="checkbox"]').forEach(checkbox => {
+                        checkbox.checked = false;
+                    });
+
+                    openModal(productModal);
                 });
             });
-        }
 
-        let currentProduct = null; // To store the product being viewed in the modal
+            document.getElementById('quantity').addEventListener('input', updateModalPrice);
+            document.getElementById('sizeOptions').addEventListener('change', updateModalPrice);
+            document.getElementById('colorOptions').addEventListener('change', updateModalPrice);
 
-        function showProductDetails(productId) {
-            currentProduct = allProducts.find(p => p.id === productId);
-            if (!currentProduct) return;
+            function updateModalPrice() {
+                if (!currentProduct) return;
 
-            modalProductName.textContent = currentProduct.name;
-            modalProductImage.src = currentProduct.image;
-            modalProductImage.alt = currentProduct.name;
-            modalProductDescription.textContent = currentProduct.description;
+                let calculatedPrice = currentProduct.price;
+                const quantity = parseInt(document.getElementById('quantity').value);
 
-            // Render sizes
-            modalProductSizes.innerHTML = '';
-            if (currentProduct.sizes && currentProduct.sizes.length > 0) {
-                const sizeLabel = document.createElement('label');
-                sizeLabel.textContent = 'المقاس:';
-                modalProductSizes.appendChild(sizeLabel);
-                const sizeGroup = document.createElement('div');
-                sizeGroup.classList.add('option-group');
-                currentProduct.sizes.forEach(size => {
-                    const inputId = `size-${size}`;
-                    const checkbox = document.createElement('input');
-                    checkbox.type = 'checkbox';
-                    checkbox.id = inputId;
-                    checkbox.name = 'productSize';
-                    checkbox.value = size;
-                    checkbox.addEventListener('change', updateFinalPrice);
-                    const label = document.createElement('label');
-                    label.htmlFor = inputId;
-                    label.textContent = size;
-                    sizeGroup.appendChild(checkbox);
-                    sizeGroup.appendChild(label);
-                });
-                modalProductSizes.appendChild(sizeGroup);
+                // Add logic for option-based pricing if needed
+                // For now, it's just quantity * base price
+                calculatedPrice *= quantity;
+
+                document.getElementById('modalFinalPrice').textContent = `${calculatedPrice.toFixed(2)} جنيه`;
             }
 
-            // Render colors
-            modalProductColors.innerHTML = '';
-            if (currentProduct.colors && currentProduct.colors.length > 0) {
-                const colorLabel = document.createElement('label');
-                colorLabel.textContent = 'اللون:';
-                modalProductColors.appendChild(colorLabel);
-                const colorGroup = document.createElement('div');
-                colorGroup.classList.add('option-group');
-                currentProduct.colors.forEach(color => {
-                    const inputId = `color-${color}`;
-                    const checkbox = document.createElement('input');
-                    checkbox.type = 'checkbox';
-                    checkbox.id = inputId;
-                    checkbox.name = 'productColor';
-                    checkbox.value = color;
-                    checkbox.addEventListener('change', updateFinalPrice);
-                    const label = document.createElement('label');
-                    label.htmlFor = inputId;
-                    label.textContent = color;
-                    colorGroup.appendChild(checkbox);
-                    colorGroup.appendChild(label);
-                });
-                modalProductColors.appendChild(colorGroup);
-            }
+            addToCartBtn.addEventListener('click', () => {
+                if (!currentProduct) return;
 
-            productQuantity.value = 1; // Reset quantity
-            updateFinalPrice(); // Calculate initial price
+                const quantity = parseInt(document.getElementById('quantity').value);
+                const selectedSize = document.querySelector('#sizeOptions input[name="size"]:checked')?.value || 'N/A';
+                const selectedColor = document.querySelector('#colorOptions input[name="color"]:checked')?.value || 'N/A';
+                const itemPrice = currentProduct.price * quantity;
 
-            openModal(productDetailsModal);
-        }
+                const cartItem = {
+                    id: currentProduct.id,
+                    name: currentProduct.name,
+                    price: currentProduct.price,
+                    quantity: quantity,
+                    totalItemPrice: itemPrice,
+                    image: currentProduct.image,
+                    size: selectedSize,
+                    color: selectedColor
+                };
 
-        function updateFinalPrice() {
-            if (!currentProduct) return;
+                // Check if item already exists in cart with same options
+                const existingItemIndex = cart.findIndex(item =>
+                    item.id === cartItem.id &&
+                    item.size === cartItem.size &&
+                    item.color === cartItem.color
+                );
 
-            let selectedSizes = Array.from(document.querySelectorAll('#modalProductSizes input[type="checkbox"]:checked'))
-            .map(cb => cb.value);
-            let selectedColors = Array.from(document.querySelectorAll('#modalProductColors input[type="checkbox"]:checked'))
-            .map(cb => cb.value);
-            const quantity = parseInt(productQuantity.value) || 0;
-
-            let priceMultiplier = 1;
-            // Example: Add a small premium for multiple selections, or specific sizes/colors
-            // يمكنك تعديل هذا المنطق ليناسب تسعيرك
-            if (selectedSizes.length > 1) priceMultiplier += 0.00; // لا يوجد سعر إضافي للمقاسات المتعددة عادة
-            if (selectedColors.length > 1) priceMultiplier += 0.00; // لا يوجد سعر إضافي للألوان المتعددة عادة
-
-            const finalPrice = (currentProduct.basePrice * quantity * priceMultiplier).toFixed(2);
-            modalFinalPrice.textContent = `السعر النهائي: ${finalPrice} جنيه`;
-        }
-
-        productQuantity.addEventListener('input', updateFinalPrice);
-
-        // --- Add to Cart ---
-        addToCartBtn.addEventListener('click', () => {
-            if (!currentProduct) return;
-
-            const selectedSizes = Array.from(document.querySelectorAll('#modalProductSizes input[type="checkbox"]:checked'))
-
-            .map(cb => cb.value);
-            const selectedColors = Array.from(document.querySelectorAll('#modalProductColors input[type="checkbox"]:checked'))
-            .map(cb => cb.value);
-            const quantity = parseInt(productQuantity.value);
-
-            if (quantity <= 0) {
-                alert('الرجاء إدخال عدد صحيح للمنتج.');
-                return;
-            }
-
-            // Check if sizes/colors are required but not selected
-            if (currentProduct.sizes && currentProduct.sizes.length > 0 && currentProduct.sizes[0] !== "مقاس واحد" && selectedSizes.length === 0) {
-                alert('الرجاء اختيار المقاس المطلوب.');
-                return;
-                }
-                if (currentProduct.colors && currentProduct.colors.length > 0 && selectedColors.length === 0) {
-                alert('الرجاء اختيار اللون المطلوب.');
-                return;
+                if (existingItemIndex > -1) {
+                    cart[existingItemIndex].quantity += quantity;
+                    cart[existingItemIndex].totalItemPrice += itemPrice;
+                } else {
+                    cart.push(cartItem);
                 }
 
+                updateCartDisplay();
+                closeModal(productModal);
+                openModal(cartModal); // Open cart modal after adding item
+            });
 
-            const itemPrice = parseFloat(modalFinalPrice.textContent.replace('السعر النهائي: ', '').replace(' جنيه', ''));
+            // --- Cart Modal Logic ---
+            cartIcon.addEventListener('click', () => {
+                openModal(cartModal);
+            });
 
-            const cartItem = {
-                id: Date.now(), // Unique ID for cart item
-                productId: currentProduct.id,
-                name: currentProduct.name,
-                image: currentProduct.image,
-                sizes: selectedSizes.length > 0 ? selectedSizes.join(', ') : 'مقاس واحد', // Default if no sizes were offered/selected
-                colors: selectedColors.length > 0 ? selectedColors.join(', ') : 'غير محدد', // Default if no colors were offered/selected
-                quantity: quantity,
-                unitPrice: currentProduct.basePrice,
-                totalPrice: itemPrice,
-            };
+            function updateCartDisplay() {
+                cartItemsContainer.innerHTML = '';
+                let totalCartPrice = 0;
 
-            cart.push(cartItem);
-            updateCartCount();
-            closeModal(productDetailsModal);
-            alert('تمت إضافة المنتج إلى السلة!');
-        });
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = '<li style="text-align: center; color: #666;">سلة التسوق فارغة.</li>';
+                    cartCountElement.style.display = 'none';
+                } else {
+                    cart.forEach((item, index) => {
+                        const listItem = document.createElement('li');
+                        listItem.classList.add('cart-item');
+                        listItem.innerHTML = `
+                            <img src="${item.image}" alt="${item.name}">
+                            <div class="item-details">
+                                <h4>${item.name} (${item.quantity}x)</h4>
+                                <p>المقاس: ${item.size}, اللون: ${item.color}</p>
+                            </div>
+                            <div class="item-price">${item.totalItemPrice.toFixed(2)} جنيه</div>
+                            <button class="remove-item-btn" data-index="${index}"><i class="fas fa-trash"></i></button>
+                        `;
+                        cartItemsContainer.appendChild(listItem);
+                        totalCartPrice += item.totalItemPrice;
+                    });
+                    cartCountElement.style.display = 'block';
+                    cartCountElement.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+                }
+                cartTotalElement.textContent = `الإجمالي: ${totalCartPrice.toFixed(2)} جنيه`;
+            }
 
-        function updateCartCount() {
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartCount.textContent = totalItems;
-            cartCount.style.display = totalItems > 0 ? 'block' : 'none';
-        }
+            cartItemsContainer.addEventListener('click', (event) => {
+                if (event.target.classList.contains('remove-item-btn') || event.target.closest('.remove-item-btn')) {
+                    const indexToRemove = event.target.dataset.index || event.target.closest('.remove-item-btn').dataset.index;
+                    cart.splice(indexToRemove, 1);
+                    updateCartDisplay();
+                }
+            });
 
-        // --- Cart Modal Display ---
-        cartIcon.addEventListener('click', () => {
-            renderCartItems();
-            openModal(cartModal);
-        });
+            // --- Checkout Modal Logic ---
+            checkoutBtn.addEventListener('click', () => {
+                if (cart.length === 0) {
+                    alert('سلة التسوق فارغة لا يمكن إتمام الطلب.');
+                    return;
+                }
+                closeModal(cartModal);
+                openModal(checkoutModal);
+            });
 
-        function renderCartItems() {
-            cartItemsList.innerHTML = '';
-            let overallTotal = 0;
+            checkoutForm.addEventListener('submit', (event) => {
+                event.preventDefault();
 
-            if (cart.length === 0) {
-                cartItemsList.innerHTML = '<li style="text-align: center; color: #666;">سلة التسوق فارغة.</li>';
-            } else {
+                const customerName = document.getElementById('customerName').value;
+                const customerPhone = document.getElementById('customerPhone').value;
+                const customerAddress = document.getElementById('customerAddress').value;
+                const paymentMethod = document.getElementById('paymentMethod').value;
+
+                let orderDetails = `طلب جديد من ${customerName}\n`;
+                orderDetails += `رقم الهاتف: ${customerPhone}\n`;
+                orderDetails += `العنوان: ${customerAddress}\n`;
+                orderDetails += `طريقة الدفع: ${paymentMethod}\n\n`;
+                orderDetails += `تفاصيل الطلب:\n`;
+
+                let totalOrderPrice = 0;
                 cart.forEach(item => {
-                    const listItem = document.createElement('li');
-                    listItem.classList.add('cart-item');
-                    listItem.innerHTML = `
-                        <img src="${item.image}" alt="${item.name}">
-                        <div class="item-details">
-                            <h4>${item.name}</h4>
-                            <p>المقاسات: ${item.sizes}</p>
-                            <p>الألوان: ${item.colors}</p>
-                            <p>العدد: ${item.quantity}</p>
-                            <p>سعر الوحدة: ${item.unitPrice} جنيه</p>
-                        </div>
-                        <span class="item-price">${item.totalPrice.toFixed(2)} جنيه</span>
-                        <button class="remove-item-btn" data-item-id="${item.id}">&times;</button>
-                    `;
-                    cartItemsList.appendChild(listItem);
-                    overallTotal += item.totalPrice;
+                    orderDetails += `- ${item.name} (الكمية: ${item.quantity}, المقاس: ${item.size}, اللون: ${item.color}) - السعر: ${item.totalItemPrice.toFixed(2)} جنيه\n`;
+                    totalOrderPrice += item.totalItemPrice;
                 });
-            }
-            cartTotal.textContent = `إجمالي السعر: ${overallTotal.toFixed(2)} جنيه`;
+                orderDetails += `\nالإجمالي الكلي: ${totalOrderPrice.toFixed(2)} جنيه`;
 
-            // Add event listeners to remove buttons
-            document.querySelectorAll('.remove-item-btn').forEach(button => {
-                button.addEventListener('click', (event) => {
-                    const itemIdToRemove = parseInt(event.target.dataset.itemId);
-                    cart = cart.filter(item => item.id !== itemIdToRemove);
-                    updateCartCount();
-                    renderCartItems(); // Re-render cart after removal
-                });
+                // Send to WhatsApp (or your preferred method)
+                const whatsappNumber = '201000000000'; // Replace with your WhatsApp number
+                const encodedMessage = encodeURIComponent(orderDetails);
+                window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+
+                alert('تم إرسال طلبك بنجاح! سنتواصل معك قريباً لتأكيد الطلب.');
+
+                // Clear cart and close modals
+                cart = [];
+                updateCartDisplay();
+                closeModal(checkoutModal);
+                checkoutForm.reset();
             });
-        }
 
-        // --- Checkout Process ---
-        checkoutBtn.addEventListener('click', () => {
-            if (cart.length === 0) {
-                alert('سلة التسوق فارغة. الرجاء إضافة منتجات قبل تأكيد الطلب.');
-                return;
-            }
-            closeModal(cartModal);
-            openModal(checkoutModal);
+            // Initial cart display
+            updateCartDisplay();
         });
-
-        checkoutForm.addEventListener('submit', (event) => {
-            event.preventDefault(); // Prevent default form submission
-
-            const customerData = {
-                name: customerName.value,
-                whatsapp: whatsappNumber.value,
-                optionalPhone: optionalNumber.value,
-                address: deliveryAddress.value,
-                order: cart,
-                total: parseFloat(cartTotal.textContent.replace('إجمالي السعر: ', '').replace(' جنيه', '')),
-            };
-
-            console.log('Order Details:', customerData);
-            // In a real application, you would send this data to a server
-            // For now, we'll just show an alert
-
-            // Simulate sending to WhatsApp (if needed, but usually done server-side or by user copy-paste)
-            // const whatsappMessage = `طلب جديد من المتجر:\nالاسم: ${customerData.name}\nواتساب: ${customerData.whatsapp}\nهاتف إضافي: ${customerData.optionalPhone || 'لا يوجد'}\nالعنوان: ${customerData.address}\n\nالمنتجات:\n${customerData.order.map(item => `- ${item.name} (${item.sizes}, ${item.colors}) - العدد: ${item.quantity} - السعر: ${item.totalPrice} جنيه`).join('\n')}\n\nالإجمالي: ${customerData.total} جنيه`;
-            // const whatsappLink = `https://wa.me/201555903712?text=${encodeURIComponent(whatsappMessage)}`;
-            // window.open(whatsappLink, '_blank');
-
-
-            alert('تم إرسال طلبك بنجاح! سنتواصل معك قريباً.');
-
-            // Clear cart and close modals
-            cart = [];
-            updateCartCount();
-            closeModal(checkoutModal);
-            customerName.value = '';
-            whatsappNumber.value = '';
-            optionalNumber.value = '';
-            deliveryAddress.value = '';
-        });
-
-        // Initial render of products and cart count
-        renderProducts();
-        updateCartCount();
-
     </script>
 </body>
 </html>
