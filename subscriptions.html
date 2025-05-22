@@ -11,7 +11,7 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            color: #000000;
+            color: #ffffff;
             direction: rtl; /* Set default direction to RTL */
             background-image: url('photo/Main swimming pool.jpg'); /* استبدل background.jpg باسم صورتك */
             background-size: cover; /* تغطي الصورة كامل الخلفية */
@@ -30,7 +30,7 @@
             height: 100%; /* Full height */
             top: 0;
             right: 0;
-            background-color: rgb(0, 0, 0); /* Black w/ opacity */
+            background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
             z-index: 1001; /* Higher than other content */
             justify-content: center;
             align-items: center;
@@ -53,7 +53,7 @@
         }
 
         .close-button {
-            color: #ffeaea;
+            color: #555; /* Changed for better visibility on white background */
             position: absolute;
             top: 15px;
             left: 25px; /* Adjusted for RTL */
@@ -115,11 +115,9 @@
             background-color: #218838;
         }
 
-
-
         /* ============ Header ============ */
         header {
-            background-color: #0000004e; /* Blue color from image */
+            background-color: #10111263; /* Blue color from image */
             padding: 5px 0;
             box-shadow: 0 2px 5px rgba(241, 2, 2, 0);
             position: sticky;
@@ -199,23 +197,26 @@
         }
 
         /* Overlay for mobile navigation */
-        .overlay {
+        .sidenav-overlay {
+            display: none; /* مخفي افتراضيًا */
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
-            z-index: 999; /* Just below the nav */
+            background: rgba(0, 0, 0, 0.5); /* خلفية شبه شفافة */
+            z-index: 998; /* أقل من القائمة الجانبية وأعلى من المحتوى العادي */
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
-        .overlay.active {
+        .sidenav-overlay.active {
             opacity: 1;
             visibility: visible;
+            display: block; /* تأكد من عرضها عند التفعيل */
         }
+
         /* Desktop Navigation */
         @media (min-width: 768px) {
             .menu-icon {
@@ -262,17 +263,72 @@
         /* Mobile Specific Styles (apply when screen width is less than 768px) */
         @media (max-width: 767px) {
             header .container {
-                flex-direction: row-reverse; /* Reverse for mobile: logo right, menu left */
+                flex-direction: row; /* لا نعكس الترتيب هنا، بل نتحكم به عبر order في العناصر */
+                justify-content: space-between;
             }
+
             .menu-icon {
                 display: block; /* Show menu icon on mobile */
-                order: 2; /* Menu icon on the left (visual order in RTL) */
+                order: 1; /* Menu icon on the right (visual order in RTL) */
+                margin-right: 15px; /* مسافة من اللوجو */
             }
             .logo {
-                order: 1; /* Logo on the right (visual order in RTL) */
+                order: 2; /* Logo on the left (visual order in RTL) */
+                margin-left: 0; /* Reset margin from header */
             }
+
+            /* ============ Mobile Navigation (Side Nav) ============ */
             header nav.main-nav {
-                display: flex; /* Always flex for proper alignment inside */
+                position: fixed; /* تثبيت القائمة الجانبية */
+                top: 0;
+                right: -300px; /* إخفاء القائمة في البداية خارج الشاشة (جهة اليمين لـ RTL) */
+                width: 250px; /* عرض القائمة الجانبية */
+                height: 100%;
+                background-color: #2c3e50; /* لون خلفية القائمة */
+                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5); /* ظل لإبراز القائمة */
+                flex-direction: column; /* ترتيب العناصر عموديًا */
+                padding: 60px 0 20px; /* مسافة داخلية (لإتاحة مكان لزر الإغلاق) */
+                align-items: flex-end; /* محاذاة العناصر إلى اليمين */
+                transition: right 0.3s ease-in-out; /* حركة سلسة عند الظهور والاختفاء */
+                z-index: 1000; /* طبقة أعلى من باقي المحتوى */
+                overflow-y: auto; /* إضافة شريط تمرير إذا كان المحتوى طويلًا */
+            }
+
+            header nav.main-nav.active {
+                right: 0; /* إظهار القائمة بتحريكها إلى الصفر (للداخل) */
+            }
+
+            header nav.main-nav a {
+                color: white;
+                text-decoration: none;
+                margin: 15px 25px; /* مسافة أكبر للعناصر داخل القائمة */
+                font-size: 1.2em;
+                width: calc(100% - 50px); /* عرض الروابط */
+                text-align: right; /* محاذاة النص لليمين */
+                padding-bottom: 5px;
+                position: relative;
+                transition: background-color 0.2s ease;
+            }
+
+            header nav.main-nav a:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+                border-radius: 5px;
+            }
+
+            header nav.main-nav a.active::after {
+                right: 25px; /* تثبيت خط التحديد لليمين */
+                left: unset;
+                transform: none; /* إزالة التحويل */
+                width: calc(100% - 50px); /* عرض الخط مطابق للرابط */
+            }
+
+            .close-icon {
+                display: block; /* إظهار أيقونة الإغلاق داخل القائمة الجانبية */
+                position: absolute;
+                top: 15px;
+                right: 15px; /* وضع أيقونة الإغلاق في أعلى يمين القائمة الجانبية */
+                font-size: 2em;
+                color: white;
             }
         }
 
@@ -301,19 +357,19 @@
             margin-top: 40px;
             margin-bottom: 25px;
             font-size: 2em;
-            border-bottom: 2px solid #e2e6ea;
+            border-bottom: 12px solid #e2e6ea;
             padding-bottom: 10px;
         }
 
         h3 {
             color: #28a745;
-            font-size: 1.6em;
+            font-size: 2.6em;
             margin-top: 30px;
             margin-bottom: 15px;
         }
 
         .plan-card {
-            background-color: #f9fbfb;
+            background-color: #2c2e3375;
             border: 1px solid #e0e6ea;
             border-radius: 10px;
             padding: 25px;
@@ -364,7 +420,7 @@
 
         .btn {
             display: inline-block;
-            background-color: #007bff;
+            background-color: #ff3700;
             color: #ffffff;
             padding: 12px 25px;
             border-radius: 8px;
@@ -383,7 +439,9 @@
         }
 
         .section-text {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            font-weight: 600;
+            font-size: 1.1em;
         }
 
         /* ============ Contact Section ============ */
@@ -492,6 +550,8 @@
         </div>
     </header>
 
+    <div class="sidenav-overlay" id="sidenavOverlay"></div>
+
     <div class="content-container">
         <h1>نادي ماسة: اختر اشتراكك واستمتع بالسباحة!</h1>
         <p class="section-text" style="text-align: center;">
@@ -539,7 +599,7 @@
             <h3>4. الاشتراك السنوي (12 شهر)</h3>
             <span class="price">4500 جنيه مصري <span class="save-info">(توفير 1500 جنيه)</span></span>
             <ul>
-                <li><strong>أفضل قيمة!</strong> أكبر توفير ممكن.</li>
+                <li>**أفضل قيمة!** أكبر توفير ممكن.</li>
                 <li>استخدام غير محدود لحمام السباحة لمدة عام كامل.</li>
                 <li>دعوة مجانية لصديق مرة واحدة شهريًا.</li>
                 <li>أولوية التسجيل في الدورات التدريبية الخاصة.</li>
@@ -558,7 +618,7 @@
             <li>**مياه نقية:** حمام سباحة نظيف ومعقم بأعلى معايير الجودة.</li>
             <li>**مدربون محترفون:** فريق من المدربين المؤهلين لجميع المستويات (عند الرغبة في دورات إضافية).</li>
             <li>**أجواء عائلية:** بيئة آمنة ومرحبة لجميع الأعمار.</li>
-            <li>**مواعيد مرنة:** نفتح أبوابنا من 9:00 صباحًا حتى 10:00 مساءً يوميًا.</li>
+            <li>**مواعيد مرنة:** نفتح أبوابنا من 9:00 صباحًا حتى 12:00 مساءً يوميًا.</li>
         </ul>
 
         <hr>
@@ -624,24 +684,51 @@
     </div>
 
     <script>
-        // JavaScript for mobile menu toggle
+        // JavaScript for mobile menu toggle (Side Navigation)
         const menuIcon = document.getElementById('menuIcon');
         const closeIcon = document.getElementById('closeIcon');
         const mainNav = document.getElementById('mainNav');
+        const sidenavOverlay = document.getElementById('sidenavOverlay'); // الحصول على overlay
 
         if (menuIcon) {
             menuIcon.addEventListener('click', () => {
-                mainNav.classList.add('active');
+                mainNav.classList.add('active'); // أضف فئة active لإظهار القائمة
+                sidenavOverlay.classList.add('active'); // أضف فئة active لإظهار الـ overlay
+                document.body.style.overflow = 'hidden'; // منع التمرير في الجسم
             });
         }
 
         if (closeIcon) {
             closeIcon.addEventListener('click', () => {
-                mainNav.classList.remove('active');
+                mainNav.classList.remove('active'); // إزالة فئة active لإخفاء القائمة
+                sidenavOverlay.classList.remove('active'); // إزالة فئة active لإخفاء الـ overlay
+                document.body.style.overflow = ''; // إعادة التمرير إلى الوضع الطبيعي
             });
         }
 
-        // JavaScript for subscription modal
+        // إغلاق القائمة الجانبية عند النقر على الـ overlay
+        if (sidenavOverlay) {
+            sidenavOverlay.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                sidenavOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+
+        // إغلاق القائمة الجانبية عند النقر على أي رابط داخلها (اختياري)
+        const navLinks = document.querySelectorAll('#mainNav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                // تحقق من حجم الشاشة لضمان إغلاق القائمة فقط على الجوال
+                if (window.innerWidth <= 767) {
+                    mainNav.classList.remove('active');
+                    sidenavOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // JavaScript for subscription modal (Existing code, no changes needed unless specified)
         const subscribeButtons = document.querySelectorAll('.subscribe-btn');
         const subscriptionModal = document.getElementById('subscriptionModal');
         const closeButton = document.querySelector('.close-button');
@@ -653,12 +740,14 @@
                 const plan = this.dataset.plan; // Get the plan name from data-plan attribute
                 modalPlanTitle.textContent = 'نموذج الاشتراك في ' + plan; // Update modal title
                 subscriptionModal.style.display = 'flex'; // Show the modal
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
             });
         });
 
         if (closeButton) {
             closeButton.addEventListener('click', () => {
                 subscriptionModal.style.display = 'none'; // Hide the modal
+                document.body.style.overflow = ''; // Restore scrolling
             });
         }
 
@@ -666,6 +755,7 @@
         window.addEventListener('click', (event) => {
             if (event.target == subscriptionModal) {
                 subscriptionModal.style.display = 'none';
+                document.body.style.overflow = '';
             }
         });
     </script>
