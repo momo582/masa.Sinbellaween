@@ -116,105 +116,106 @@
         }
 
 
+
         /* ============ Header ============ */
         header {
-            background-color: rgba(0, 0, 0, 0.8); /* Increased opacity */
-            color: #fff;
-            padding: 15px 0; /* Increased padding */
+            background-color: #0000004e; /* Blue color from image */
+            padding: 5px 0;
+            box-shadow: 0 2px 5px rgba(241, 2, 2, 0);
             position: sticky;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
-            border-bottom: 1px solid rgb(255, 255, 255); /* Subtle border */
+            z-index: 1000;
         }
 
         header .container {
             display: flex;
-            /* عكس الترتيب ليظهر اللوجو يمينًا وأيقونة التنقل يسارًا في وضع الموبايل */
             justify-content: space-between;
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 30px;
-            /* Default for desktop, adjusted for mobile below */
-            flex-direction: row; /* Default for desktop: logo left, menu right */
+            padding: 0 20px;
+            flex-direction: row-reverse; /* Changed to Rtl: Logo on right, nav on left */
         }
 
         header .logo img {
-            height: 50px; /* Adjust logo size */
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Shadow for logo */
+            height: 40px;
+            border-radius: 100%;
+            border: 2px solid white;
+            margin-left: 15px; /* Added margin for spacing */
         }
 
-        header nav.main-nav {
-            position: fixed;
-            top: 0;
-            right: -280px; /* Hidden off-screen to the right (RTL) */
-            width: 280px; /* Width of the side menu */
-            height: 100%;
-            background-color: rgba(0, 123, 255, 0.9); /* Changed background for mobile nav, slight opacity */
-            box-shadow: -8px 0 20px rgba(0, 0, 0, 0.4); /* Enhanced shadow */
-            flex-direction: column; /* Stack links vertically */
-            padding: 80px 20px 20px; /* Increased padding-top for close icon */
-            transition: right 0.4s ease-in-out; /* Slightly slower transition */
-            z-index: 100;
-            align-items: flex-end; /* Align items to the right */
-            display: flex; /* Ensure it's a flex container even when hidden */
-        }
-
-        header nav.main-nav.active {
-            right: 0; /* Slide in when active */
+        header nav.main-nav { /* Added .main-nav class to target specifically */
+            display: flex;
+            align-items: center;
+            direction: rtl; /* Changed to Rtl */
         }
 
         header nav.main-nav a {
-            color: #fff;
+            color: white;
             text-decoration: none;
-            margin: 12px 0; /* Adjust spacing for stacked links */
-            font-size: 1.2em; /* Keep good font size */
-            width: 100%; /* Full width for clickable area */
-            text-align: right; /* Align text to the right */
-            padding-right: 10px; /* Add slight padding on right for RTL */
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease, transform 0.3s ease;
             position: relative;
-            transition: color 0.3s ease; /* Smooth transition for hover */
+            padding-bottom: 5px;
         }
 
         header nav.main-nav a:hover {
-            color: #ffc107; /* Highlight color on hover */
+            color: #f8f8f8;
+            transform: translateY(-2px);
+        }
+
+        header nav.main-nav a.active {
+            color: #00f0ff; /* Bright blue from image */
+            font-weight: bold;
         }
 
         header nav.main-nav a.active::after {
             content: '';
             position: absolute;
-            bottom: -5px;
-            right: 0; /* Keep underline aligned to the right */
-            left: unset;
-            width: 100%; /* Full width underline */
-            height: 4px; /* Thicker underline */
-            background-color: #ffc107; /* Highlight color for active link */
+            right: 0; /* Adjusted for Rtl */
+            left: unset; /* Adjusted for Rtl */
+            bottom: 0;
+            height: 3px;
+            background-color: #00f0ff; /* Bright blue from image */
             border-radius: 2px;
-            transform: none; /* Remove transform if previously applied */
+            width: 100%; /* Ensure full width underline */
         }
 
+        /* Mobile Navigation Icons */
         .menu-icon, .close-icon {
-            font-size: 2.2em; /* Increased size */
+            color: white;
+            font-size: 1.8em;
             cursor: pointer;
-            color: #fff;
-            transition: color 0.3s ease;
-            display: none; /* Hidden by default, controlled by media queries */
-        }
-
-        .menu-icon:hover, .close-icon:hover {
-            color: #ffc107; /* Highlight on hover */
+            display: none; /* Hidden by default, shown on mobile */
+            z-index: 1001; /* Above everything else */
         }
 
         .close-icon {
             position: absolute;
-            top: 25px; /* Adjusted position for padding */
-            left: 25px; /* Adjusted for RTL */
-            color: #fff;
-            font-size: 2.5em; /* Increased size */
+            top: 15px;
+            left: 15px; /* Position close icon on the left inside the side menu */
+            font-size: 2em;
         }
 
+        /* Overlay for mobile navigation */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+            z-index: 999; /* Just below the nav */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
         /* Desktop Navigation */
         @media (min-width: 768px) {
             .menu-icon {
