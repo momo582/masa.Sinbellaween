@@ -38,16 +38,16 @@
             padding: 0 20px;
         }
 
-        /* ============ Header Styles (معدل بالكامل) ============ */
+        /* ============ Header Styles ============ */
         header {
-            background-color: var(--primary-color);
+                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5); /* ظل لإبراز القائمة */
             color: var(--white-color);
-            padding: 5px 0; /* تم تقليل البادينغ ليناسب اللوجو الصغير */
-            position: sticky; /* Sticky بدلاً من fixed لتجنب التداخل مع بداية المحتوى */
+            padding: 5px 0;
+            position: sticky;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 1000; /* زيادة الـ z-index ليظل فوق المحتوى */
+            z-index: 1000;
             box-shadow: var(--box-shadow);
             display: flex;
             align-items: center;
@@ -61,26 +61,26 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            flex-direction: row-reverse; /* اللوجو على اليمين والقائمة على اليسار */
+            flex-direction: row; /* اللوجو على اليسار والقائمة على اليمين */
         }
 
         header .logo img {
-            height: 40px; /* تم تقليل حجم اللوجو */
+            height: 40px;
             border-radius: 100%;
             border: 2px solid white;
-            margin-left: 15px; /* مسافة من قائمة التنقل */
+            margin-right: 15px; /* تم تغيير الهامش ليناسب الموقع الجديد للوجو */
         }
 
         header nav {
-            display: flex; /* لعرض الروابط أفقيًا */
+            display: flex;
             align-items: center;
-            direction: rtl; /* اتجاه النص من اليمين لليسار */
+            direction: rtl;
         }
 
         header nav a {
             color: var(--white-color);
             text-decoration: none;
-            margin: 0 15px; /* تعديل الهامش بين الروابط */
+            margin: 0 15px;
             font-size: 1.1em;
             transition: color 0.3s ease, transform 0.3s ease;
             position: relative;
@@ -88,46 +88,46 @@
         }
 
         header nav a:hover {
-            color: #f8f8f8; /* لون أفتح عند التحويم */
+            color: #f8f8f8;
             transform: translateY(-2px);
         }
 
-        /* الخط تحت "حول ماسة" */
+        /* الخط تحت "حول ماسه" - رابط نشط جديد */
         header nav a[href="about.html"].active {
-            color: var(--accent-color); /* أصفر للرابط النشط */
+            color: var(--secondary-color); /* لون تركواز للرابط النشط */
             font-weight: bold;
         }
 
         header nav a[href="about.html"].active::after {
             content: '';
             position: absolute;
-            right: 0; /* Adjusted for Rtl */
-            left: unset; /* Adjusted for Rtl */
+            right: 0;
+            left: unset;
             bottom: 0;
             height: 3px;
-            background-color: var(--accent-color);
+            background-color: var(--secondary-color); /* لون تركواز للخط */
             border-radius: 2px;
-            width: 100%; /* Ensure full width underline */
+            width: 100%;
         }
 
 
         /* ============ Mobile Navigation (Off-canvas) ============ */
         .menu-icon, .close-icon {
-            display: none; /* Hidden by default, shown on mobile */
+            display: none;
             font-size: 1.8em;
             color: white;
             cursor: pointer;
-            z-index: 1001; /* Higher than nav to be clickable */
+            z-index: 1001;
         }
 
         /* ستايلات خاصة بصفحة "حول ماسة" */
         #about-page {
-            padding-top: 80px; /* مسافة من الهيدر */
+            padding-top: 80px;
             padding-bottom: 40px;
-            background-color: #f9f9f92c; /* خلفية شفافة قليلاً */
-            min-height: calc(100vh - 120px); /* يضمن أن القسم يملأ الشاشة تقريبًا */
+            background-color: #f9f9f92c;
+            min-height: calc(100vh - 120px);
             display: flex;
-            align-items: center; /* لمحاذاة المحتوى في المنتصف عموديًا */
+            align-items: center;
         }
 
         .about-container {
@@ -155,9 +155,9 @@
             flex-direction: column;
             border-radius: 8px;
             padding-bottom: 20px;
-            background-color: rgba(255, 255, 255, 0.8); /* خلفية بيضاء شبه شفافة */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* ظل خفيف */
-            margin-right: 20px; /* مسافة بين العمودين */
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-right: 20px;
         }
 
         .main-info h1,
@@ -169,17 +169,17 @@
 
         .main-info h1 {
             font-size: 3.5em;
-            color: var(--primary-color); /* لون أزرق للعناوين الكبيرة */
+            color: var(--primary-color);
         }
 
         .main-info h2 {
             font-size: 2em;
             font-weight: normal;
-            color: var(--secondary-color); /* لون تركواز للعناوين الفرعية */
+            color: var(--secondary-color);
         }
 
         .main-info p {
-            line-height: 1.8; /* لتحسين قابلية القراءة */
+            line-height: 1.8;
             font-size: 1.1em;
         }
 
@@ -199,13 +199,13 @@
         }
 
         .person-card {
-            background-color: rgba(255, 255, 255, 0.9); /* خلفية بيضاء شبه شفافة */
+            background-color: rgba(255, 255, 255, 0.9);
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 20px;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* ظل خفيف */
-            width: 100%; /* لضمان ملء المساحة المتاحة */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
         }
 
         .person-card img {
@@ -226,29 +226,23 @@
             font-size: 0.9em;
         }
 
-        /* ============ Footer (معدل بالكامل حسب الصورة) ============ */
+        /* ============ Footer Styles (معدل بالكامل) ============ */
         footer {
+            background-color: #1a2b3c00; /* خلفية داكنة صلبة لكامل الفوتر */
             color: var(--white-color);
-            padding: 80px 0 0;
+            padding: 40px 0 0; /* تم تقليل البادينغ العلوي */
             text-align: center;
             position: relative;
             overflow: hidden;
-            min-height: 350px;
+            min-height: 200px; /* لضمان ارتفاع مناسب للفوتر مع المحتوى الجديد */
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: space-between; /* لتوزيع المحتوى والعلامة التجارية */
             align-items: center;
         }
 
-        footer::before { /* استخدام pseudo-element للخلفية الشفافة */
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0); /* تراكب أسود بنسبة 60% opacity */
-            z-index: 0;
+        footer::before {
+            display: none; /* إخفاء الـ pseudo-element الذي كان يستخدم للخلفية الشفافة */
         }
 
         footer .container {
@@ -259,12 +253,12 @@
             align-items: center;
             justify-content: center;
             flex-grow: 1;
-            padding-bottom: 60px;
+            padding-bottom: 15px; /* مسافة قبل شريط حقوق الطبع والنشر */
         }
 
         /* عنوان التواصل معنا في الفوتر */
         footer h2.contact-title {
-            color: var(--primary-color);
+            color: var(--white-color); /* تم تغيير اللون إلى الأبيض */
             font-size: 3.5em;
             margin-bottom: 20px;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
@@ -286,41 +280,48 @@
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            background-color: var(--white-color);
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            background-color: transparent; /* إزالة الخلفية الدائرية */
             text-decoration: none;
-            color: var(--primary-color);
-            font-size: 2.5em;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.064);
-            transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+            font-size: 2.5em; /* حجم الأيقونات */
+            transition: color 0.3s ease; /* فقط انتقال اللون */
         }
 
-        footer .social-icons a:hover {
-            transform: translateY(-8px) scale(1.1);
-            background-color: var(--accent-color);
-            color: var(--white-color);
+        /* ألوان أيقونات محددة */
+        footer .social-icons a .fa-facebook {
+            color: #3b5998; /* أزرق فيسبوك */
+        }
+        footer .social-icons a .fa-whatsapp {
+            color: #25D366; /* أخضر واتساب */
         }
 
-        /* شريط حقوق الطبع والنشر */
+        /* تأثير التحويم على الأيقونات */
+        footer .social-icons a:hover .fa-facebook,
+        footer .social-icons a:hover .fa-whatsapp {
+            color: var(--secondary-color); /* تركواز عند التحويم */
+        }
+
         footer .copyright {
-            background-color: rgba(26, 113, 156, 0.9);
+            background-color: #1A2B3C; /* الخلفية مطابقة للفوتر الأب */
             color: var(--white-color);
-            padding: 15px 0;
+            padding: 15px 0; /* بادينغ علوي وسفلي */
             width: 100%;
             font-size: 1em;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            z-index: 1;
+            /* لم يعد position: absolute, bottom: 0, z-index: 1 لتسهيل الترتيب العمودي */
+            text-align: center;
+        }
+
+        footer .copyright p:first-child {
+            margin-bottom: 5px; /* مسافة بين السطرين */
+        }
+        footer .copyright p:last-child {
+            margin-top: 5px;
         }
 
         /* ============ Media Queries for Responsiveness ============ */
-        @media (max-width: 992px) { /* للأجهزة اللوحية والشاشات الأصغر قليلاً */
+        @media (max-width: 992px) {
             header nav a {
                 padding: 8px 15px;
-                margin: 0 10px; /* تم تعديل الهامش */
+                margin: 0 10px;
                 font-size: 0.9em;
             }
 
@@ -341,58 +342,56 @@
             }
 
             footer .social-icons a {
-                width: 50px;
-                height: 50px;
                 font-size: 2em;
             }
         }
 
-        @media (max-width: 768px) { /* للهواتف والأجهزة اللوحية الصغيرة */
+        @media (max-width: 768px) {
             header .container {
-                justify-content: space-between; /* اللوجو على اليمين، أيقونة القائمة على اليسار */
-                flex-direction: row-reverse; /* عكس ترتيب العناصر */
+                justify-content: space-between;
+                flex-direction: row; /* اللوجو على اليسار، أيقونة القائمة على اليمين */
             }
 
-            header nav.main-nav { /* هذا هو الـ nav الذي سيتحول لقائمة جانبية */
+            header nav.main-nav {
                 position: fixed;
                 top: 0;
-                right: -300px; /* مخفي خارج الشاشة لليمين (RTL) */
-                width: 250px; /* عرض القائمة الجانبية */
+                right: -300px;
+                width: 250px;
                 height: 100%;
-                background-color: var(--primary-color); /* نفس لون خلفية الهيدر */
-                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3); /* ظل على اليسار */
-                flex-direction: column; /* الروابط عمودية */
-                padding: 60px 20px 20px; /* مسافة لأيقونة الإغلاق والروابط */
+                background-color: #1A2B3C;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+                flex-direction: column;
+                padding: 60px 20px 20px;
                 transition: right 0.3s ease-in-out;
                 z-index: 1000;
-                align-items: flex-end; /* محاذاة العناصر لليمين */
-                display: flex; /* لضمان ظهورها كفليكس بوكس */
+                align-items: flex-end;
+                display: flex;
             }
 
             header nav.main-nav.active {
-                right: 0; /* انزلاق من اليمين */
+                right: 0;
             }
 
             header nav.main-nav a {
-                margin: 15px 0; /* هامش عمودي للروابط المرصوصة */
-                width: fit-content; /* عرض يتناسب مع المحتوى */
+                margin: 15px 0;
+                width: fit-content;
             }
 
-            /* تعديل الخط تحت "حول ماسة" في القائمة الجانبية */
+            /* تعديل الخط تحت "حول ماسه" في القائمة الجانبية للموبايل */
             header nav.main-nav a[href="about.html"].active::after {
-                right: unset; /* إلغاء خاصية right */
-                left: 0; /* الخط يبدأ من اليسار (RTL) */
-                transform: none; /* إلغاء أي تحويل */
+                right: unset;
+                left: 0;
+                transform: none;
             }
 
             .menu-icon, .close-icon {
-                display: block; /* إظهار أيقونة الهامبرغر والإغلاق على الموبايل */
+                display: block;
             }
 
             .close-icon {
                 position: absolute;
                 top: 15px;
-                left: 15px; /* وضع أيقونة الإغلاق على اليسار */
+                left: 15px;
                 font-size: 2em;
             }
 
@@ -415,37 +414,35 @@
             }
 
             body.nav-open {
-                overflow: hidden; /* منع التمرير عند فتح القائمة */
+                overflow: hidden;
             }
 
-            /* إخفاء روابط التنقل الأصلية (الأفقية) على الموبايل */
             header .container nav:not(.main-nav) {
                 display: none;
             }
 
-            /* تعديلات أخرى موجودة في الميديا كويري الأصلية وتناسب الموبايل */
             #about-page {
-                padding-top: 100px; /* زيادة المساحة العلوية لتجنب تداخل الرأس */
+                padding-top: 100px;
             }
 
             .about-container {
-                flex-direction: column; /* عرض المحتوى بشكل عمودي */
+                flex-direction: column;
                 align-items: center;
-                margin-top: 0; /* إزالة الهامش العلوي الزائد */
+                margin-top: 0;
                 padding: 10px;
             }
 
             .about-content {
-                flex-direction: column; /* جعل الأقسام عمودية */
+                flex-direction: column;
             }
 
             .main-info {
                 text-align: center;
                 padding: 20px;
-                margin-right: 0; /* إزالة الهامش الجانبي */
-                margin-bottom: 20px; /* إضافة مسافة بين الأقسام */
-                width: 100%; /* لجعلها تملأ العرض بالكامل */
-                box-sizing: border-box; /* لضمان أن العرض يشمل البادينغ */
+                margin-right: 0;
+                margin-bottom: 20px;
+                width: 100%;
+                box-sizing: border-box;
             }
 
             .main-info h1 {
@@ -464,19 +461,19 @@
             .side-info {
                 padding: 20px;
                 align-items: center;
-                width: 100%; /* لجعلها تملأ العرض بالكامل */
+                width: 100%;
                 box-sizing: border-box;
             }
 
             .person-card {
                 margin-bottom: 15px;
-                width: 90%; /* لجعل الكروت تملأ العرض تقريبًا */
-                max-width: 350px; /* تحديد أقصى عرض للبطاقة */
+                width: 90%;
+                max-width: 350px;
             }
 
             footer {
-                padding: 60px 0 0; /* تقليل البادينغ العلوي */
-                min-height: 250px;
+                padding: 40px 0 0; /* تم تقليل البادينغ في الموبايل أيضاً */
+                min-height: 200px;
             }
 
             footer h2.contact-title {
@@ -484,8 +481,6 @@
             }
 
             footer .social-icons a {
-                width: 45px;
-                height: 45px;
                 font-size: 2em;
             }
 
@@ -495,9 +490,9 @@
             }
         }
 
-        @media (max-width: 480px) { /* للهواتف الصغيرة جدًا */
+        @media (max-width: 480px) {
             header .logo img {
-                height: 35px; /* تصغير اللوجو أكثر */
+                height: 35px;
             }
 
             header nav.main-nav a {
@@ -530,8 +525,6 @@
             }
 
             footer .social-icons a {
-                width: 40px;
-                height: 40px;
                 font-size: 1.8em;
             }
         }
@@ -540,9 +533,6 @@
 <body>
     <header>
         <div class="container">
-            <div class="menu-icon" id="menuIcon">
-                <i class="fas fa-bars"></i>
-            </div>
             <div class="logo">
                 <a href="index.html"><img src="photo/logo.jpg" alt="شعار ماسة"></a>
             </div>
@@ -551,14 +541,16 @@
                     <i class="fas fa-times"></i>
                 </div>
                 <a href="index.html">الصفحة الرئيسية</a>
-                <a href="about.html" class="active">حول ماسه</a>
-                <a href="courses.html">التدريبات</a>
+                <a href="about.html" class="active">حول ماسه</a> <a href="courses.html">التدريبات</a>
                 <a href="facilities.html">الاستور</a>
                 <a href="comments.html">تعليقاتكم</a>
                 <a href="#contact-section">تواصل معنا</a>
                 <a href="subscriptions.html">الاشتراكات</a>
                 <a href="cafe-booking.html">حجز الكافيتريا</a>
             </nav>
+            <div class="menu-icon" id="menuIcon">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </header>
 
@@ -609,19 +601,18 @@
             </div>
         </div>
         <div class="copyright">
-            &copy; جميع الحقوق محفوظة لحمام سباحة ماسة
+            <p>نادي ماسة: حيث تبدأ رحلتك المائية!</p>
+            <p>&copy; جميع الحقوق محفوظة لحمام سباحة ماسة</p>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // New elements for mobile navigation
             const menuIcon = document.getElementById('menuIcon');
             const closeIcon = document.getElementById('closeIcon');
             const mainNav = document.getElementById('mainNav');
             const navOverlay = document.getElementById('navOverlay');
 
-            // Toggle mobile navigation
             if (menuIcon && mainNav && navOverlay) {
                 menuIcon.addEventListener('click', function() {
                     mainNav.classList.add('active');
@@ -645,10 +636,6 @@
                     document.body.classList.remove('nav-open');
                 });
             }
-
-            // If there's any other JavaScript for this page, add it here.
-            // For example, if you had a modal or other interactive elements.
-            // Since this page doesn't have product modals, the modalOverlay logic from facilities.html is not needed here.
         });
     </script>
 </body>
