@@ -556,167 +556,220 @@ footer .copyright {
 
 /* For screens smaller than 768px (common tablet portrait and mobile - "التليفون") */
 @media (max-width: 767px) {
-    /* Header adjustments - keep more like laptop */
+    /* Header adjustments - More condensed for mobile */
     header {
-        padding: 8px 0; /* Maintain similar padding to laptop */
+        padding: 10px 0; /* Keep similar padding to laptop */
     }
 
     header .logo img {
-        height: 45px; /* Keep logo size similar to laptop */
+        height: 40px; /* Small logo for mobile */
     }
 
     header .container {
-        flex-direction: row; /* Keep elements in a row, like desktop */
-        justify-content: space-between; /* Maintain space-between */
+        flex-direction: row; /* Keep elements in a row */
+        justify-content: space-between; /* Logo left, Nav right (in LTR), or Logo right, Nav left (in RTL) */
         align-items: center;
     }
 
     header nav {
-        text-align: left; /* Keep left alignment for nav links in RTL */
-        margin-top: 0; /* Remove margin-top */
-        margin-right: auto; /* Push nav to the left */
-        justify-content: flex-end; /* Align links to the right */
-        width: auto; /* Allow nav to take only necessary width */
+        flex-grow: 1;
+        text-align: left;
+        margin-right: auto;
+        justify-content: flex-end;
+        width: auto;
+        display: flex;
+        flex-wrap: nowrap; /* Prevent nav items from wrapping */
+        overflow-x: auto; /* Enable horizontal scrolling for navigation links */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        padding-bottom: 5px; /* Add a little padding at the bottom if scrolling is needed */
     }
 
     header nav a {
-        margin: 0 8px; /* Maintain similar spacing to laptop */
-        padding: 8px 15px; /* Maintain similar padding to laptop */
-        font-size: 0.9em; /* Keep font size similar to laptop */
+        margin: 0 5px; /* Reduce margin to make links tighter */
+        padding: 8px 12px; /* Adjust padding for mobile links */
+        font-size: 0.85em; /* Slightly smaller font for links */
+        white-space: nowrap; /* Ensure text inside links doesn't wrap */
+        flex-shrink: 0; /* Prevent links from shrinking too much */
     }
 
     body {
-        padding-top: 70px; /* Adjusted padding for header height */
+        padding-top: 60px; /* Adjusted padding for a slightly smaller mobile header */
     }
 
-    /* Hero section adjustments - less drastic changes */
+    /* Hero section adjustments */
     #hero {
-        height: 500px; /* Slightly reduce height, but not as much as before */
+        height: 400px; /* Reduce hero height further for mobile */
     }
 
     .hero-overlay {
-        background-color: rgba(0, 0, 0, 0.15); /* Keep a subtle overlay */
+        background-color: rgba(0, 0, 0, 0.2); /* Slightly darker overlay for better text readability on small screens */
     }
 
     .hero-content h2 {
-        font-size: 2.5em; /* Keep font size closer to laptop */
+        font-size: 2em; /* Smaller hero title for mobile */
+        margin-bottom: 15px;
     }
 
     .hero-content button {
-        padding: 12px 25px; /* Keep button size closer to laptop */
-        font-size: 1.1em; /* Keep font size closer to laptop */
+        padding: 10px 20px; /* Smaller button for mobile */
+        font-size: 1em;
+        margin-top: 15px;
+    }
+
+    #features {
+        padding: 30px 0; /* Less padding for features section */
     }
 
     #features .container {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Keep grid layout */
-        padding: 0 20px; /* Maintain container padding */
+        grid-template-columns: 1fr; /* Stack feature boxes vertically on mobile */
+        gap: 15px; /* Reduce gap between feature boxes */
+        padding: 0 15px; /* Reduce container padding */
     }
 
     .feature-box {
-        width: auto; /* Let grid handle width */
-        margin: 0; /* Remove specific margins */
-        padding: 20px; /* Keep padding consistent */
+        padding: 15px; /* Reduce padding inside feature boxes */
+    }
+
+    #video-section {
+        padding: 40px 0; /* Less padding for video section */
     }
 
     #video-section h2,
     #about-main h2,
     #training h2 {
-        font-size: 2.2em; /* Slightly reduced but not too much */
+        font-size: 2em; /* Smaller section titles for mobile */
+    }
+
+    #video-section .video-container {
+        margin: 15px auto; /* Adjust margin for video container */
+    }
+
+    #about-main .container,
+    #training .container {
+        padding: 15px; /* Less padding for section containers */
+    }
+
+    #about-main .about-text,
+    #training .training-text {
+        padding: 0; /* Remove horizontal padding */
+        margin-bottom: 15px; /* Reduce margin */
+    }
+
+    #about-main .about-image,
+    #training .training-image {
+        padding: 0; /* Remove horizontal padding */
+    }
+
+    #training .training-image {
+        margin-top: 15px; /* Reduce margin top for training image */
     }
 
     footer {
-        min-height: 280px; /* Keep similar to original tablet height */
-        padding-bottom: 50px;
+        min-height: 250px; /* Reduce footer height */
+        padding-bottom: 40px; /* Adjust padding bottom */
     }
 
     footer h2.contact-title {
-        font-size: 2.5em; /* Keep closer to laptop size */
+        font-size: 2em; /* Smaller contact title */
+        margin-bottom: 15px;
+    }
+
+    footer .social-icons {
+        gap: 20px; /* Reduce gap between social icons */
+        margin-top: 5px; /* Adjust margin */
+        margin-bottom: 5px; /* Adjust margin */
     }
 
     footer .social-icons a {
-        font-size: 2.5em; /* تم التصغير من 3.5em إلى 2.5em للهواتف */
+        font-size: 2.2em; /* Smaller social icons for mobile */
     }
-    footer .social-icons {
-        gap: 25px; /* Adjust gap for mobiles, slightly less than tablets */
+
+    footer .copyright {
+        padding: 10px 0; /* Less padding for copyright */
+        font-size: 0.9em; /* Smaller font for copyright text */
     }
 }
 
 /* For even smaller screens (e.g., small smartphones - "التليفون الأصغر") */
 @media (max-width: 480px) {
     .container {
-        padding: 0 15px; /* Slightly more padding than before for very small screens */
+        padding: 0 10px; /* Even less padding for very small screens */
     }
 
-    /* Header adjustments for very small mobiles - try to maintain horizontal flow */
     header {
-        padding: 5px 0; /* Slightly reduced padding */
+        padding: 5px 0; /* Minimal header padding */
     }
 
     header .logo img {
-        height: 40px; /* Slightly smaller logo */
+        height: 35px; /* Even smaller logo */
     }
 
     header nav {
-        flex-basis: 100%; /* Allow nav to take full width if needed */
-        margin-top: 5px; /* Add a small gap if nav wraps */
-        justify-content: center; /* Center nav links if they wrap */
+        overflow-x: auto; /* Ensure horizontal scrolling is still active */
+        padding-bottom: 2px; /* Tiny padding to ensure scrollbar is visible if needed */
     }
 
     header nav a {
-        font-size: 0.8em; /* Slightly smaller font for links */
-        padding: 6px 10px;
-        margin: 2px 4px; /* Minimal spacing */
+        font-size: 0.75em; /* Smallest font for nav links */
+        padding: 5px 8px; /* Smallest padding for nav links */
+        margin: 0 3px; /* Minimal margin between links */
     }
 
     body {
-        padding-top: 85px; /* Adjusted padding for header height */
+        padding-top: 50px; /* Adjust body padding for smallest header */
     }
 
-    /* Hero section adjustments */
     #hero {
-        height: 400px; /* A bit more height than previously for very small phones */
+        height: 350px; /* Minimal hero height */
     }
 
     .hero-content h2 {
-        font-size: 2em; /* Keep it readable */
+        font-size: 1.8em; /* Very small hero title */
+        margin-bottom: 10px;
     }
 
     .hero-content button {
-        padding: 10px 20px;
-        font-size: 1em;
+        padding: 8px 15px; /* Very small button */
+        font-size: 0.9em;
+        margin-top: 10px;
     }
 
-    #features .container {
-        grid-template-columns: 1fr; /* Stack features vertically on very small screens */
-        gap: 15px; /* Reduce gap */
+    #features {
+        padding: 20px 0; /* Minimal features padding */
+    }
+
+    .feature-box {
+        padding: 10px; /* Minimal padding inside feature boxes */
     }
 
     #video-section h2,
     #about-main h2,
     #training h2 {
-        font-size: 2em;
-        padding: 8px;
+        font-size: 1.8em; /* Minimal section titles */
     }
 
     footer {
-        min-height: 250px; /* Increased height for better appearance */
-        padding-bottom: 40px;
+        min-height: 200px; /* Minimal footer height */
+        padding-bottom: 30px; /* Minimal footer padding */
     }
 
     footer h2.contact-title {
-        font-size: 2.2em; /* Keep it larger */
+        font-size: 1.8em; /* Minimal contact title */
+        margin-bottom: 10px;
     }
 
     footer .social-icons {
-        gap: 15px; /* Adjust gap for very small mobiles */
+        gap: 15px; /* Minimal gap between social icons */
+        margin-top: 0;
+        margin-bottom: 0;
     }
 
     footer .social-icons a {
-        font-size: 2em; /* تم التصغير من 3em إلى 2em للهواتف الصغيرة جدًا */
+        font-size: 1.8em; /* Minimal social icon size */
     }
 
     footer .copyright {
-        font-size: 0.85em; /* Slightly larger copyright text */
-        padding: 10px 0;
+        padding: 8px 0; /* Minimal copyright padding */
+        font-size: 0.8em; /* Minimal copyright font size */
     }
 }
