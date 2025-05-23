@@ -14,10 +14,11 @@
             --white-color: #FFFFFF;
             --dark-blue-footer: rgba(26, 113, 156, 0.9); /* لون أزرق داكن للفوتر مع شفافية */
             --box-shadow: 0 2px 6px rgb(0, 0, 0);
+            --header-bg-color: #1a2b3c80; /* لون خلفية الهيدر الشفاف */
         }
 
         body {
-            font-family: 'Arial', sans-serif; /* تم إضافة خط أساسي */
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             background-image: url('photo/Main swimming pool.jpg');
@@ -25,7 +26,7 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-position: center center;
-            color: #333; /* لون نص افتراضي */
+            color: #333;
         }
 
         .container {
@@ -36,15 +37,15 @@
 
         /* ============ الهيدر ============ */
         header {
-            background-color: var(--primary-color);
+            background-color: var(--header-bg-color);
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5);
             color: var(--white-color);
-            padding: 10px 0;
-            position: fixed;
+            padding: 5px 0;
+            position: sticky;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 100;
-            box-shadow: var(--box-shadow);
+            z-index: 1000;
             display: flex;
             align-items: center;
         }
@@ -57,54 +58,63 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            /* التغيير هنا: عكس ترتيب العناصر ليكون اللوجو يمين والكلام شمال */
             flex-direction: row-reverse;
         }
 
         header .logo img {
-            height: 50px;
+            height: 40px;
+            border-radius: 100%;
+            border: 2px solid white;
+            /* الهامش على اليسار ليعطي مسافة من القائمة على يسار اللوجو */
+            margin-left: 15px;
+            margin-right: 0; /* إزالة الهامش القديم */
         }
 
         header nav {
             display: flex;
             align-items: center;
-            direction: rtl;
+            direction: rtl; /* للحفاظ على ترتيب القائمة من اليمين لليسار */
         }
 
         header nav a {
             color: var(--white-color);
             text-decoration: none;
-            padding: 10px 18px;
-            margin-right: 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            font-weight: bold;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease, transform 0.3s ease;
             position: relative;
+            padding-bottom: 5px;
         }
 
         header nav a:hover {
-            background-color: var(--secondary-color);
-            color: var(--primary-color);
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        header nav a.active {
+            color: var(--accent-color);
+            font-weight: bold;
         }
 
         header nav a.active::after {
             content: '';
             position: absolute;
-            left: 10px;
-            right: 10px;
-            bottom: 5px;
+            left: 0;
+            right: 0;
+            bottom: 0;
             height: 2px;
             background-color: var(--accent-color);
             transform: scaleX(1);
             transition: transform 0.3s ease;
         }
 
-        /* هام جداً: زر القائمة للهواتف (Hamburguer icon) */
         .menu-toggle {
-            display: none; /* مخفي في العرض العادي */
+            display: none;
             font-size: 2em;
             color: var(--white-color);
             cursor: pointer;
-            z-index: 101; /* فوق القائمة لكي يمكن الضغط عليه */
+            z-index: 101;
         }
 
         /* ============ قسم الهيرو ============ */
@@ -149,7 +159,7 @@
             margin-bottom: 30px;
         }
 
-        .hero-left .button { /* تم تعديل هذا ليطابق الكود في HTML */
+        .hero-left .button {
             background-color: #007bff;
             color: #ffffff;
             padding: 15px 30px;
@@ -159,7 +169,7 @@
             font-size: 1.1em;
             transition: background-color 0.3s ease;
             text-decoration: none;
-            display: inline-block; /* لكي يعمل الـ padding والـ margin بشكل صحيح */
+            display: inline-block;
         }
 
         .hero-left .button:hover {
@@ -207,7 +217,7 @@
             cursor: pointer;
             border-bottom: 1px solid #eeeeee;
             margin-bottom: 5px;
-            max-height: 403px; /* تم تقليل الارتفاع للصور المصغرة لتبدو أفضل على الجوال */
+            max-height: 403px;
             object-fit: cover;
         }
 
@@ -223,9 +233,9 @@
 
         .thumbnail-item .photo-date,
         .thumbnail-item .has-gallery,
-        .thumbnail-item .video-description { /* تم إضافة video-description */
+        .thumbnail-item .video-description {
             font-size: 0.9em;
-            color: #666;
+            color: #ffffff;
             padding: 5px 10px;
             text-align: center;
         }
@@ -242,7 +252,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* زيادة الشفافية لتغطية أفضل */
+            background-color: rgba(255, 255, 255, 0.7);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -269,12 +279,12 @@
 
         .close-lightbox {
             position: absolute;
-            top: 10px; /* تعديل المكان ليكون مرئياً أكثر */
+            top: 10px;
             right: 10px;
             font-size: 2.5em;
             color: #ffffff;
             cursor: pointer;
-            background-color: rgba(0, 0, 0, 0.5); /* خلفية لتوضيح الزر */
+            background-color: rgba(0, 0, 0, 0.5);
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -293,7 +303,7 @@
         }
 
         .lightbox-navigation button {
-            background: rgba(0,0,0,0.5); /* خلفية أوضح للأزرار */
+            background: rgba(0,0,0,0.5);
             border: none;
             color: #fff;
             font-size: 2.5em;
@@ -310,16 +320,16 @@
 
         /* ============ فيديوهات التدريبات ============ */
         #video-thumbnails {
-            display: grid; /* استخدام grid لسهولة التحكم في الأعمدة */
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* تعديل الحد الأدنى للعرض */
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
             justify-content: center;
             margin-bottom: 40px;
         }
 
         #video-thumbnails .thumbnail-item video {
-            width: 100%; /* جعل الفيديو يملأ العنصر الأب */
-            height: 180px; /* ارتفاع ثابت نسبياً */
+            width: 100%;
+            height: 180px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -334,7 +344,7 @@
 
         /* ============ الفوتر ============ */
         footer {
-            color: var(--white-color);
+            color: #1a2b3c00;
             padding: 80px 0 0;
             text-align: center;
             position: relative;
@@ -344,7 +354,7 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(0, 0, 0, 0); /* خلفية سوداء شفافة للفوتر */
+            background-color: #0080ff00;
         }
 
         footer::after {
@@ -409,7 +419,7 @@
         }
 
         footer .copyright {
-            background-color: var(--dark-blue-footer);
+            background-color: #1A2B3C;
             color: var(--white-color);
             padding: 15px 0;
             width: 100%;
@@ -443,7 +453,7 @@
 
         .training-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* تعديل الحد الأدنى للعرض */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             padding: 0 20px;
         }
@@ -504,16 +514,16 @@
         }
 
         .schedule table {
-            width: 95%; /* زيادة عرض الجدول ليتناسب مع الشاشات الصغيرة */
+            width: 95%;
             margin: 0 auto;
             border-collapse: collapse;
             direction: rtl;
-            font-size: 0.9em; /* تقليل حجم الخط في الجدول */
+            font-size: 0.9em;
         }
 
         .schedule th, .schedule td {
             border: 1px solid #ddd;
-            padding: 10px 8px; /* تقليل الـ padding */
+            padding: 10px 8px;
             text-align: center;
         }
 
@@ -532,31 +542,35 @@
         /* للهواتف (أقل من 768px) */
         @media (max-width: 767px) {
             header .container {
-                flex-direction: row; /* إعادة ترتيب اللوجو وزر القائمة */
+                /* نعكس الترتيب في الهواتف أيضاً ليتناسب مع RTL بشكل أفضل */
+                flex-direction: row-reverse;
             }
 
             header nav {
-                display: none; /* إخفاء قائمة التنقل الافتراضية */
+                display: none;
                 flex-direction: column;
                 position: absolute;
-                top: 70px; /* أسفل الهيدر */
-                left: 0;
+                top: 70px;
+                left: 0; /* يبدأ من اليسار لأن `direction: rtl` على مستوى الـ nav */
                 width: 100%;
                 background-color: var(--primary-color);
                 box-shadow: 0 2px 6px rgba(0,0,0,0.2);
                 padding: 10px 0;
                 z-index: 99;
-                direction: rtl; /* الحفاظ على اتجاه القائمة */
+                direction: rtl;
+                /* ضبط محاذاة النص داخل القائمة المفتوحة على اليمين */
+                align-items: flex-end;
+                padding-right: 20px; /* هامش لليمين */
             }
 
             header nav.active {
-                display: flex; /* إظهار القائمة عند تفعيل زر القائمة */
+                display: flex;
             }
 
             header nav a {
                 margin: 0;
                 padding: 12px 20px;
-                text-align: center;
+                text-align: right; /* محاذاة النص لليمين داخل القائمة المفتوحة */
                 border-bottom: 1px solid rgba(255,255,255,0.1);
             }
 
@@ -565,11 +579,11 @@
             }
 
             .menu-toggle {
-                display: block; /* إظهار زر القائمة */
+                display: block;
             }
 
             .hero-section-extended .container {
-                flex-direction: column-reverse; /* عكس ترتيب الهيرو لظهور الصورة أولاً ثم النص */
+                flex-direction: column-reverse;
                 text-align: center;
             }
 
@@ -601,20 +615,20 @@
             }
 
             .thumbnails-grid {
-                grid-template-columns: 1fr; /* عمود واحد فقط على الشاشات الصغيرة */
+                grid-template-columns: 1fr;
             }
 
             .training-list {
-                grid-template-columns: 1fr; /* عمود واحد لأنواع التدريبات */
+                grid-template-columns: 1fr;
             }
 
             .schedule table {
                 width: 100%;
-                font-size: 0.8em; /* تصغير الخط أكثر */
+                font-size: 0.8em;
             }
 
             .schedule th, .schedule td {
-                padding: 8px 5px; /* تقليل الـ padding أكثر */
+                padding: 8px 5px;
             }
 
             footer h2.contact-title {
@@ -632,7 +646,7 @@
         @media (min-width: 768px) and (max-width: 1024px) {
             header nav a {
                 padding: 10px 12px;
-                margin-right: 10px;
+                margin-right: 10px; /* الحفاظ على هامش بين العناصر */
                 font-size: 0.9em;
             }
 
@@ -646,7 +660,7 @@
 
             .thumbnails-grid,
             .training-list,
-            #video-thumbnails { /* تطبيق التعديل على جميع الشبكات */
+            #video-thumbnails {
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             }
 
@@ -813,6 +827,7 @@
             </div>
         </div>
         <div class="copyright">
+            <p>نادي ماسة: حيث تبدأ رحلتك المائية!</p>
             &copy; جميع الحقوق محفوظة لحمام سباحة ماسة
         </div>
     </footer>
