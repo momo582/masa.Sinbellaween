@@ -558,7 +558,8 @@ footer .copyright {
 @media (max-width: 767px) {
     /* Header adjustments - More condensed for mobile */
     header {
-        padding: 10px 0; /* Keep similar padding to laptop */
+        background-color: rgba(255, 255, 255, 0.1); /* خلفية بيضاء شفافة جداً للموبايل */
+        padding: 10px 0;
     }
 
     header .logo img {
@@ -697,7 +698,8 @@ footer .copyright {
     }
 
     header {
-        padding: 5px 0; /* Minimal header padding */
+        background-color: rgba(255, 255, 255, 0.05); /* شفافية أعلى جداً للهيدر في الشاشات الصغيرة جداً */
+        padding: 5px 0;
     }
 
     header .logo img {
