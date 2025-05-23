@@ -268,7 +268,7 @@ header nav a[href="index.html"]::after {
     justify-content: space-between;
     align-items: center;
     background-color: #00000063;
-    box-shadow: var(--ox-shadow);
+    box-shadow: var(--box-shadow);
     border-radius: 5px;
     padding: 20px;
     flex-wrap: wrap;
@@ -367,11 +367,11 @@ footer .container {
 footer h2.contact-title {
     font-size: 3.5em;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4); 
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
     position: relative;
     z-index: 2;
-    background-color: transparent; 
-    padding: 10px 20px; 
+    background-color: transparent;
+    padding: 10px 20px;
     border-radius: 5px;
     color: var(--white-color); /* Make the contact title white for visibility */
 }
