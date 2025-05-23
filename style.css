@@ -504,6 +504,7 @@ footer .copyright {
     .hero-content button {
         padding: 12px 25px;
         font-size: 1.1em;
+        margin-top: 15px;
     }
 
     #features .container {
@@ -567,31 +568,42 @@ footer .copyright {
     }
 
     header .container {
-        flex-direction: row; /* Keep elements in a row */
-        justify-content: space-between; /* Logo left, Nav right (in LTR), or Logo right, Nav left (in RTL) */
+        flex-direction: row-reverse; /* اللوجو على اليمين وأيقونة القائمة على اليسار */
+        justify-content: space-between;
         align-items: center;
     }
 
     header nav {
-        flex-grow: 1;
-        text-align: left;
-        margin-right: auto;
-        justify-content: flex-end;
-        width: auto;
-        display: flex;
-        flex-wrap: nowrap; /* Prevent nav items from wrapping */
-        overflow-x: auto; /* Enable horizontal scrolling for navigation links */
-        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-        padding-bottom: 5px; /* Add a little padding at the bottom if scrolling is needed */
+        /*
+        تم إزالة flex-grow, text-align, margin-right, justify-content من هنا
+        لأن الأيقونة واللوجو سيتكفلان بالترتيب في الهيدر،
+        والقائمة الجانبية (main-nav.active) ستتحكم بظهور القائمة الكاملة.
+        */
+        display: none; /* إخفاء قائمة التنقل تمامًا في الهيدر في وضع الجوال */
+        /*
+        أبقينا الخصائص المتعلقة بـ overflow-x و white-space و flex-shrink
+        لو كنت تنوي عرض قائمة أفقية صغيرة في الهيدر،
+        ولكن بناءً على طلبك السابق، الأفضل إخفاؤها والاعتماد على السايد ناف.
+        */
+        overflow-x: hidden; /* تأكد من إخفاء أي شريط تمرير غير مرغوب فيه */
+        white-space: nowrap;
+        flex-shrink: 0;
     }
 
-    header nav a {
-        margin: 0 5px; /* Reduce margin to make links tighter */
-        padding: 8px 12px; /* Adjust padding for mobile links */
-        font-size: 0.85em; /* Slightly smaller font for links */
-        white-space: nowrap; /* Ensure text inside links doesn't wrap */
-        flex-shrink: 0; /* Prevent links from shrinking too much */
+    /* هذا الجزء هو الأهم لتغيير مكان أيقونة القائمة (menu-icon) و اللوجو */
+    header .logo {
+        order: 2; /* اللوجو على اليمين في RTL */
+        margin-right: 15px; /* مسافة من حافة الشاشة */
+        margin-left: 0; /* تأكد من عدم وجود هامش يسار غير مرغوب فيه */
     }
+
+    .menu-icon {
+        display: block; /* إظهار أيقونة القائمة */
+        order: 1; /* أيقونة القائمة على اليسار في RTL */
+        margin-left: 15px; /* مسافة من حافة الشاشة */
+        margin-right: 0; /* تأكد من عدم وجود هامش يمين غير مرغوب فيه */
+    }
+    /* نهاية التعديلات الخاصة بترتيب اللوجو وأيقونة القائمة */
 
     body {
         padding-top: 60px; /* Adjusted padding for a slightly smaller mobile header */
@@ -707,8 +719,8 @@ footer .copyright {
     }
 
     header nav {
-        overflow-x: auto; /* Ensure horizontal scrolling is still active */
-        padding-bottom: 2px; /* Tiny padding to ensure scrollbar is visible if needed */
+        overflow-x: hidden; /* Ensure horizontal scrolling is hidden as nav is hidden */
+        padding-bottom: 0; /* Remove padding */
     }
 
     header nav a {
