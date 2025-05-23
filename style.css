@@ -335,19 +335,19 @@ header nav a[href="index.html"]::after {
 /* --- Footer --- */
 
 footer {
-    /* تم تغيير لون النص ليتناسب مع الصورة */
     color: var(--footer-text-color);
     padding: 80px 0 0;
     text-align: center;
     position: relative;
     overflow: hidden;
-    min-height: 350px;
+    min-height: 350px; /* Adjust as needed */
     color: #000;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* تبدأ المحتويات من الأعلى */
+    justify-content: flex-start;
     align-items: center;
     margin-top: 20px;
+    background-color: transparent !important; /* Ensure footer background is transparent to show body background */
 }
 
 footer .container {
@@ -359,65 +359,82 @@ footer .container {
     justify-content: center;
     flex-grow: 1;
     padding-bottom: 60px;
-    color: #000;
-    background-color: #00000000;
+    color: var(--white-color); /* Set a default color for text within the container if not specified */
+    background-color: #00000000; /* Ensure this container background is transparent too */
 }
 
 /* Contact title in footer */
 footer h2.contact-title {
     font-size: 3.5em;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4); /* ظل خفيف على النص */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4); 
     position: relative;
     z-index: 2;
-    background-color: transparent; /* التأكد من شفافية الخلفية */
-    padding: 10px 20px; /* إضافة بعض المسافة الداخلية */
+    background-color: transparent; 
+    padding: 10px 20px; 
     border-radius: 5px;
+    color: var(--white-color); /* Make the contact title white for visibility */
 }
 
 /* Social icons within footer */
-
-footer {
-    background-color: transparent !important; /* يمسح أي لون خلفية */
-}
-
 footer .social-icons {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     display: flex;
-    gap: 20px;
+    gap: 20px; /* Increased gap to match your image more closely */
     position: relative;
-    z-index: 2;
+    z-index: 2; /* Ensures icons are above background */
+    align-items: center; /* Vertically align icons */
+    justify-content: center; /* Horizontally center icons */
 }
 
 footer .social-icons a {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0); /* شفافية كاملة للخلفية افتراضيًا */
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    background-color: transparent; /* Absolutely no background color for the 'a' tag */
+    border-radius: 0; /* Remove border-radius if you want sharp square outline (or 50% for circles) */
+    width: auto; /* Let the icon size define the width */
+    height: auto; /* Let the icon size define the height */
     text-decoration: none;
-    color: var(--white-color); /* لون أيقونات الفيسبوك والواتساب أبيض/فاتح */
-    font-size: 2.5em;
-    box-shadow: 0 4px 10px rgba(194, 0, 0, 0); /* ظل فاتح وأكثر وضوحًا */
-    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 8em; /* Significantly increased font size to match your image */
+    box-shadow: none; /* Remove any box-shadow */
+    transition: transform 0.3s ease; /* Keep transform transition */
+    color: unset; /* Reset color from parent to allow specific icon colors to take over */
 }
 
+/* Specific icon colors */
+footer .social-icons a .facebook-icon {
+    color: #1877F2; /* Facebook blue */
+}
+
+footer .social-icons a .whatsapp-icon {
+    color: #25D366; /* WhatsApp green */
+}
+
+
 footer .social-icons a:hover {
-    transform: translateY(-8px) scale(1.1);
-    background-color: var(--accent-color); /* اللون الأصفر عند التحويم */
-    color:#00000000; /* الحفاظ على لون الأيقونة أبيض عند التحويم */
-    box-shadow: 0 6px 15px rgba(255, 193, 7, 0.6); /* ظل أصفر عند التحويم */
+    transform: translateY(8px) scale(1.1); /* Subtle lift on hover */
+    background-color: transparent; /* Ensure background stays transparent on hover */
+    box-shadow: none; /* Ensure no box shadow on hover */
+}
+
+/* If you want the hover effect to apply to the icon itself (e.g., color change or shadow) */
+footer .social-icons a:hover .facebook-icon {
+    color: #155bb5; /* Slightly darker blue on hover */
+    /* text-shadow: 0 0 15px rgba(24, 119, 242, 0.8); /* Uncomment for glow effect */
+}
+
+footer .social-icons a:hover .whatsapp-icon {
+    color: #1DA851; /* Slightly darker green on hover */
+    /* text-shadow: 0 0 15px rgba(37, 211, 102, 0.8); /* Uncomment for glow effect */
 }
 
 
 /* Copyright strip */
 footer .copyright {
-    /* استخدام اللون الأزرق الداكن الجديد للخلفية */
     background-color: var(--footer-dark-blue);
-    color: var(--footer-text); /* نص فاتح للفوتر */
+    color: var(--footer-text-color); /* Use the defined footer text color */
     padding: 15px 0;
     width: 100%;
     font-size: 1em;
@@ -530,57 +547,138 @@ footer .copyright {
         font-size: 2.8em;
     }
     footer .social-icons a {
-        width: 50px;
-        height: 50px;
-        font-size: 2.2em;
+        font-size: 6em; /* Adjust size for tablets */
+    }
+    footer .social-icons {
+        gap: 30px; /* Adjust gap for tablets */
     }
 }
 
 /* For screens smaller than 768px (common tablet portrait and mobile - "التليفون") */
 @media (max-width: 767px) {
-    /* Header adjustments for mobile */
+    /* Header adjustments - keep more like laptop */
     header {
-        padding: 5px 0; /* تصغير ارتفاع الهيدر بشكل أكبر للتليفون */
+        padding: 8px 0; /* Maintain similar padding to laptop */
     }
 
     header .logo img {
-        height: 38px; /* تصغير اللوجو أكثر */
+        height: 45px; /* Keep logo size similar to laptop */
     }
 
     header .container {
-        flex-direction: column; /* جعل اللوجو والناف بار فوق بعضهما */
+        flex-direction: row; /* Keep elements in a row, like desktop */
+        justify-content: space-between; /* Maintain space-between */
         align-items: center;
     }
 
     header nav {
-        text-align: center;
-        margin-top: 8px; /* تقليل المسافة بعد اللوجو */
-        margin-right: 0;
-        justify-content: center;
-        width: 100%;
+        text-align: left; /* Keep left alignment for nav links in RTL */
+        margin-top: 0; /* Remove margin-top */
+        margin-right: auto; /* Push nav to the left */
+        justify-content: flex-end; /* Align links to the right */
+        width: auto; /* Allow nav to take only necessary width */
     }
 
     header nav a {
-        margin: 4px 6px; /* تقليل المسافة بين الروابط بشكل أكبر */
-        padding: 5px 9px; /* تصغير مساحة الروابط أكثر */
-        font-size: 0.85em; /* تصغير حجم الخط أكثر */
+        margin: 0 8px; /* Maintain similar spacing to laptop */
+        padding: 8px 15px; /* Maintain similar padding to laptop */
+        font-size: 0.9em; /* Keep font size similar to laptop */
     }
 
     body {
-        padding-top: 95px; /* Adjusted padding for mobile header height */
+        padding-top: 70px; /* Adjusted padding for header height */
     }
 
-    /* Hero section adjustments for mobile */
+    /* Hero section adjustments - less drastic changes */
     #hero {
-        height: 380px; /* تقليل ارتفاع الهيرو بشكل كبير للتليفون */
+        height: 500px; /* Slightly reduce height, but not as much as before */
     }
 
     .hero-overlay {
-        background-color: rgba(0, 0, 0, 0.3); /* زيادة شفافية الخلفية قليلاً لتحسين رؤية الفيديو */
+        background-color: rgba(0, 0, 0, 0.15); /* Keep a subtle overlay */
     }
 
     .hero-content h2 {
-        font-size: 2em;
+        font-size: 2.5em; /* Keep font size closer to laptop */
+    }
+
+    .hero-content button {
+        padding: 12px 25px; /* Keep button size closer to laptop */
+        font-size: 1.1em; /* Keep font size closer to laptop */
+    }
+
+    #features .container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Keep grid layout */
+        padding: 0 20px; /* Maintain container padding */
+    }
+
+    .feature-box {
+        width: auto; /* Let grid handle width */
+        margin: 0; /* Remove specific margins */
+        padding: 20px; /* Keep padding consistent */
+    }
+
+    #video-section h2,
+    #about-main h2,
+    #training h2 {
+        font-size: 2.2em; /* Slightly reduced but not too much */
+    }
+
+    footer {
+        min-height: 280px; /* Keep similar to original tablet height */
+        padding-bottom: 50px;
+    }
+
+    footer h2.contact-title {
+        font-size: 2.5em; /* Keep closer to laptop size */
+    }
+
+    footer .social-icons a {
+        font-size: 5em; /* Adjust size for mobiles */
+    }
+    footer .social-icons {
+        gap: 30px; /* Adjust gap for mobiles */
+    }
+}
+
+/* For even smaller screens (e.g., small smartphones - "التليفون الأصغر") */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px; /* Slightly more padding than before for very small screens */
+    }
+
+    /* Header adjustments for very small mobiles - try to maintain horizontal flow */
+    header {
+        padding: 5px 0; /* Slightly reduced padding */
+    }
+
+    header .logo img {
+        height: 40px; /* Slightly smaller logo */
+    }
+
+    header nav {
+        flex-basis: 100%; /* Allow nav to take full width if needed */
+        margin-top: 5px; /* Add a small gap if nav wraps */
+        justify-content: center; /* Center nav links if they wrap */
+    }
+
+    header nav a {
+        font-size: 0.8em; /* Slightly smaller font for links */
+        padding: 6px 10px;
+        margin: 2px 4px; /* Minimal spacing */
+    }
+
+    body {
+        padding-top: 85px; /* Adjusted padding for header height */
+    }
+
+    /* Hero section adjustments */
+    #hero {
+        height: 400px; /* A bit more height than previously for very small phones */
+    }
+
+    .hero-content h2 {
+        font-size: 2em; /* Keep it readable */
     }
 
     .hero-content button {
@@ -589,107 +687,36 @@ footer .copyright {
     }
 
     #features .container {
-        grid-template-columns: 1fr; /* عرض كل صندوق ميزة على سطر منفصل */
-        padding: 0 10px;
-    }
-
-    .feature-box {
-        width: 100%;
-        margin: 10px 0;
-        padding: 15px;
+        grid-template-columns: 1fr; /* Stack features vertically on very small screens */
+        gap: 15px; /* Reduce gap */
     }
 
     #video-section h2,
     #about-main h2,
     #training h2 {
         font-size: 2em;
-    }
-
-    footer {
-        min-height: 280px;
-        padding-bottom: 50px;
-    }
-
-    footer h2.contact-title {
-        font-size: 2.2em;
-    }
-
-    footer .social-icons a {
-        width: 45px;
-        height: 45px;
-        font-size: 2em;
-        margin: 0 10px;
-    }
-}
-
-/* For even smaller screens (e.g., small smartphones - "التليفون الأصغر") */
-@media (max-width: 480px) {
-    .container {
-        padding: 0 10px;
-    }
-
-    /* Header adjustments for very small mobiles */
-    header {
-        padding: 3px 0; /* تصغير الهيدر لأصغر حجم ممكن */
-    }
-
-    header .logo img {
-        height: 30px; /* أصغر حجم لوجو */
-    }
-
-    header nav a {
-        font-size: 0.75em; /* تصغير الخط لأقصى درجة */
-        padding: 4px 7px;
-        margin: 2px 3px; /* أصغر مسافات بين الروابط */
-    }
-
-    body {
-        padding-top: 80px; /* Adjusted padding for very small mobile header height */
-    }
-
-    /* Hero section adjustments for very small mobiles */
-    #hero {
-        height: 300px; /* أصغر ارتفاع للهيرو */
-    }
-
-    .hero-content h2 {
-        font-size: 1.8em;
-    }
-
-    .hero-content button {
-        padding: 8px 18px;
-        font-size: 0.9em;
-    }
-
-    #video-section h2,
-    #about-main h2,
-    #training h2 {
-        font-size: 1.8em;
         padding: 8px;
     }
 
     footer {
-        min-height: 220px;
+        min-height: 250px; /* Increased height for better appearance */
         padding-bottom: 40px;
     }
 
     footer h2.contact-title {
-        font-size: 1.8em;
+        font-size: 2.2em; /* Keep it larger */
     }
 
     footer .social-icons {
-        gap: 10px;
+        gap: 20px; /* Adjust gap for very small mobiles */
     }
 
     footer .social-icons a {
-        width: 40px;
-        height: 40px;
-        font-size: 1.6em;
-        
+        font-size: 4em; /* Adjust size for very small mobiles */
     }
 
     footer .copyright {
-        font-size: 0.75em;
-        padding: 8px 0;
+        font-size: 0.85em; /* Slightly larger copyright text */
+        padding: 10px 0;
     }
 }
