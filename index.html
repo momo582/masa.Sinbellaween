@@ -1,21 +1,300 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>حمام سباحة ماسة بنادي السنبلاوين</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /*
+        هذا الجزء من CSS هو الأهم لجعل الهيدر والفوتر يعملان
+        كما في الكود الثاني (صفحة الاشتراكات).
+        يجب عليك نقل هذه التنسيقات إلى ملف style.css الخاص بك
+        أو تضمينها مباشرة في جزء <head> كما هو موضح هنا لأغراض التوضيح.
+        */
+
+        /* ============ General Styles ============ */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #ffffff; /* تم تعديله ليتناسب مع الخلفية المظلمة للهيدر والفوتر */
+            direction: rtl;
+            overflow-x: hidden; /* Prevent horizontal scroll when side nav is out */
+            position: relative; /* Needed for overlay */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Overlay for mobile navigation */
+        .sidenav-overlay {
+            display: none; /* مخفي افتراضيًا */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5); /* خلفية شبه شفافة */
+            z-index: 998; /* أقل من القائمة الجانبية وأعلى من المحتوى العادي */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .sidenav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            display: block; /* تأكد من عرضها عند التفعيل */
+        }
+
+        /* ============ Header ============ */
+        header {
+            background-color: #10111263; /* Blue color from image */
+            padding: 5px 0;
+            box-shadow: 0 2px 5px rgba(241, 2, 2, 0);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row-reverse; /* Changed to Rtl: Logo on right, nav on left for mobile */
+        }
+
+        header .logo img {
+            height: 40px;
+            border-radius: 100%;
+            border: 2px solid white;
+            margin-left: 15px; /* Added margin for spacing */
+        }
+
+        header nav.main-nav { /* Added .main-nav class to target specifically */
+            display: flex;
+            align-items: center;
+            direction: rtl; /* Changed to Rtl */
+        }
+
+        header nav.main-nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        header nav.main-nav a:hover {
+            color: #f8f8f8;
+            transform: translateY(-2px);
+        }
+
+        header nav.main-nav a.active {
+            color: #00f0ff; /* Bright blue from image */
+            font-weight: bold;
+        }
+
+        header nav.main-nav a.active::after {
+            content: '';
+            position: absolute;
+            right: 0; /* Adjusted for Rtl */
+            left: unset; /* Adjusted for Rtl */
+            bottom: 0;
+            height: 3px;
+            background-color: #00f0ff; /* Bright blue from image */
+            border-radius: 2px;
+            width: 100%; /* Ensure full width underline */
+        }
+
+        /* Mobile Navigation Icons */
+        .menu-icon, .close-icon {
+            color: white;
+            font-size: 1.8em;
+            cursor: pointer;
+            display: none; /* Hidden by default, shown on mobile */
+            z-index: 1001; /* Above everything else */
+        }
+
+        .close-icon {
+            position: absolute;
+            top: 15px;
+            left: 15px; /* Position close icon on the left inside the side menu */
+            font-size: 2em;
+        }
+
+        /* Desktop Navigation */
+        @media (min-width: 768px) {
+            .menu-icon {
+                order: 2; /* Menu icon to the right on desktop (after logo) */
+                display: none; /* Hide on desktop */
+            }
+            header .container {
+                flex-direction: row; /* Logo left, menu right */
+                justify-content: space-between;
+            }
+            header nav.main-nav {
+                order: 1; /* Navigation to the left of the menu icon on desktop */
+                position: static;
+                width: auto;
+                height: auto;
+                background-color: transparent;
+                box-shadow: none;
+                flex-direction: row;
+                padding: 0;
+                display: flex; /* Ensure it's flex on desktop */
+                align-items: center;
+                transition: none; /* No transition on desktop */
+            }
+            header nav.main-nav a {
+                margin: 0 18px; /* Adjusted margin */
+                text-align: center;
+                padding-right: 0; /* Remove padding from mobile */
+                font-size: 1.1em; /* Slightly smaller for desktop to fit */
+            }
+            header nav.main-nav a.active::after {
+                right: 50%; /* Center underline on desktop */
+                transform: translateX(50%);
+                width: calc(100% - 36px); /* Adjust width based on new margin */
+                height: 3px; /* Standard thickness for desktop */
+            }
+            .close-icon {
+                display: none; /* Hide on desktop */
+            }
+            .logo {
+                order: 1; /* Logo to the left on desktop */
+            }
+        }
+
+        /* Mobile Specific Styles (apply when screen width is less than 768px) */
+        @media (max-width: 767px) {
+            header .container {
+                flex-direction: row; /* لا نعكس الترتيب هنا، بل نتحكم به عبر order في العناصر */
+                justify-content: space-between;
+            }
+
+            .menu-icon {
+                display: block; /* Show menu icon on mobile */
+                order: 1; /* Menu icon on the right (visual order in RTL) */
+                margin-right: 15px; /* مسافة من اللوجو */
+            }
+            .logo {
+                order: 2; /* Logo on the left (visual order in RTL) */
+                margin-left: 0; /* Reset margin from header */
+            }
+
+            /* ============ Mobile Navigation (Side Nav) ============ */
+            header nav.main-nav {
+                position: fixed; /* تثبيت القائمة الجانبية */
+                top: 0;
+                right: -300px; /* إخفاء القائمة في البداية خارج الشاشة (جهة اليمين لـ RTL) */
+                width: 250px; /* عرض القائمة الجانبية */
+                height: 100%;
+                background-color: #2c3e50; /* لون خلفية القائمة */
+                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5); /* ظل لإبراز القائمة */
+                flex-direction: column; /* ترتيب العناصر عموديًا */
+                padding: 60px 0 20px; /* مسافة داخلية (لإتاحة مكان لزر الإغلاق) */
+                align-items: flex-end; /* محاذاة العناصر إلى اليمين */
+                transition: right 0.3s ease-in-out; /* حركة سلسة عند الظهور والاختفاء */
+                z-index: 1000; /* طبقة أعلى من باقي المحتوى */
+                overflow-y: auto; /* إضافة شريط تمرير إذا كان المحتوى طويلًا */
+            }
+
+            header nav.main-nav.active {
+                right: 0; /* إظهار القائمة بتحريكها إلى الصفر (للداخل) */
+            }
+
+            header nav.main-nav a {
+                color: rgba(0, 0, 0, 0.315);
+                text-decoration: none;
+                margin: 15px 25px; /* مسافة أكبر للعناصر داخل القائمة */
+                font-size: 1.2em;
+                width: calc(100% - 50px); /* عرض الروابط */
+                text-align: right; /* محاذاة النص لليمين */
+                padding-bottom: 5px;
+                position: relative;
+                transition: background-color 0.2s ease;
+            }
+
+            header nav.main-nav a:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+                border-radius: 5px;
+            }
+
+            header nav.main-nav a.active::after {
+                right: 25px; /* تثبيت خط التحديد لليمين */
+                left: unset;
+                transform: none; /* إزالة التحويل */
+                width: calc(100% - 50px); /* عرض الخط مطابق للرابط */
+            }
+
+            .close-icon {
+                display: block; /* إظهار أيقونة الإغلاق داخل القائمة الجانبية */
+                position: absolute;
+                top: 15px;
+                right: 15px; /* وضع أيقونة الإغلاق في أعلى يمين القائمة الجانبية */
+                font-size: 2em;
+                color: white;
+            }
+        }
+
+        /* ============ Footer ============ */
+        footer {
+            background-color: rgba(70, 104, 138, 0); /* Color from image, adjusted opacity */
+            color: #ffffff; /* Changed to white */
+            padding: 15px 0; /* Adjusted padding */
+            text-align: center;
+            font-size: 0.95em;
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+            position: relative;
+            z-index: 1;
+        }
+
+        footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-bottom {
+            background-color: #2c3e50; /* Darker blue for bottom part from image */
+            color: #ffffff; /* Changed to white */
+            padding: 15px 0;
+            margin-top: 0;
+            font-size: 0.9em;
+            width: 100%;
+        }
+
+        .footer-bottom .copyright {
+            margin-top: 0;
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="container">
             <div class="logo">
-                <img src="photo/logo.jpg" alt="شعار ماسة">
+                <a href="index.html"><img src="photo/logo.jpg" alt="شعار ماسة"></a>
             </div>
-            <nav>
-                <a href="index.html">الصفحة الرئيسية</a>
-                <a href="about.html">حول ماسه</a>
+
+            <div class="menu-icon" id="menuIcon">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav class="main-nav" id="mainNav">
+                <div class="close-icon" id="closeIcon">
+                    <i class="fas fa-times"></i>
+                </div>
+                <a href="index.html" class="active">الصفحة الرئيسية</a>
+                <a href="about.html">حول ماسة</a>
                 <a href="courses.html">التدريبات</a>
                 <a href="facilities.html">الاستور</a>
                 <a href="comments.html">تعليقاتكم</a>
@@ -25,6 +304,8 @@
             </nav>
         </div>
     </header>
+
+    <div class="sidenav-overlay" id="sidenavOverlay"></div>
 
     <section id="hero" class="">
         <div class="hero-video-container">
@@ -103,23 +384,78 @@
         </div>
     </section>
 
-    <footer id="contact-section">
-        <div class="container">
-            <h2 class="contact-title">تواصل معنا</h2>
-            <div class="social-icons">
-                <a href="https://wa.me/201555903712" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="https://www.facebook.com/Diamondclubsng?locale=ar_AR" target="_blank">
-                    <i class="fab fa-facebook"></i>
-                </a>
-            </div>
+<footer>
+    <div class="container">
+        <h2 class="contact-title">تواصل معنا</h2> 
+        
+        <div class="social-icons">
+            <a href="https://www.facebook.com/YourFacebookPage" target="_blank" aria-label="Facebook">
+                <i class="fab fa-facebook-f facebook-icon"></i>
+            </a>
+            <a href="https://wa.me/YourPhoneNumber" target="_blank" aria-label="WhatsApp">
+                <i class="fab fa-whatsapp whatsapp-icon"></i>
+            </a>
         </div>
-        <div class="copyright">
-            &copy; جميع الحقوق محفوظة لحمام سباحة ماسة
+        
         </div>
-    </footer>
+
+    <div class="copyright">
+            <p>نادي ماسة: حيث تبدأ رحلتك المائية!</p>
+        &copy; 2024 . جميع الحقوق محفوظة.
+    </div>
+</footer>
 
     <script src="index.js"></script>
+    <script>
+        // JavaScript for mobile menu toggle (Side Navigation)
+        const menuIcon = document.getElementById('menuIcon');
+        const closeIcon = document.getElementById('closeIcon');
+        const mainNav = document.getElementById('mainNav');
+        const sidenavOverlay = document.getElementById('sidenavOverlay'); // الحصول على overlay
+
+        if (menuIcon) {
+            menuIcon.addEventListener('click', () => {
+                mainNav.classList.add('active'); // أضف فئة active لإظهار القائمة
+                sidenavOverlay.classList.add('active'); // أضف فئة active لإظهار الـ overlay
+                document.body.style.overflow = 'hidden'; // منع التمرير في الجسم
+            });
+        }
+
+        if (closeIcon) {
+            closeIcon.addEventListener('click', () => {
+                mainNav.classList.remove('active'); // إزالة فئة active لإخفاء القائمة
+                sidenavOverlay.classList.remove('active'); // إزالة فئة active لإخفاء الـ overlay
+                document.body.style.overflow = ''; // إعادة التمرير إلى الوضع الطبيعي
+            });
+        }
+
+        // إغلاق القائمة الجانبية عند النقر على الـ overlay
+        if (sidenavOverlay) {
+            sidenavOverlay.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                sidenavOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+
+        // إغلاق القائمة الجانبية عند النقر على أي رابط داخلها (اختياري)
+        const navLinks = document.querySelectorAll('#mainNav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                // تحقق من حجم الشاشة لضمان إغلاق القائمة فقط على الجوال
+                if (window.innerWidth <= 767) {
+                    mainNav.classList.remove('active');
+                    sidenavOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // هذا الكود الخاص بالـ modal غير موجود في الصفحة الأولى الأصلية،
+        // لذلك لم يتم تضمينه هنا لكي لا يتسبب في ظهور خطأ.
+        // إذا كنت تريد إضافة وظيفة الـ modal للصفحة الأولى،
+        // ستحتاج إلى إضافة كود الـ HTML الخاص بالـ modal
+        // وأيضاً كود الـ JavaScript الخاص به.
+    </script>
 </body>
 </html>
