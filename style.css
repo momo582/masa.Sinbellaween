@@ -381,7 +381,7 @@ footer .social-icons {
     margin-top: 10px;
     margin-bottom: 10px;
     display: flex;
-    gap: 20px; /* Increased gap to match your image more closely */
+    gap: 20px;
     position: relative;
     z-index: 2; /* Ensures icons are above background */
     align-items: center; /* Vertically align icons */
@@ -397,7 +397,7 @@ footer .social-icons a {
     width: auto; /* Let the icon size define the width */
     height: auto; /* Let the icon size define the height */
     text-decoration: none;
-    font-size: 8em; /* Significantly increased font size to match your image */
+    font-size: 4em; /* تم التصغير من 6em إلى 4em */
     box-shadow: none; /* Remove any box-shadow */
     transition: transform 0.3s ease; /* Keep transform transition */
     color: unset; /* Reset color from parent to allow specific icon colors to take over */
@@ -547,7 +547,7 @@ footer .copyright {
         font-size: 2.8em;
     }
     footer .social-icons a {
-        font-size: 6em; /* Adjust size for tablets */
+        font-size: 3em; /* تم التصغير من 4em إلى 3em للأجهزة اللوحية */
     }
     footer .social-icons {
         gap: 30px; /* Adjust gap for tablets */
@@ -634,10 +634,10 @@ footer .copyright {
     }
 
     footer .social-icons a {
-        font-size: 5em; /* Adjust size for mobiles */
+        font-size: 2.5em; /* تم التصغير من 3.5em إلى 2.5em للهواتف */
     }
     footer .social-icons {
-        gap: 30px; /* Adjust gap for mobiles */
+        gap: 25px; /* Adjust gap for mobiles, slightly less than tablets */
     }
 }
 
@@ -708,11 +708,11 @@ footer .copyright {
     }
 
     footer .social-icons {
-        gap: 20px; /* Adjust gap for very small mobiles */
+        gap: 15px; /* Adjust gap for very small mobiles */
     }
 
     footer .social-icons a {
-        font-size: 4em; /* Adjust size for very small mobiles */
+        font-size: 2em; /* تم التصغير من 3em إلى 2em للهواتف الصغيرة جدًا */
     }
 
     footer .copyright {
