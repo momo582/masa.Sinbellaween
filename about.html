@@ -40,7 +40,8 @@
 
         /* ============ Header Styles ============ */
         header {
-                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5); /* ظل لإبراز القائمة */
+            background-color: #1a2b3c80; 
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5); /* ظل لإبراز القائمة */
             color: var(--white-color);
             padding: 5px 0;
             position: sticky;
@@ -155,7 +156,7 @@
             flex-direction: column;
             border-radius: 8px;
             padding-bottom: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(0, 0, 0, 0.427);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             margin-right: 20px;
         }
@@ -163,7 +164,7 @@
         .main-info h1,
         .main-info h2,
         .main-info p {
-            color: #000000;
+            color: #ffffff;
             margin-bottom: 15px;
         }
 
@@ -199,7 +200,7 @@
         }
 
         .person-card {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(0, 0, 0, 0.418);
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 20px;
@@ -224,6 +225,7 @@
         .person-card p {
             line-height: 1.6;
             font-size: 0.9em;
+            color: #ffffff;
         }
 
         /* ============ Footer Styles (معدل بالكامل) ============ */
@@ -349,7 +351,7 @@
         @media (max-width: 768px) {
             header .container {
                 justify-content: space-between;
-                flex-direction: row; /* اللوجو على اليسار، أيقونة القائمة على اليمين */
+                flex-direction: row-reverse; /* ****** تم تغيير هذا السطر ****** */
             }
 
             header nav.main-nav {
