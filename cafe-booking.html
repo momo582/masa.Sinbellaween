@@ -567,16 +567,30 @@
 
         /* للهواتف (أقل من 768px) */
         @media (max-width: 767px) {
+            body {
+                font-size: 15px; /* تقليل حجم الخط الأساسي للهواتف */
+            }
+
+            .container {
+                padding: 0 15px; /* تقليل البادينغ في الكونتينر للهواتف */
+            }
+
             header .container {
                 flex-direction: row; /* اللوجو على اليسار، زر القائمة على اليمين */
                 justify-content: space-between;
+                padding: 0 10px; /* تقليل البادينغ في هيدر الكونتينر */
+            }
+
+            header .logo img {
+                height: 35px; /* تقليل حجم اللوجو على الهواتف */
+                margin-right: 10px;
             }
 
             header nav {
                 display: none; /* إخفاء القائمة افتراضياً في الموبايل */
                 flex-direction: column;
                 position: absolute;
-                top: 70px; /* أسفل الهيدر، يجب أن يكون أكبر من ارتفاع الهيدر ليتناسب */
+                top: 50px; /* أسفل الهيدر، يجب أن يكون أكبر من ارتفاع الهيدر ليتناسب */
                 right: 0; /* لتبدأ من اليمين */
                 width: 70%; /* عرض القائمة المنسدلة */
                 background-color: var(--primary-color);
@@ -609,6 +623,7 @@
 
             .menu-toggle {
                 display: block; /* إظهار زر القائمة في عرض الموبايل */
+                margin-right: 10px; /* مسافة لزر القائمة من اليمين */
             }
             
             header .logo {
@@ -616,7 +631,16 @@
             }
             header .menu-toggle {
                 order: 2; /* جعل زر القائمة ثاني عنصر (على اليمين) */
-                margin-right: 15px; /* مسافة لزر القائمة من اليمين */
+            }
+
+            .cafe-section {
+                padding: 20px 0;
+                margin: 20px auto;
+            }
+
+            .cafe-section h2, .cafe-section h3, .cafe-section p {
+                font-size: 1.1em; /* تقليل حجم الخط للعناوين في الأقسام */
+                margin-bottom: 20px;
             }
 
             .cafe-content {
@@ -626,24 +650,62 @@
 
             .menu-item {
                 flex: 1 1 100%;
+                min-width: unset; /* إزالة الحد الأدنى للعرض */
+                max-width: 95%; /* تحديد أقصى عرض للعنصر */
+                margin: 0 auto; /* توسيط العنصر */
             }
 
             .gallery-grid {
                 grid-template-columns: 1fr;
             }
+            .gallery-item img,
+            .gallery-item video {
+                height: 180px; /* تعديل ارتفاع الصور والفيديوهات في الجاليري */
+            }
 
             .booking-form, .payment-options {
-                max-width: 90%;
+                max-width: 95%; /* زيادة عرض الفورمات قليلاً */
+                padding: 20px;
+                margin: 20px auto;
+            }
+
+            .booking-form input[type="text"],
+            .booking-form input[type="email"],
+            .booking-form input[type="date"],
+            .booking-form input[type="time"],
+            .booking-form input[type="number"],
+            .booking-form select,
+            .booking-form textarea {
+                width: 100%; /* ضمان عرض كامل مع البادينغ */
+                padding: 8px;
+                margin-bottom: 15px;
+            }
+            .booking-form button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+
+            .payment-methods {
+                flex-direction: column; /* جعل أزرار الدفع عمودية */
+                gap: 15px;
+            }
+            .payment-methods button {
+                width: 100%; /* جعل الأزرار تأخذ العرض الكامل */
+                justify-content: center; /* توسيط المحتوى داخل الزر */
             }
 
             footer h2.contact-title {
-                font-size: 2.5em;
+                font-size: 2em;
             }
 
             footer .social-icons a {
-                width: 50px;
-                height: 50px;
-                font-size: 2em;
+                width: 45px;
+                height: 45px;
+                font-size: 1.8em;
+            }
+            footer .copyright {
+                font-size: 0.9em;
+                padding: 10px 0;
             }
         }
 
@@ -933,39 +995,43 @@
                 }
             });
 
-            // Payment methods functionality
-            const bookingForm = document.getElementById('booking-form-submit');
-            const bookingFormElement = document.getElementById('booking-form-element');
-            const paymentSection = document.getElementById('payment-section');
+            // Payment methods functionality (الجزء المفقود من الجافاسكريبت)
             const visaBtn = document.getElementById('visa-btn');
             const vodafoneCashBtn = document.getElementById('vodafone-cash-btn');
-            const paymentDetailsDiv = document.getElementById('payment-details');
-            
-            // Your existing JavaScript for payment handling will go here after `whatsappNo`
-            // ... (Your existing JavaScript for payment methods should follow here if it was truncated)
+            const paymentDetails = document.getElementById('payment-details');
+            const uploadSection = document.querySelector('.upload-section');
+            const bookingFormSubmit = document.getElementById('booking-form-submit');
+            const paymentSection = document.getElementById('payment-section');
 
-            // Example of how to display payment details (you'll need to complete this logic)
-            visaBtn.addEventListener('click', () => {
-                paymentDetailsDiv.innerHTML = '<p>للدفع عبر الفيزا، يرجى إدخال تفاصيل بطاقتك.</p><p><strong>سيتم توفير بوابة الدفع لاحقًا.</strong></p>';
-                paymentDetailsDiv.style.display = 'block';
+            visaBtn.addEventListener('click', function() {
+                paymentDetails.innerHTML = `
+                    <p>سيتم توجيهك لصفحة الدفع الآمنة لإتمام عملية الدفع بواسطة فيزا.</p>
+                    <p>يرجى التأكد من إدخال بيانات البطاقة بشكل صحيح.</p>
+                `;
+                paymentDetails.style.display = 'block';
                 visaBtn.classList.add('active');
                 vodafoneCashBtn.classList.remove('active');
+                uploadSection.style.display = 'none'; // إخفاء قسم رفع الصورة
             });
 
-            vodafoneCashBtn.addEventListener('click', () => {
-                paymentDetailsDiv.innerHTML = '<p>للدفع عبر فودافون كاش، يرجى التحويل إلى الرقم التالي:</p><p><strong>01XXXXXXXXX</strong></p><p>مع إرسال صورة التحويل عبر الواتس اب بالرقم المسجل في الحجز.</p>';
-                paymentDetailsDiv.style.display = 'block';
+            vodafoneCashBtn.addEventListener('click', function() {
+                paymentDetails.innerHTML = `
+                    <p>يرجى التحويل إلى رقم فودافون كاش التالي:</p>
+                    <p><strong>01xxxxxxxx</strong></p>
+                    <p>بعد التحويل، يرجى إرسال صورة إيصال التحويل عبر الواتس اب بالرقم المسجل في الحجز.</p>
+                `;
+                paymentDetails.style.display = 'block';
                 vodafoneCashBtn.classList.add('active');
                 visaBtn.classList.remove('active');
+                uploadSection.style.display = 'block'; // إظهار قسم رفع الصورة
             });
 
-            // Example form submission (you'll need to implement actual submission logic)
-            bookingForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent default form submission
-                alert('تم استلام طلب حجزك! يرجى إكمال عملية الدفع.');
-                // Here you would typically hide the form and show the payment section
-                bookingFormElement.style.display = 'none';
-                paymentSection.style.display = 'block';
+            bookingFormSubmit.addEventListener('submit', function(event) {
+                event.preventDefault(); // منع الإرسال الافتراضي للفورم
+                // هنا يمكنك إضافة كود لإرسال بيانات الحجز إلى الخادم
+                alert('تم تأكيد حجزك بنجاح! يرجى اختيار طريقة الدفع.');
+                bookingFormSubmit.style.display = 'none'; // إخفاء الفورم
+                paymentSection.style.display = 'block'; // إظهار قسم الدفع
             });
         });
     </script>
