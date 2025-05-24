@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -54,21 +54,21 @@
 
         header .container {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* اللوجو على اليسار وأزرار التنقل على اليمين */
             align-items: center;
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            flex-direction: row-reverse; /* اللوجو يمين والقائمة شمال */
+            flex-direction: row; /* لترتيب اللوجو على اليسار والقائمة على اليمين */
         }
 
         header .logo img {
             height: 40px;
             border-radius: 100%;
             border: 2px solid white;
-            margin-left: 15px;
-            margin-right: 0;
+            margin-right: 15px; /* مسافة على يمين اللوجو */
+            margin-left: 0;
         }
 
         header nav {
@@ -110,7 +110,7 @@
         }
 
         .menu-toggle {
-            display: none;
+            display: none; /* إخفاء زر القائمة في عرض الكمبيوتر بشكل افتراضي */
             font-size: 2em;
             color: var(--white-color);
             cursor: pointer;
@@ -568,27 +568,31 @@
         /* للهواتف (أقل من 768px) */
         @media (max-width: 767px) {
             header .container {
-                flex-direction: row-reverse;
+                flex-direction: row; /* اللوجو على اليسار، زر القائمة على اليمين */
+                justify-content: space-between;
             }
 
             header nav {
-                display: none;
+                display: none; /* إخفاء القائمة افتراضياً في الموبايل */
                 flex-direction: column;
                 position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
+                top: 70px; /* أسفل الهيدر، يجب أن يكون أكبر من ارتفاع الهيدر ليتناسب */
+                right: 0; /* لتبدأ من اليمين */
+                width: 70%; /* عرض القائمة المنسدلة */
                 background-color: var(--primary-color);
                 box-shadow: 0 2px 6px rgba(0,0,0,0.2);
                 padding: 10px 0;
                 z-index: 99;
-                direction: rtl;
-                align-items: flex-end;
-                padding-right: 20px;
+                direction: rtl; /* للحفاظ على ترتيب القائمة من اليمين لليسار */
+                align-items: flex-end; /* لمحاذاة الروابط لليمين داخل القائمة */
+                padding-right: 20px; /* مسافة داخلية من اليمين */
+                transition: transform 0.3s ease-out; /* إضافة انتقال لفتح/إغلاق سلس */
+                transform: translateX(100%); /* إخفاء القائمة خارج الشاشة */
             }
 
             header nav.active {
                 display: flex;
+                transform: translateX(0); /* إظهار القائمة على الشاشة */
             }
 
             header nav a {
@@ -596,6 +600,7 @@
                 padding: 12px 20px;
                 text-align: right;
                 border-bottom: 1px solid rgba(255,255,255,0.1);
+                width: 100%; /* لتأخذ الرابط العرض الكامل داخل القائمة */
             }
 
             header nav a:last-child {
@@ -603,7 +608,15 @@
             }
 
             .menu-toggle {
-                display: block;
+                display: block; /* إظهار زر القائمة في عرض الموبايل */
+            }
+            
+            header .logo {
+                order: 1; /* جعل اللوجو أول عنصر (أقصى اليسار) */
+            }
+            header .menu-toggle {
+                order: 2; /* جعل زر القائمة ثاني عنصر (على اليمين) */
+                margin-right: 15px; /* مسافة لزر القائمة من اليمين */
             }
 
             .cafe-content {
@@ -662,6 +675,9 @@
             <div class="logo">
                 <a href="index.html"><img src="photo/logo.jpg" alt="شعار ماسة" /></a>
             </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
             <nav>
                 <a href="index.html">الصفحة الرئيسية</a>
                 <a href="about.html">حول ماسة</a>
@@ -672,9 +688,6 @@
                 <a href="subscriptions.html">الاشتراكات</a>
                 <a href="cafe-booking.html" class="active">حجز الكافيتريا</a>
             </nav>
-            <div class="menu-toggle" id="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
         </div>
     </header>
 
@@ -835,6 +848,13 @@
             let currentGroup = [];
             let currentIndex = 0;
 
+            // يمكنك تعريف مجموعات الصور هنا إذا كنت تريد التنقل بين صور متعددة لكل مفتاح
+            const galleryGroups = {
+                cafe_img1: ['photo/العاب.jpg', 'photo/cafe_related_img_1.jpg', 'photo/cafe_related_img_2.jpg'], // مثال: صور ذات صلة
+                cafe_img2: ['photo/cafe2.jpg', 'photo/drink_related_img_1.jpg'] // مثال: صور ذات صلة
+            };
+
+
             galleryImages.forEach(img => {
                 img.addEventListener('click', () => {
                     // Pause all videos before opening lightbox
@@ -920,37 +940,32 @@
             const visaBtn = document.getElementById('visa-btn');
             const vodafoneCashBtn = document.getElementById('vodafone-cash-btn');
             const paymentDetailsDiv = document.getElementById('payment-details');
-            const receiptImageInput = document.getElementById('receipt-image');
-            const receiptLabel = document.getElementById('receipt-label');
-            const whatsappNote = document.querySelector('.whatsapp-note'); // Added to hide/show the WhatsApp note
+            
+            // Your existing JavaScript for payment handling will go here after `whatsappNo`
+            // ... (Your existing JavaScript for payment methods should follow here if it was truncated)
 
-            bookingForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent default form submission
-                bookingFormElement.style.display = 'none'; // Hide the booking form
-                paymentSection.style.display = 'block';    // Show the payment section
-                // Optionally, scroll to the payment section
-                paymentSection.scrollIntoView({ behavior: 'smooth' });
-            });
-
-
+            // Example of how to display payment details (you'll need to complete this logic)
             visaBtn.addEventListener('click', () => {
-                paymentDetailsDiv.innerHTML = '<p>رقم حساب الفيزا: <strong>1234 5678 9012 3456</strong></p><p>الاسم: <strong>ماسة كافيتريا</strong></p>';
+                paymentDetailsDiv.innerHTML = '<p>للدفع عبر الفيزا، يرجى إدخال تفاصيل بطاقتك.</p><p><strong>سيتم توفير بوابة الدفع لاحقًا.</strong></p>';
                 paymentDetailsDiv.style.display = 'block';
-                receiptImageInput.style.display = 'block';
-                receiptLabel.style.display = 'block';
-                whatsappNote.style.display = 'block'; // Show WhatsApp note
                 visaBtn.classList.add('active');
                 vodafoneCashBtn.classList.remove('active');
             });
 
             vodafoneCashBtn.addEventListener('click', () => {
-                paymentDetailsDiv.innerHTML = '<p>رقم فودافون كاش: <strong>0100 123 4567</strong></p><p>الاسم: <strong>ماسة كافيتريا</strong></p>';
+                paymentDetailsDiv.innerHTML = '<p>للدفع عبر فودافون كاش، يرجى التحويل إلى الرقم التالي:</p><p><strong>01XXXXXXXXX</strong></p><p>مع إرسال صورة التحويل عبر الواتس اب بالرقم المسجل في الحجز.</p>';
                 paymentDetailsDiv.style.display = 'block';
-                receiptImageInput.style.display = 'block';
-                receiptLabel.style.display = 'block';
-                whatsappNote.style.display = 'block'; // Show WhatsApp note
                 vodafoneCashBtn.classList.add('active');
                 visaBtn.classList.remove('active');
+            });
+
+            // Example form submission (you'll need to implement actual submission logic)
+            bookingForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+                alert('تم استلام طلب حجزك! يرجى إكمال عملية الدفع.');
+                // Here you would typically hide the form and show the payment section
+                bookingFormElement.style.display = 'none';
+                paymentSection.style.display = 'block';
             });
         });
     </script>
